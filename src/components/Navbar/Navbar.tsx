@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
-import { GiSoccerKick } from "react-icons/gi";
-import { PiUserCircleLight, PiDotsThreeBold } from "react-icons/pi";
+import Modal from "../ui/Modal";
 import SearchInput from "./SearchInput";
-import { useState } from "react";
-import Modal from "../UI/Modal";
 import MenuBox from "./MenuBox";
 import { Link } from "react-router-dom";
+import { GiSoccerKick } from "react-icons/gi";
+import { PiUserCircleLight, PiDotsThreeBold } from "react-icons/pi";
+import { useState } from "react";
 
 export default function Navbar() {
   const [openModal, setOpenModal] = useState(false);
@@ -48,7 +48,6 @@ const Section = styled.section`
   align-items: center;
   width: 100%;
   height: 60px;
-  border-bottom: 1px solid #ddd;
 
   .closed {
     right: -320px;

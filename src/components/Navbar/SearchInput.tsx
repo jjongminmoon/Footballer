@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Modal from "../UI/Modal";
+import Modal from "../ui/Modal";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BiX } from "react-icons/bi";
