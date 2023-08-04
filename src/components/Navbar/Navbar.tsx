@@ -3,12 +3,14 @@ import Modal from "../ui/Modal";
 import SearchInput from "./SearchInput";
 import MenuBox from "./MenuBox";
 import { Link } from "react-router-dom";
-import { GiSoccerKick } from "react-icons/gi";
 import { PiUserCircleLight, PiDotsThreeBold } from "react-icons/pi";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import Logo from "../ui/Logo";
+import { AuthContext } from "../../context/AuthProvider";
 
 export default function Navbar() {
   const [openModal, setOpenModal] = useState(false);
+  const isUser = useContext(AuthContext);
 
   const stopBubbling = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -17,13 +19,10 @@ export default function Navbar() {
 
   return (
     <Section>
-      <Logo>
-        <p>풋볼러</p>
-        <LogoIcon />
-      </Logo>
+      <Logo fontSize="24px" />
       <UserAction>
         <SearchInput />
-        <Link to="/user">
+        <Link to={isUser ? "/user" : "login"}>
           <UserIcon />
         </Link>
         <MenuIcon onClick={() => setOpenModal(true)} />
@@ -56,19 +55,6 @@ const Section = styled.section`
   .opened {
     right: 0;
   }
-`;
-
-const Logo = styled.h1`
-  display: flex;
-  gap: 5px;
-  font-family: "KBO-Dia-Gothic_bold";
-  font-size: 24px;
-  font-style: italic;
-`;
-
-const LogoIcon = styled(GiSoccerKick)`
-  font-size: 20px;
-  color: red;
 `;
 
 const UserAction = styled.div`

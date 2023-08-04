@@ -32,7 +32,7 @@ const OpenSearchBox = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #f5f5f5;
+  background-color: var(--main-light-gray);
   min-width: 300px;
   height: 40px;
   padding: 8px;
@@ -70,7 +70,7 @@ const Input = styled.input`
   width: 450px;
   height: 40px;
   padding: 8px 16px;
-  background-color: #f5f5f5;
+  background-color: var(--main-light-gray);
   border: none;
   border-radius: 8px;
 `;

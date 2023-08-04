@@ -14,12 +14,19 @@
   font-style: normal;
 }
 
+:root {
+  --main-font: #282b33;
+  --main-red: #ff4b4b;
+  --main-gray: #ddd;
+  --main-light-gray: #f5f5f5;
+}
+
 body {
   margin: 0;
   font-family: "GmarketSansMedium";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #282b33;
+  color: var(--main-font);
 }
 
 a {
@@ -40,6 +47,14 @@ li {
 
 input:focus {
   outline: none;
+
+  &::placeholder {
+    color: white;
+  }
+}
+
+input::placeholder {
+  color: #ccc;
 }
 
 * {

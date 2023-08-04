@@ -53,7 +53,7 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 410px;
-  background-color: #f5f5f5;
+  background-color: var(--main-light-gray);
 
   .slick-slider {
     border-radius: 16px;
