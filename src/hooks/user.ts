@@ -1,12 +1,16 @@
 import { addDoc, collection, getCountFromServer, onSnapshot, query } from "firebase/firestore";
 import { dbService } from "../service/firebase";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../context/UserProvider";
+import { AuthContext } from "../context/AuthProvider";
+import { UserProps } from "../model/user";
 
 export default async function addUser(
-  email: string,
-  age: number,
+  email: string | null | undefined,
+  image: string[],
+  birth: string,
   name: string,
-  position: [],
+  position: string,
   region: string,
   level: string
 ) {
@@ -16,9 +20,9 @@ export default async function addUser(
   await addDoc(coll, {
     number: snapshot.data().count + 1,
     email: email,
-    image: null,
+    image: image,
     name: name,
-    age: age,
+    birth: birth,
     position: position,
     region: region,
     level: level,
@@ -28,8 +32,18 @@ export default async function addUser(
     apply: [],
     posts: []
   });
+}
 
-  return;
+export function getAuthData() {
+  const authData = useContext(AuthContext);
+
+  return { authData };
+}
+
+export function getUser() {
+  const userData = useContext<UserProps>(UserContext);
+
+  return { userData };
 }
 
 export function getAllUser() {

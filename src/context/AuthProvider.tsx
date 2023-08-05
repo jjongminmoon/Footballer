@@ -1,10 +1,14 @@
+import React, { useEffect, useState } from "react";
 import { User } from "firebase/auth";
-import { createContext, useEffect, useState } from "react";
 import { auth } from "../service/firebase";
 
-export const AuthContext = createContext<User | null>(null);
+type Props = {
+  children: React.ReactNode;
+};
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const AuthContext = React.createContext<User | null>(null);
+
+export const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {

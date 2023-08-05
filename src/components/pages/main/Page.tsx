@@ -1,9 +1,12 @@
-import Carousel from "./Carousel";
+import styled from "@emotion/styled";
+import Banner from "./Banner";
 
 export default function MainPage() {
   return (
-    <section>
-      <Carousel />
-    </section>
+    <Section>
+      <Banner />
+    </Section>
   );
 }
+
+const Section = styled.section``;

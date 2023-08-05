@@ -2,6 +2,9 @@ import styled from "@emotion/styled";
 import Navbar from "./components/navbar/Navbar";
 import PageNavigator from "./PageNavigator";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Footer from "./components/ui/Footer";
+import { AuthProvider } from "./context/AuthProvider";
+import { UserProvider } from "./context/UserProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,12 +17,17 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Header>
-        <Navbar />
-      </Header>
-      <Main>
-        <PageNavigator />
-      </Main>
+      <AuthProvider>
+        <UserProvider>
+          <Header>
+            <Navbar />
+          </Header>
+          <Main>
+            <PageNavigator />
+          </Main>
+          <Footer />
+        </UserProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

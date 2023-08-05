@@ -22,7 +22,7 @@ export default function Navbar() {
       <Logo fontSize="24px" />
       <UserAction>
         <SearchInput />
-        <Link to={isUser ? "/user" : "login"}>
+        <Link to={isUser ? "/mypage/user" : "login"}>
           <UserIcon />
         </Link>
         <MenuIcon onClick={() => setOpenModal(true)} />
@@ -68,6 +68,8 @@ const UserAction = styled.div`
 `;
 
 const UserIcon = styled(PiUserCircleLight)`
+  display: flex;
+  align-items: center;
   font-size: 32px;
 `;
 

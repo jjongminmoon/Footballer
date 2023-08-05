@@ -2,7 +2,7 @@ export type UserProps = {
   id: string;
   email: string;
   image: string;
-  age: number;
+  birth: string;
   name: string;
   position: [];
   region: string;

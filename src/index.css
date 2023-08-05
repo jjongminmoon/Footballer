@@ -19,6 +19,7 @@
   --main-red: #ff4b4b;
   --main-gray: #ddd;
   --main-light-gray: #f5f5f5;
+  --main-button: #2a2a2a;
 }
 
 body {
@@ -35,6 +36,8 @@ a {
 }
 
 h1,
+h2,
+h3,
 ul {
   margin: 0;
   padding: 0;
