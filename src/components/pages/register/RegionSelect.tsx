@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { SetStateAction, useState } from "react";
-import { regionList } from "./registerData";
+import { regionList } from "./player/registerData";
 
 type Props = {
   region: string;

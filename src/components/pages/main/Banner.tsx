@@ -3,22 +3,25 @@ import main1 from "../../../assets/images/main1.jpg";
 import main2 from "../../../assets/images/main2.jpg";
 import main3 from "../../../assets/images/main3.jpg";
 import main4 from "../../../assets/images/main4.avif";
+import { Link } from "react-router-dom";
 
 const imageList = [
-  { image: main1, name: "팀 매치" },
-  { image: main2, name: "선수 등록" },
-  { image: main3, name: "팀 등록" },
-  { image: main4, name: "풋볼러컵" }
+  { image: main1, name: "팀 매치", pathname: "/" },
+  { image: main2, name: "팀 등록", pathname: "/register/team" },
+  { image: main3, name: "이적 시장", pathname: "/market" },
+  { image: main4, name: "풋볼러컵", pathname: "/footballercup" }
 ];
 
 export default function Banner() {
   return (
     <Container>
       <BannerBox>
-        {imageList.map(({ image, name }) => (
-          <div>
-            <img src={image} alt={name} />
-            <p>{name}</p>
+        {imageList.map(({ image, name, pathname }) => (
+          <div key={name}>
+            <Link to={pathname}>
+              <img src={image} alt={name} />
+              <p>{name}</p>
+            </Link>
           </div>
         ))}
       </BannerBox>

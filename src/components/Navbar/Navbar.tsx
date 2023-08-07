@@ -19,7 +19,9 @@ export default function Navbar() {
 
   return (
     <Section>
-      <Logo fontSize="24px" />
+      <Link to="/">
+        <Logo fontSize="24px" />
+      </Link>
       <UserAction>
         <SearchInput />
         <Link to={isUser ? "/mypage/user" : "login"}>

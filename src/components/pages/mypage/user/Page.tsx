@@ -14,11 +14,10 @@ export default function UserPage() {
 
   return (
     <MypageContainer>
-      <h1>유저 정보</h1>
       <LoginInfo>
-        <h3>로그인 정보</h3>
+        <h1>로그인 정보</h1>
         {infoList.map(({ title, data }) => (
-          <Row>
+          <Row key={title}>
             <span>{title}</span>
             <div>{data}</div>
           </Row>
@@ -31,8 +30,9 @@ export default function UserPage() {
 const LoginInfo = styled.div`
   margin-top: 30px;
 
-  h3 {
-    padding-bottom: 10px;
+  h1 {
+    font-size: 26px;
+    padding-bottom: 20px;
     border-bottom: 2px solid black;
   }
 `;

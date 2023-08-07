@@ -11,5 +11,5 @@ export type UserProps = {
   goodPlayer: [];
   team: string;
   apply: [];
-  posts: [];
+  scouted: [];
 };

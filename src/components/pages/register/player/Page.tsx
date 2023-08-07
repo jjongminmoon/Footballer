@@ -1,16 +1,17 @@
 import styled from "@emotion/styled";
 import ImageCard from "./ImageCard";
-import RegionSelect from "./RegionSelect";
+import RegionSelect from "../RegionSelect";
 import PositionSelect from "./PositionSelect";
 import LevelSelect from "./LevelSelect";
-import NameInput from "./NameInput";
 import BirthInput from "./BirthInput";
-import addUser, { getAuthData } from "../../../hooks/user";
-import CommonBanner from "../../ui/CommonBanner";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import CommonBanner from "../../../ui/CommonBanner";
+import addUser, { getAuthData } from "../../../../hooks/user";
+import TextInput from "../TextInput";
+import StatusSelect from "../StatusSelect";
 
-export default function RegisterPage() {
+export default function RegisterPlayerPage() {
   const { authData } = getAuthData();
   const [image, setImage] = useState<any>("");
   const [name, setName] = useState("");
@@ -27,13 +28,13 @@ export default function RegisterPage() {
   };
 
   return (
-    <Section>
+    <section>
       <CommonBanner />
-      <h1>풋볼러 정보 등록</h1>
+      <h1>선수 정보 등록</h1>
       <Register>
         <ImageCard image={image} setImage={setImage} />
         <Infomation>
-          <NameInput name={name} setName={setName} />
+          <TextInput title="이름(닉네임)" text={name} setText={setName} />
           <BirthInput birth={birth} setBirth={setBirth} />
           <RegionSelect region={region} setRegion={setRegion} />
           <PositionSelect position={position} setPosition={setPosition} />
@@ -41,11 +42,9 @@ export default function RegisterPage() {
           <Button onClick={addUserData}>제출</Button>
         </Infomation>
       </Register>
-    </Section>
+    </section>
   );
 }
-
-const Section = styled.section``;
 
 const Register = styled.section`
   display: flex;

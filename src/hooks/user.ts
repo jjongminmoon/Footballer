@@ -26,11 +26,12 @@ export default async function addUser(
     position: position,
     region: region,
     level: level,
-    team: null,
+    status: false,
+    team: "무소속",
     manner: [],
     goodPlayer: [],
     apply: [],
-    posts: []
+    scouted: []
   });
 }
 

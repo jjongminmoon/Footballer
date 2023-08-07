@@ -2,18 +2,19 @@ import styled from "@emotion/styled";
 import { SetStateAction } from "react";
 
 type Props = {
-  name: string;
-  setName: React.Dispatch<SetStateAction<string>>;
+  title: string;
+  text: string;
+  setText: React.Dispatch<SetStateAction<string>>;
 };
 
-export default function NameInput({ name, setName }: Props) {
+export default function TextInput({ title, text, setText }: Props) {
   return (
     <div>
-      <h3>이름(닉네임)</h3>
+      <h3>{title}</h3>
       <Input
         type="text"
-        value={name}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+        value={text}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)}
       />
     </div>
   );

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Footer from "./components/ui/Footer";
 import { AuthProvider } from "./context/AuthProvider";
 import { UserProvider } from "./context/UserProvider";
+import { TeamProvider } from "./context/TeamProvider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,13 +20,15 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <UserProvider>
-          <Header>
-            <Navbar />
-          </Header>
-          <Main>
-            <PageNavigator />
-          </Main>
-          <Footer />
+          <TeamProvider>
+            <Header>
+              <Navbar />
+            </Header>
+            <Main>
+              <PageNavigator />
+            </Main>
+            <Footer />
+          </TeamProvider>
         </UserProvider>
       </AuthProvider>
     </QueryClientProvider>
