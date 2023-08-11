@@ -1,9 +1,9 @@
 import { addDoc, collection, getCountFromServer, onSnapshot, query } from "firebase/firestore";
-import { getUser } from "./user";
 import { dbService } from "../service/firebase";
 import { useContext, useEffect, useState } from "react";
 import { TeamProps } from "../model/team";
 import { TeamContext } from "../context/TeamProvider";
+import { UserProps } from "../model/user";
 
 export default async function addTeam(
   logo: string,
@@ -12,7 +12,8 @@ export default async function addTeam(
   region: string,
   status: boolean,
   fee: number,
-  introduce: string
+  introduce: string,
+  userData: UserProps
 ) {
   const coll = collection(dbService, "team");
   const snapshot = await getCountFromServer(coll);
@@ -24,7 +25,7 @@ export default async function addTeam(
     name: name,
     introduce: introduce,
     fee: fee,
-    member: [],
+    member: [userData],
     status: status,
     applicationList: [],
     scoutList: [],

@@ -1,9 +1,13 @@
 import styled from "@emotion/styled";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { auth } from "../../../service/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+  const navigate = useNavigate();
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -15,8 +19,19 @@ export default function LoginForm() {
     }
   };
 
+  const handleEmailLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, pwd)
+      .then(() => {
+        alert("정상적으로 로그인되었습니다.");
+        navigate("/");
+      })
+      .catch((e) => alert(e));
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleEmailLogin}>
       <Input
         name="id"
         type="text"
@@ -39,11 +54,7 @@ export default function LoginForm() {
   );
 }
 
-const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+const Form = styled.form`
   width: 350px;
 `;
 
@@ -51,6 +62,7 @@ const Input = styled.input`
   width: 100%;
   height: 40px;
   padding: 0 10px;
+  margin-bottom: 20px;
   border: 2px solid var(--main-gray);
   border-radius: 8px;
 `;

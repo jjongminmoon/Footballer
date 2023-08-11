@@ -7,7 +7,7 @@ import ActionBar from "./ActionBar";
 export default function LoginPage() {
   return (
     <Section>
-      <Logo fontSize="40px" />
+      <Logo fontSize="40px">로그인</Logo>
       <LoginForm />
       <ActionBar />
       <GoogleLogin />

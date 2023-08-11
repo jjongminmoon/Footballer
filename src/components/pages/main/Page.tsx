@@ -1,12 +1,9 @@
-import styled from "@emotion/styled";
 import Banner from "./Banner";
 
 export default function MainPage() {
   return (
-    <Section>
+    <section>
       <Banner />
-    </Section>
+    </section>
   );
 }
-
-const Section = styled.section``;

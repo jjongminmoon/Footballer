@@ -1,26 +1,28 @@
 import styled from "@emotion/styled";
 import CommonBanner from "../../../ui/CommonBanner";
 import LogoImage from "./LogoImage";
-import { useState } from "react";
 import TextInput from "../TextInput";
 import FeeInput from "./FeeInput";
 import StatusSelect from "../StatusSelect";
 import RegionSelect from "../RegionSelect";
 import addTeam, { getAllTeam } from "../../../../hooks/team";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TeamProps } from "../../../../model/team";
 import { getUser } from "../../../../hooks/user";
+import { doc, updateDoc } from "firebase/firestore";
+import { dbService } from "../../../../service/firebase";
 
 export default function RegisterTeamPage() {
   const { userData } = getUser();
   const { allTeam } = getAllTeam();
-  const owner = userData?.name;
   const [logo, setLogo] = useState<any>("");
   const [name, setName] = useState("");
   const [region, setRegion] = useState("");
   const [status, setStatus] = useState(true);
   const [fee, setFee] = useState(0);
   const [introduce, setIntroduce] = useState("");
+  const owner = userData?.name;
   const navigate = useNavigate();
 
   const addTeamData = () => {
@@ -28,7 +30,11 @@ export default function RegisterTeamPage() {
       alert("팀명을 다른 팀이 사용중입니다.");
       return;
     } else {
-      addTeam(logo, owner, name, region, status, fee, introduce);
+      const docRef = doc(dbService, "user", userData.id);
+      updateDoc(docRef, {
+        team: name
+      });
+      addTeam(logo, owner, name, region, status, fee, introduce, userData);
       alert("팀 등록이 완료되었습니다.");
       navigate("/");
     }

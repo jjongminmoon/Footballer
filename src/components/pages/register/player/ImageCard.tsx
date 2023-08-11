@@ -8,6 +8,7 @@ type Props = {
 };
 
 export default function ImageCard({ image, setImage }: Props) {
+  //
   const uploadImage = (e: any) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -23,11 +24,13 @@ export default function ImageCard({ image, setImage }: Props) {
 
   return (
     <ImageBox>
-      <input type="file" id="file-input" accept="image/*" multiple onChange={uploadImage} />
+      <input type="file" id="file-input" accept="image/*" onChange={uploadImage} />
       {image ? (
-        <Image>
-          <ImagePreview src={image} />
-        </Image>
+        <label htmlFor="file-input">
+          <Image>
+            <ImagePreview src={image} />
+          </Image>
+        </label>
       ) : (
         <NoImage>
           <label htmlFor="file-input">
@@ -42,6 +45,10 @@ export default function ImageCard({ image, setImage }: Props) {
 const ImageBox = styled.div`
   width: 400px;
   height: 100%;
+
+  #file-input {
+    display: none;
+  }
 `;
 
 const NoImage = styled.div`

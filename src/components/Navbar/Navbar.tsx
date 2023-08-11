@@ -1,16 +1,16 @@
 import styled from "@emotion/styled";
 import Modal from "../ui/Modal";
 import SearchInput from "./SearchInput";
-import MenuBox from "./MenuBox";
 import { Link } from "react-router-dom";
 import { PiUserCircleLight, PiDotsThreeBold } from "react-icons/pi";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Logo from "../ui/Logo";
-import { AuthContext } from "../../context/AuthProvider";
+import SideMenuBox from "./SideMenuBox";
+import { getUser } from "../../hooks/user";
 
 export default function Navbar() {
   const [openModal, setOpenModal] = useState(false);
-  const isUser = useContext(AuthContext);
+  const { userData } = getUser();
 
   const stopBubbling = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -20,17 +20,19 @@ export default function Navbar() {
   return (
     <Section>
       <Link to="/">
-        <Logo fontSize="24px" />
+        <Logo fontSize="24px">풋볼러</Logo>
       </Link>
       <UserAction>
         <SearchInput />
-        <Link to={isUser ? "/mypage/user" : "login"}>
+        <Link to={userData ? "/mypage/user" : "login"}>
           <UserIcon />
         </Link>
         <MenuIcon onClick={() => setOpenModal(true)} />
       </UserAction>
-      <MenuBox stopBubbling={stopBubbling} className={openModal ? "opened" : "closed"} />
-      {openModal && (
+      {userData && (
+        <SideMenuBox stopBubbling={stopBubbling} className={openModal ? "opened" : "closed"} />
+      )}
+      {userData && openModal && (
         <>
           <Modal
             onClose={() => {

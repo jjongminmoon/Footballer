@@ -4,10 +4,12 @@ import { UserProps } from "../../../model/user";
 import { useState } from "react";
 import { dbService } from "../../../service/firebase";
 import { doc, updateDoc } from "firebase/firestore";
+import ChangeImage from "./ChangeImage";
 
 export default function NameCard() {
   const { userData } = getUser();
   const { allUser } = getAllUser();
+  const [openChangeImage, setOpenChangeImage] = useState(false);
   const [rename, setRename] = useState("");
 
   const changeName = () => {
@@ -15,7 +17,7 @@ export default function NameCard() {
       alert("사용하고 있는 선수가 있습니다. 다른 닉네임을 사용해주세요.");
       return;
     } else {
-      const docRef = doc(dbService, "user", userData.id);
+      const docRef = doc(dbService, "user", userData?.id);
       updateDoc(docRef, {
         name: rename
       })
@@ -28,21 +30,25 @@ export default function NameCard() {
   };
 
   return (
-    <Container>
-      <Image>
-        <img src={userData?.image} alt="유저 대표 이미지" />
-      </Image>
-      <p>{userData?.name}</p>
-      <ChangeInput>
-        <input
-          type="text"
-          placeholder="변경할 이름(닉네임)"
-          value={rename}
-          onChange={(e) => setRename(e.target.value)}
-        />
-        <Button onClick={changeName}>변경</Button>
-      </ChangeInput>
-    </Container>
+    <>
+      <Container>
+        <Image onClick={() => setOpenChangeImage(true)}>
+          <img src={userData?.image} alt="유저 대표 이미지" />
+        </Image>
+        <p>{userData?.name}</p>
+        <ChangeInput>
+          <input
+            type="text"
+            placeholder="변경할 이름(닉네임)"
+            value={rename}
+            onChange={(e) => setRename(e.target.value)}
+          />
+          <Button onClick={changeName}>변경</Button>
+        </ChangeInput>
+      </Container>
+
+      {openChangeImage && <ChangeImage setOpenChangeImage={setOpenChangeImage} />}
+    </>
   );
 }
 
@@ -58,7 +64,7 @@ const Container = styled.div`
   font-size: 20px;
 `;
 
-const Image = styled.div`
+const Image = styled.label`
   width: 100px;
   height: 100px;
   margin-left: 30px;

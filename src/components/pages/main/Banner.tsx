@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const imageList = [
   { image: main1, name: "팀 매치", pathname: "/" },
   { image: main2, name: "팀 등록", pathname: "/register/team" },
-  { image: main3, name: "이적 시장", pathname: "/market" },
+  { image: main3, name: "팀/선수 찾기", pathname: "/search" },
   { image: main4, name: "풋볼러컵", pathname: "/footballercup" }
 ];
 

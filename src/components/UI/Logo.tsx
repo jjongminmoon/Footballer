@@ -2,14 +2,15 @@ import styled from "@emotion/styled";
 import LogoIcon from "./icon/LogoIcon";
 
 type Props = {
+  children: React.ReactNode;
   fontSize: string;
   color?: string;
 };
 
-export default function Logo({ fontSize, color }: Props) {
+export default function Logo({ children, fontSize, color }: Props) {
   return (
     <LogoBox fontSize={fontSize} color={color}>
-      <p>풋볼러</p>
+      <p>{children}</p>
       <LogoIcon fontSize="20px" />
     </LogoBox>
   );

@@ -3,7 +3,11 @@ import { GiSoccerKick, GiBlackFlag, GiLaurelsTrophy } from "react-icons/gi";
 import { FaChildReaching } from "react-icons/fa6";
 import { TbSoccerField } from "react-icons/tb";
 import { RiCustomerServiceFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { BiSolidExit } from "react-icons/bi";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../service/firebase";
+import { getUser } from "../../hooks/user";
 
 type Props = {
   stopBubbling: (e: React.MouseEvent<HTMLElement>) => void;
@@ -19,7 +23,16 @@ const MenuList = [
   { icon: <RiCustomerServiceFill />, name: "고객센터", pathname: "/" }
 ];
 
-export default function MenuBox({ stopBubbling, className }: Props) {
+export default function SideMenuBox({ stopBubbling, className }: Props) {
+  const { userData } = getUser();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    signOut(auth);
+    alert("정상적으로 로그아웃 되었습니다.");
+    navigate("/");
+  };
+
   return (
     <Container onClick={stopBubbling} className={className}>
       <ul>
@@ -29,6 +42,12 @@ export default function MenuBox({ stopBubbling, className }: Props) {
             <Link to={pathname}>{name}</Link>
           </li>
         ))}
+        {userData && (
+          <Logout onClick={handleLogout}>
+            <BiSolidExit />
+            <p>로그아웃</p>
+          </Logout>
+        )}
       </ul>
     </Container>
   );
@@ -60,10 +79,22 @@ const Container = styled.div`
 
     svg {
       font-size: 30px;
+      padding-bottom: 4px;
     }
 
     .logo {
       color: red;
     }
+  }
+`;
+
+const Logout = styled.div`
+  display: flex;
+  gap: 15px;
+  cursor: pointer;
+
+  svg {
+    font-size: 30px;
+    padding-bottom: 4px;
   }
 `;

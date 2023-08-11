@@ -9,7 +9,6 @@ import { useState } from "react";
 import CommonBanner from "../../../ui/CommonBanner";
 import addUser, { getAuthData } from "../../../../hooks/user";
 import TextInput from "../TextInput";
-import StatusSelect from "../StatusSelect";
 
 export default function RegisterPlayerPage() {
   const { authData } = getAuthData();
@@ -22,9 +21,18 @@ export default function RegisterPlayerPage() {
   const navigate = useNavigate();
 
   const addUserData = () => {
-    addUser(authData?.email, image, birth, name, position, region, level);
-    alert("풋볼러 정보 등록이 완료되었습니다.");
-    navigate("/");
+    if (
+      image !== "" &&
+      name !== "" &&
+      birth !== "" &&
+      region !== "" &&
+      position !== "" &&
+      level !== ""
+    ) {
+      addUser(authData?.email, image, birth, name, position, region, level);
+      alert("풋볼러 정보 등록이 완료되었습니다.");
+      navigate("/");
+    }
   };
 
   return (
@@ -50,10 +58,6 @@ const Register = styled.section`
   display: flex;
   gap: 20px;
   margin-top: 20px;
-
-  #file-input {
-    display: none;
-  }
 `;
 
 const Infomation = styled.div`

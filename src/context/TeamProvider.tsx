@@ -24,7 +24,7 @@ export const TeamProvider = ({ children }: Props) => {
         };
       });
 
-      setTeamData(arr.find((data: any) => data.name === userData.team));
+      setTeamData(arr.find((data: any) => data.name === userData?.team));
     });
     return () => {
       unsubscribe();

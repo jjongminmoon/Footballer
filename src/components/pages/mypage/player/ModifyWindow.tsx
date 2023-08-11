@@ -8,22 +8,12 @@ type Props = {
 export default function ModifyWindow({ children }: Props) {
   return (
     <Modal>
-      <Center>
-        <Revision>{children}</Revision>
-      </Center>
+      <Container>{children}</Container>
     </Modal>
   );
 }
 
-const Center = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-`;
-
-const Revision = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

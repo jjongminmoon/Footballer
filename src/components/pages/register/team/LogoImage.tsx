@@ -25,9 +25,11 @@ export default function LogoImage({ logo, setLogo }: Props) {
     <ImageBox>
       <input type="file" id="file-input" accept="image/*" multiple onChange={uploadImage} />
       {logo ? (
-        <Image>
-          <ImagePreview src={logo} />
-        </Image>
+        <label htmlFor="file-input">
+          <Image>
+            <ImagePreview src={logo} />
+          </Image>
+        </label>
       ) : (
         <NoImage>
           <label htmlFor="file-input">
