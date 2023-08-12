@@ -2,16 +2,17 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const mypageList = [
-  { title: "유저 정보", pathname: "/mypage/user" },
-  { title: "선수 프로필", pathname: "/mypage/player" },
-  { title: "팀 정보", pathname: "/mypage/team" },
-  { title: "내가 쓴 게시물", pathname: "/mypage/team" },
-  { title: "좋아요한 풋볼러", pathname: "/mypage/team" }
-];
-
 export default function SideNavigation() {
   const [selected, setSelected] = useState("");
+
+  const mypageList = [
+    { title: "유저 정보", pathname: "/mypage/user" },
+    { title: "선수 프로필", pathname: "/mypage/player" },
+    { title: "팀 정보", pathname: "/mypage/team" },
+    { title: "입단 신청한 팀", pathname: "/mypage/application-status" },
+    { title: "팀원 관리", pathname: "/mypage/member" },
+    { title: "입단 신청 리스트", pathname: "/mypage/application-list" }
+  ];
 
   return (
     <Container>

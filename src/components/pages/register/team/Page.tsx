@@ -22,7 +22,7 @@ export default function RegisterTeamPage() {
   const [status, setStatus] = useState(true);
   const [fee, setFee] = useState(0);
   const [introduce, setIntroduce] = useState("");
-  const owner = userData?.name;
+  const owner = { name: userData?.name, email: userData?.email };
   const navigate = useNavigate();
 
   const addTeamData = () => {

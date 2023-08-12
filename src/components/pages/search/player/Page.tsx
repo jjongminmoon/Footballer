@@ -10,7 +10,7 @@ export default function PlayerSearchPage() {
       {playerList.map((player: UserProps) => (
         <Row>
           <Image>
-            <Logo src={player.image} alt={`${player.name}님의 이미지`} />
+            <Player src={player.image} alt={`${player.name}님의 이미지`} />
           </Image>
           <Name>{player.name}</Name>
           <Info>
@@ -21,7 +21,7 @@ export default function PlayerSearchPage() {
           </Info>
           <Score>실력 점수 : {player.goodPlayer}점</Score>
           <Score>매너 점수 : {player.manner}점</Score>
-          <Button>입단 신청</Button>
+          <Button>스카우트 제의</Button>
         </Row>
       ))}
     </>
@@ -42,7 +42,7 @@ const Image = styled.div`
   margin-right: 10px;
 `;
 
-const Logo = styled.img`
+const Player = styled.img`
   width: 100px;
   height: 100px;
   padding: 10px;

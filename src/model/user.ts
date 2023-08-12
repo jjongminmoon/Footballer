@@ -10,6 +10,11 @@ export type UserProps = {
   manner: [];
   goodPlayer: [];
   team: string;
-  apply: [];
+  apply: [
+    {
+      id: string;
+      status: string;
+    }
+  ];
   scouted: [];
 };

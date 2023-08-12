@@ -7,7 +7,7 @@ import { UserProps } from "../model/user";
 
 export default async function addTeam(
   logo: string,
-  owner: string,
+  owner: Object,
   name: string,
   region: string,
   status: boolean,

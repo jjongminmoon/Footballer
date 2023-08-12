@@ -7,9 +7,11 @@ export default function TeamPage() {
   const skillScore = teamData?.goodTeam;
   const mannerScore = teamData?.manner;
 
+  console.log(teamData);
+
   const infoList = [
     { title: "팀명", data: teamData?.name },
-    { title: "구단주", data: teamData?.owner },
+    { title: "구단주", data: teamData?.owner.name },
     { title: "활동지역", data: teamData?.region },
     { title: "회비", data: `${teamData?.fee}만원` },
     { title: "팀 인원", data: `${teamData?.member.length}명` },

@@ -6,9 +6,9 @@ import LevelSelect from "./LevelSelect";
 import BirthInput from "./BirthInput";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import CommonBanner from "../../../ui/CommonBanner";
 import addUser, { getAuthData } from "../../../../hooks/user";
 import TextInput from "../TextInput";
+import Notice from "./Notice";
 
 export default function RegisterPlayerPage() {
   const { authData } = getAuthData();
@@ -32,12 +32,14 @@ export default function RegisterPlayerPage() {
       addUser(authData?.email, image, birth, name, position, region, level);
       alert("풋볼러 정보 등록이 완료되었습니다.");
       navigate("/");
+    } else {
+      alert("모든 항목을 입력해주세요.");
     }
   };
 
   return (
     <section>
-      <CommonBanner />
+      <Notice />
       <h1>선수 정보 등록</h1>
       <Register>
         <ImageCard image={image} setImage={setImage} />

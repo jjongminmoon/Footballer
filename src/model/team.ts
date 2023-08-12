@@ -2,7 +2,10 @@ export type TeamProps = {
   id: string;
   number: number;
   logo: string;
-  owner: string;
+  owner: {
+    name: string;
+    email: string;
+  };
   name: string;
   region: string;
   fee: number;
