@@ -26,7 +26,7 @@ export default async function addUser(
     position: position,
     region: region,
     level: level,
-    status: false,
+    status: [],
     team: "무소속",
     manner: [],
     goodPlayer: [],

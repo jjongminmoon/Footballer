@@ -20,7 +20,7 @@ export default function GoogleLogin() {
           navigate("/");
         } else {
           alert("회원가입이 완료되었습니다. 풋볼러 이용을 위해 선수 정보를 등록해주세요.");
-          navigate("/register");
+          navigate("/register/player");
         }
       })
       .catch((e) => alert(e));

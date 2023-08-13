@@ -60,7 +60,7 @@ export function getAllTeam() {
     return () => {
       unsubscribe();
     };
-  });
+  }, []);
 
   return { allTeam };
 }

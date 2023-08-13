@@ -9,7 +9,10 @@ export default function UserPage() {
     { title: "고유 아이디", data: authData?.uid },
     { title: "이메일", data: authData?.email },
     { title: "계정 생성 일시", data: authData?.metadata.creationTime },
-    { title: "계정 가입 경로", data: authData?.providerData[0].providerId }
+    {
+      title: "가입 경로",
+      data: authData?.providerData[0].providerId === "password" ? "풋볼러" : "구글"
+    }
   ];
 
   return (

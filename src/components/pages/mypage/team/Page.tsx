@@ -7,8 +7,6 @@ export default function TeamPage() {
   const skillScore = teamData?.goodTeam;
   const mannerScore = teamData?.manner;
 
-  console.log(teamData);
-
   const infoList = [
     { title: "팀명", data: teamData?.name },
     { title: "구단주", data: teamData?.owner.name },
@@ -22,23 +20,27 @@ export default function TeamPage() {
   return (
     <MypageContainer>
       <Title>팀 정보</Title>
-      <TeamInfo>
-        <Image>
-          <img src={teamData?.logo} alt="팀 로고 이미지" />
-        </Image>
-        <div>
-          {infoList.map(({ title, data }) => (
-            <Row key={title}>
-              <span>{title}</span>
-              <div>{data}</div>
+      {teamData ? (
+        <TeamInfo>
+          <Image>
+            <img src={teamData?.logo} alt="팀 로고 이미지" />
+          </Image>
+          <div>
+            {infoList.map(({ title, data }) => (
+              <Row key={title}>
+                <span>{title}</span>
+                <div>{data}</div>
+              </Row>
+            ))}
+            <Row>
+              <span>팀원 모집 여부</span>
+              <div>{teamData?.status ? "O" : "X"}</div>
             </Row>
-          ))}
-          <Row>
-            <span>팀원 모집 여부</span>
-            <div>{teamData?.status ? "O" : "X"}</div>
-          </Row>
-        </div>
-      </TeamInfo>
+          </div>
+        </TeamInfo>
+      ) : (
+        <Row>아직 소속팀이 없습니다.</Row>
+      )}
     </MypageContainer>
   );
 }

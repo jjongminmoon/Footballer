@@ -9,8 +9,8 @@ export default function SideNavigation() {
     { title: "유저 정보", pathname: "/mypage/user" },
     { title: "선수 프로필", pathname: "/mypage/player" },
     { title: "팀 정보", pathname: "/mypage/team" },
+    { title: "팀원 정보", pathname: "/mypage/member" },
     { title: "입단 신청한 팀", pathname: "/mypage/application-status" },
-    { title: "팀원 관리", pathname: "/mypage/member" },
     { title: "입단 신청 리스트", pathname: "/mypage/application-list" }
   ];
 

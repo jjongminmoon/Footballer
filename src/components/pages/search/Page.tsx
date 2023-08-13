@@ -1,15 +1,33 @@
 import styled from "@emotion/styled";
-import { Link, Outlet } from "react-router-dom";
 import CommonBanner from "../../ui/CommonBanner";
+import { Link, Outlet } from "react-router-dom";
+import { useState } from "react";
+
+const categoryList = [
+  { name: "팀 찾기", pathname: "/search/team" },
+  { name: "선수 찾기", pathname: "/search/player" }
+];
 
 export default function SearchPage() {
+  const [selected, setSelected] = useState("찾으실 카테고리를 선택해주세요.");
+
   return (
     <section>
       <CommonBanner />
       <Category>
-        <Link to="/search/team">팀 찾기</Link>
-        <Link to="/search/player">선수 찾기</Link>
+        {categoryList.map(({ name, pathname }) => (
+          <Link to={pathname}>
+            <Button
+              key={pathname}
+              onClick={() => setSelected(name)}
+              backgroundColor={selected === name ? "var(--main-red)" : ""}
+            >
+              {name}
+            </Button>
+          </Link>
+        ))}
       </Category>
+      <Title>{selected}</Title>
       <SearchResult>
         <Outlet />
       </SearchResult>
@@ -20,19 +38,24 @@ export default function SearchPage() {
 const Category = styled.div`
   display: flex;
   gap: 20px;
+`;
 
-  a {
-    text-align: center;
-    width: 100px;
-    padding: 10px;
-    background-color: var(--main-light-gray);
-    border: 1px solid var(--main-gray);
-    border-radius: 10px;
-  }
+const Button = styled.div<{ backgroundColor: string }>`
+  text-align: center;
+  width: 100px;
+  padding: 10px;
+  background-color: ${(props) => props.backgroundColor};
+  border: 1px solid var(--main-gray);
+  border-radius: 10px;
+  cursor: pointer;
+`;
+
+const Title = styled.h1`
+  margin-top: 20px;
 `;
 
 const SearchResult = styled.div`
-  max-height: 450px;
+  height: 450px;
   margin-top: 20px;
   overflow: scroll;
   border: 2px solid var(--main-gray);
