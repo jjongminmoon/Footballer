@@ -2,10 +2,11 @@ import styled from "@emotion/styled";
 import { getAllTeam } from "../../../../hooks/team";
 import { getUser } from "../../../../hooks/user";
 import { TeamProps } from "../../../../model/team";
-import MypageContainer from "../../../ui/MypageContainer";
+import MypageContainer from "../MypageContainer";
 import { arrayRemove, doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
 import { UserProps } from "../../../../model/user";
+import MypageTitle from "../MypageTitle";
 
 export default function ApplicationStatusPage() {
   const { userData } = getUser();
@@ -36,6 +37,7 @@ export default function ApplicationStatusPage() {
 
   return (
     <MypageContainer>
+      <MypageTitle>입단 신청한 팀</MypageTitle>
       {applyTeam ? (
         <Row>
           <Image>

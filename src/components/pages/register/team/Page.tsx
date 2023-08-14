@@ -6,7 +6,7 @@ import FeeInput from "./FeeInput";
 import StatusSelect from "../StatusSelect";
 import RegionSelect from "../RegionSelect";
 import addTeam, { getAllTeam } from "../../../../hooks/team";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TeamProps } from "../../../../model/team";
 import { getUser } from "../../../../hooks/user";
@@ -24,6 +24,13 @@ export default function RegisterTeamPage() {
   const [introduce, setIntroduce] = useState("");
   const owner = { name: userData?.name, email: userData?.email };
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userData.team !== "무소속") {
+      alert("소속팀이 있어 새로운 팀을 등록할 수 없습니다.");
+      navigate("/");
+    }
+  });
 
   const addTeamData = () => {
     if (allTeam.map((team: TeamProps) => team.name).includes(name)) {

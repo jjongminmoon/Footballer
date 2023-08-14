@@ -1,29 +1,31 @@
 import styled from "@emotion/styled";
-import { GiSoccerKick, GiBlackFlag, GiLaurelsTrophy } from "react-icons/gi";
-import { FaChildReaching } from "react-icons/fa6";
+import { GiSoccerKick, GiBlackFlag, GiLaurelsTrophy, GiArchiveRegister } from "react-icons/gi";
 import { TbSoccerField } from "react-icons/tb";
 import { RiCustomerServiceFill } from "react-icons/ri";
-import { BiSolidExit } from "react-icons/bi";
+import { BiSolidExit, BiSearch } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../service/firebase";
 import { getUser } from "../../hooks/user";
+import { SetStateAction } from "react";
 
 type Props = {
   stopBubbling: (e: React.MouseEvent<HTMLElement>) => void;
   className: string;
+  setOpenModal: React.Dispatch<SetStateAction<boolean>>;
 };
 
 const MenuList = [
   { icon: <GiSoccerKick className="logo" />, name: "풋볼러 소개", pathname: "/introduce" },
-  { icon: <GiBlackFlag />, name: "클럽", pathname: "/club" },
-  { icon: <FaChildReaching />, name: "풋볼러", pathname: "/player" },
-  { icon: <TbSoccerField />, name: "구장", pathname: "/field" },
+  { icon: <GiBlackFlag />, name: "팀 매치", pathname: "/match" },
+  { icon: <GiArchiveRegister />, name: "팀 등록", pathname: "/register/team" },
+  { icon: <BiSearch />, name: "팀/선수 찾기", pathname: "/search" },
   { icon: <GiLaurelsTrophy />, name: "풋볼러컵 대회", pathname: "/footballercup" },
+  { icon: <TbSoccerField />, name: "구장", pathname: "/field" },
   { icon: <RiCustomerServiceFill />, name: "고객센터", pathname: "/" }
 ];
 
-export default function SideMenuBox({ stopBubbling, className }: Props) {
+export default function SideMenuBox({ stopBubbling, className, setOpenModal }: Props) {
   const { userData } = getUser();
   const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ export default function SideMenuBox({ stopBubbling, className }: Props) {
     <Container onClick={stopBubbling} className={className}>
       <ul>
         {MenuList.map(({ icon, name, pathname }) => (
-          <li key={pathname}>
+          <li key={pathname} onClick={() => setOpenModal(false)}>
             {icon}
             <Link to={pathname}>{name}</Link>
           </li>
@@ -79,7 +81,6 @@ const Container = styled.div`
 
     svg {
       font-size: 30px;
-      padding-bottom: 4px;
     }
 
     .logo {

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { getAllUser } from "../../../../hooks/user";
 import { UserProps } from "../../../../model/user";
+import { Link } from "react-router-dom";
 
 export default function PlayerSearchPage() {
   const { allUser: playerList } = getAllUser();
@@ -8,11 +9,13 @@ export default function PlayerSearchPage() {
   return (
     <>
       {playerList.map((player: UserProps) => (
-        <Row>
-          <Image>
-            <Player src={player.image} alt={`${player.name}님의 이미지`} />
-          </Image>
-          <Name>{player.name}</Name>
+        <Row key={player.id}>
+          <Link to="/detail/player">
+            <Image>
+              <Player src={player.image} alt={`${player.name}님의 이미지`} />
+            </Image>
+            <Name>{player.name}</Name>
+          </Link>
           <Info>
             <p>소속팀 : {player.team}</p>
             <p>활동 지역 : {player.region}</p>
@@ -35,6 +38,12 @@ const Row = styled.div`
   height: 150px;
   border-bottom: 1px solid var(--main-gray);
   padding: 10px;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 `;
 
 const Image = styled.div`

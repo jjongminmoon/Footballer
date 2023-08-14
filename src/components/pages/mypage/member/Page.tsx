@@ -1,10 +1,11 @@
 import { arrayRemove, doc, updateDoc } from "firebase/firestore";
 import { getMyTeam } from "../../../../hooks/team";
 import { UserProps } from "../../../../model/user";
-import MypageContainer from "../../../ui/MypageContainer";
+import MypageContainer from "../MypageContainer";
 import PlayerList from "../PlayerList";
 import { dbService } from "../../../../service/firebase";
 import { getUser } from "../../../../hooks/user";
+import MypageTitle from "../MypageTitle";
 
 export default function MemberPage() {
   const { userData } = getUser();
@@ -38,7 +39,7 @@ export default function MemberPage() {
 
   return (
     <MypageContainer>
-      <h1>팀원 정보</h1>
+      <MypageTitle>팀원 정보</MypageTitle>
       <PlayerList
         data={memberList}
         handleFunction1={handleRelease}

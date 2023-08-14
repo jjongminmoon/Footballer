@@ -65,7 +65,7 @@ export function getAllUser() {
     return () => {
       unsubscribe();
     };
-  });
+  }, []);
 
   return { allUser };
 }

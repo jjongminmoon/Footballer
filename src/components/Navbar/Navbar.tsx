@@ -30,7 +30,11 @@ export default function Navbar() {
         <MenuIcon onClick={() => setOpenModal(true)} />
       </UserAction>
       {userData && (
-        <SideMenuBox stopBubbling={stopBubbling} className={openModal ? "opened" : "closed"} />
+        <SideMenuBox
+          stopBubbling={stopBubbling}
+          className={openModal ? "opened" : "closed"}
+          setOpenModal={setOpenModal}
+        />
       )}
       {userData && openModal && (
         <>
@@ -65,10 +69,6 @@ const UserAction = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-
-  input {
-    display: none;
-  }
 `;
 
 const UserIcon = styled(PiUserCircleLight)`

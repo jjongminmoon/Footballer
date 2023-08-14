@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { UserProps } from "../../../model/user";
+import { getMyTeam } from "../../../hooks/team";
 
 type Props = {
   data: UserProps[];
@@ -53,7 +54,7 @@ export default function PlayerList({
 
 const List = styled.div`
   margin-top: 20px;
-  border: 2px solid var(--main-gray);
+  border: 1px solid var(--main-gray);
 `;
 
 const Row = styled.div`

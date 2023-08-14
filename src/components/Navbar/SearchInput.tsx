@@ -1,12 +1,33 @@
 import styled from "@emotion/styled";
 import Modal from "../ui/Modal";
-import { useState } from "react";
+import useDebounce from "../../hooks/debounce";
+import { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BiX } from "react-icons/bi";
+import { getAllUser } from "../../hooks/user";
+import { getAllTeam } from "../../hooks/team";
+import { Link } from "react-router-dom";
 
 export default function SearchInput() {
+  const { allUser } = getAllUser();
+  const { allTeam } = getAllTeam();
   const [openModal, setOpenModal] = useState(false);
-  // const [searchValue, setSearchValue] = useState("");
+  const [category, setCategory] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
+  const [searchResult, setSearchResult] = useState<any>([]);
+  const debounceValue = useDebounce(searchValue);
+
+  console.log(debounceValue);
+
+  useEffect(() => {
+    if (debounceValue === "") {
+      setSearchResult([]);
+    } else {
+      setSearchResult(
+        (category ? allUser : allTeam)?.filter((data: any) => data.name.includes(debounceValue))
+      );
+    }
+  }, [debounceValue]);
 
   return (
     <>
@@ -17,11 +38,50 @@ export default function SearchInput() {
 
       {openModal && (
         <Modal>
-          <SearchBox>
-            <ExitIcon onClick={() => setOpenModal(false)} />
-            <Input type="text" placeholder="팀명, 선수명을 입력해주세요" />
-            <SearchResult>{<SearchItem>문종민</SearchItem>}</SearchResult>
-          </SearchBox>
+          <Container>
+            <SearchBox>
+              <ExitIcon onClick={() => setOpenModal(false)} />
+              <Category>
+                <Item
+                  backgroundColor={category ? "var(--main-red)" : "var(--main-gray)"}
+                  onClick={() => setCategory(true)}
+                >
+                  선수
+                </Item>
+                <Item
+                  backgroundColor={category ? "var(--main-gray)" : "var(--main-red)"}
+                  onClick={() => setCategory(false)}
+                >
+                  팀
+                </Item>
+              </Category>
+              <Input
+                type="text"
+                placeholder={category ? "선수명을 입력해주세요." : "팀명을 입력해주세요."}
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+              />
+              <SearchResult>
+                {searchResult?.map((result: any) => (
+                  <Link
+                    to={category ? "/detail/player" : "/detail/team"}
+                    key={result.id}
+                    onClick={() => setOpenModal(false)}
+                  >
+                    <ResultItem>
+                      <img src={category ? result.image : result.logo} />
+                      <p>{result.name}</p>
+
+                      <RegionAndTeam>
+                        {result.region} (
+                        {category ? result.team : `인원: ${result.member.length}명`})
+                      </RegionAndTeam>
+                    </ResultItem>
+                  </Link>
+                ))}
+              </SearchResult>
+            </SearchBox>
+          </Container>
         </Modal>
       )}
     </>
@@ -47,7 +107,7 @@ const Icon = styled(AiOutlineSearch)`
   color: black;
 `;
 
-const SearchBox = styled.div`
+const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -58,6 +118,10 @@ const SearchBox = styled.div`
   background-color: white;
 `;
 
+const SearchBox = styled.div`
+  width: 500px;
+`;
+
 const ExitIcon = styled(BiX)`
   position: absolute;
   top: 24px;
@@ -66,25 +130,64 @@ const ExitIcon = styled(BiX)`
   cursor: pointer;
 `;
 
+const Category = styled.div`
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+`;
+
+const Item = styled.p<{ backgroundColor: string }>`
+  text-align: center;
+  width: 50px;
+  padding: 5px 4px 4px 4px;
+  background-color: ${(props) => props.backgroundColor};
+  border-radius: 10px;
+`;
+
 const Input = styled.input`
-  width: 450px;
+  width: 100%;
   height: 40px;
   padding: 8px 16px;
   background-color: var(--main-light-gray);
   border: none;
   border-radius: 8px;
+
+  &::placeholder {
+    color: gray;
+  }
 `;
 
-const SearchResult = styled.ul`
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
+const SearchResult = styled.div`
   border: 1px solid #ddd;
-  width: 450px;
-  height: 100%;
-  margin: 10px 0;
+  padding: 10px 0 10px 10px;
+  width: 100%;
+  height: 500px;
+  margin-top: 10px;
+  overflow: scroll;
 `;
 
-const SearchItem = styled.li`
-  padding: 5px;
+const ResultItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  margin-bottom: 2px;
+  border: 1px solid var(--main-gray);
+  border-radius: 10px;
+
+  img {
+    width: 80px;
+    height: 80px;
+  }
+`;
+
+const RegionAndTeam = styled.p`
+  margin-left: auto;
+  padding: 10px;
+  font-size: 13px;
+  background-color: black;
+  color: white;
+  border-radius: 999px;
 `;

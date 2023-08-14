@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
-import MypageContainer from "../../../ui/MypageContainer";
+import MypageContainer from "../MypageContainer";
 import { getUser } from "../../../../hooks/user";
 import { useState } from "react";
 import ModifyRegion from "./ModifyRegion";
 import ModifyPosition from "./ModifyPosition";
+import MypageTitle from "../MypageTitle";
 
-export default function PlayerPage() {
+export default function ProfilePage() {
   const { userData } = getUser();
   const [openModifyRegion, setOpenModifyRegion] = useState(false);
   const [openModifyPosition, setOpenModifyPosition] = useState(false);
@@ -23,8 +24,8 @@ export default function PlayerPage() {
   return (
     <>
       <MypageContainer>
+        <MypageTitle>선수 프로필</MypageTitle>
         <LoginInfo>
-          <h1>선수 프로필</h1>
           {infoList.map(({ title, data }) => (
             <Row key={title}>
               <span>{title}</span>
@@ -52,12 +53,6 @@ export default function PlayerPage() {
 
 const LoginInfo = styled.div`
   margin-top: 30px;
-
-  h1 {
-    font-size: 26px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid black;
-  }
 `;
 
 const Row = styled.div`

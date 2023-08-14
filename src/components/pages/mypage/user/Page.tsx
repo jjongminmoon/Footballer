@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import MypageContainer from "../../../ui/MypageContainer";
+import MypageContainer from "../MypageContainer";
 import { getAuthData } from "../../../../hooks/user";
+import MypageTitle from "../MypageTitle";
 
 export default function UserPage() {
   const { authData } = getAuthData();
@@ -17,28 +18,16 @@ export default function UserPage() {
 
   return (
     <MypageContainer>
-      <LoginInfo>
-        <h1>로그인 정보</h1>
-        {infoList.map(({ title, data }) => (
-          <Row key={title}>
-            <span>{title}</span>
-            <div>{data}</div>
-          </Row>
-        ))}
-      </LoginInfo>
+      <MypageTitle>유저 정보</MypageTitle>
+      {infoList.map(({ title, data }) => (
+        <Row key={title}>
+          <span>{title}</span>
+          <div>{data}</div>
+        </Row>
+      ))}
     </MypageContainer>
   );
 }
-
-const LoginInfo = styled.div`
-  margin-top: 30px;
-
-  h1 {
-    font-size: 26px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid black;
-  }
-`;
 
 const Row = styled.div`
   display: flex;

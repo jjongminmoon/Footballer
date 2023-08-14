@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import MypageContainer from "../../../ui/MypageContainer";
+import MypageContainer from "../MypageContainer";
 import { getMyTeam } from "../../../../hooks/team";
+import MypageTitle from "../MypageTitle";
 
 export default function TeamPage() {
   const { teamData } = getMyTeam();
@@ -19,7 +20,7 @@ export default function TeamPage() {
 
   return (
     <MypageContainer>
-      <Title>팀 정보</Title>
+      <MypageTitle>팀 정보</MypageTitle>
       {teamData ? (
         <TeamInfo>
           <Image>
@@ -44,13 +45,6 @@ export default function TeamPage() {
     </MypageContainer>
   );
 }
-
-const Title = styled.h1`
-  font-size: 26px;
-  padding-bottom: 20px;
-  margin-top: 30px;
-  border-bottom: 2px solid black;
-`;
 
 const TeamInfo = styled.div`
   display: flex;
