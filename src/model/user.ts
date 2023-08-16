@@ -1,18 +1,27 @@
 export type UserProps = {
+  number: number;
   id: string;
   email: string;
   image: string;
-  birth: string;
   name: string;
+  height: number;
+  weight: number;
+  birth: string;
   position: [];
   region: string;
   level: string;
-  manner: [];
-  goodPlayer: [];
+  manner: [ScoreProps];
+  goodPlayer: [ScoreProps];
   team: string;
   apply: {
     id: string;
     status: string;
   };
   scouted: [];
+};
+
+export type ScoreProps = {
+  id: string;
+  name: string;
+  score: number;
 };

@@ -16,9 +16,8 @@ export default function SearchPage() {
       <CommonBanner />
       <Category>
         {categoryList.map(({ name, pathname }) => (
-          <Link to={pathname}>
+          <Link to={pathname} key={pathname}>
             <Button
-              key={pathname}
               onClick={() => setSelected(name)}
               backgroundColor={selected === name ? "var(--main-red)" : ""}
             >
@@ -28,9 +27,9 @@ export default function SearchPage() {
         ))}
       </Category>
       <Title>{selected}</Title>
-      <SearchResult>
+      <Container>
         <Outlet />
-      </SearchResult>
+      </Container>
     </section>
   );
 }
@@ -54,7 +53,7 @@ const Title = styled.h1`
   margin-top: 20px;
 `;
 
-const SearchResult = styled.div`
+const Container = styled.div`
   height: 450px;
   margin-top: 20px;
   overflow: scroll;

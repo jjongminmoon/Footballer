@@ -3,18 +3,20 @@ import { SetStateAction } from "react";
 
 type Props = {
   title: string;
-  text: string;
-  setText: React.Dispatch<SetStateAction<string>>;
+  value: string;
+  setState: React.Dispatch<SetStateAction<string>>;
+  placeholder?: string;
 };
 
-export default function TextInput({ title, text, setText }: Props) {
+export default function TextInput({ title, value, setState, placeholder }: Props) {
   return (
     <div>
       <h3>{title}</h3>
       <Input
         type="text"
-        value={text}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)}
+        value={value}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setState(e.target.value)}
+        placeholder={placeholder}
       />
     </div>
   );

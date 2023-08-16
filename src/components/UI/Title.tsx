@@ -7,6 +7,5 @@ export default function CommonTitle({ children }: { children: React.ReactNode })
 const Title = styled.h1`
   font-size: 26px;
   padding-bottom: 20px;
-  margin-top: 30px;
   border-bottom: 2px solid black;
 `;

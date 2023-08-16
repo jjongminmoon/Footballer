@@ -53,7 +53,7 @@ const ImageBox = styled.div`
 
 const NoImage = styled.div`
   width: 400px;
-  height: 600px;
+  height: 550px;
   border: 3px solid var(--main-gray);
   border-radius: 10px;
   cursor-pointer;
@@ -76,7 +76,7 @@ const Image = styled.div`
   align-items: center;
   gap: 10px;
   width: 400px;
-  height: 600px;
+  height: 550px;
   background-color: var(--main-light-gray);
   border: 3px solid var(--main-gray);
   border-radius: 10px;

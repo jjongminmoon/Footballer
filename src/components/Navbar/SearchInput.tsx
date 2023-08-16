@@ -17,8 +17,6 @@ export default function SearchInput() {
   const [searchResult, setSearchResult] = useState<any>([]);
   const debounceValue = useDebounce(searchValue);
 
-  console.log(debounceValue);
-
   useEffect(() => {
     if (debounceValue === "") {
       setSearchResult([]);
@@ -133,6 +131,7 @@ const ExitIcon = styled(BiX)`
 const Category = styled.div`
   display: flex;
   gap: 5px;
+  font-size: 13px;
   margin-bottom: 10px;
 `;
 
@@ -151,17 +150,13 @@ const Input = styled.input`
   background-color: var(--main-light-gray);
   border: none;
   border-radius: 8px;
-
-  &::placeholder {
-    color: gray;
-  }
 `;
 
 const SearchResult = styled.div`
-  border: 1px solid #ddd;
-  padding: 10px 0 10px 10px;
   width: 100%;
   height: 500px;
+  border: 2px solid #ddd;
+  padding: 10px 0 10px 10px;
   margin-top: 10px;
   overflow: scroll;
 `;
@@ -174,7 +169,7 @@ const ResultItem = styled.div`
   height: 100px;
   padding: 10px;
   margin-bottom: 2px;
-  border: 1px solid var(--main-gray);
+  border: 2px solid var(--main-gray);
   border-radius: 10px;
 
   img {

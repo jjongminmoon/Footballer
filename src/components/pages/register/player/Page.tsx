@@ -14,6 +14,8 @@ export default function RegisterPlayerPage() {
   const { authData } = getAuthData();
   const [image, setImage] = useState<any>("");
   const [name, setName] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
   const [birth, setBirth] = useState("");
   const [region, setRegion] = useState("");
   const [position, setPosition] = useState("");
@@ -21,17 +23,12 @@ export default function RegisterPlayerPage() {
   const navigate = useNavigate();
 
   const addUserData = () => {
-    if (
-      image !== "" &&
-      name !== "" &&
-      birth !== "" &&
-      region !== "" &&
-      position !== "" &&
-      level !== ""
-    ) {
-      addUser(authData?.email, image, birth, name, position, region, level);
+    if (image && name && height && weight && birth && position && region && level !== "") {
+      addUser(authData?.email, image, name, height, weight, birth, position, region, level);
       alert("풋볼러 정보 등록이 완료되었습니다.");
       navigate("/");
+    } else if (isNaN(Number(height || weight))) {
+      alert("신장과 몸무게는 숫자만 입력 가능합니다.");
     } else {
       alert("모든 항목을 입력해주세요.");
     }
@@ -44,7 +41,9 @@ export default function RegisterPlayerPage() {
       <Register>
         <ImageCard image={image} setImage={setImage} />
         <Infomation>
-          <TextInput title="이름(닉네임)" text={name} setText={setName} />
+          <TextInput title="이름(닉네임)" value={name} setState={setName} />
+          <TextInput title="신장(cm)" value={height} setState={setHeight} />
+          <TextInput title="몸무게(kg)" value={weight} setState={setWeight} />
           <BirthInput birth={birth} setBirth={setBirth} />
           <RegionSelect region={region} setRegion={setRegion} />
           <PositionSelect position={position} setPosition={setPosition} />

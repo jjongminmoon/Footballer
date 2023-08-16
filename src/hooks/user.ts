@@ -8,8 +8,10 @@ import { UserProps } from "../model/user";
 export default async function addUser(
   email: string | null | undefined,
   image: string[],
-  birth: string,
   name: string,
+  height: string,
+  weight: string,
+  birth: string,
   position: string,
   region: string,
   level: string
@@ -22,6 +24,8 @@ export default async function addUser(
     email: email,
     image: image,
     name: name,
+    height: height,
+    weight: weight,
     birth: birth,
     position: position,
     region: region,
@@ -31,7 +35,8 @@ export default async function addUser(
     manner: [],
     goodPlayer: [],
     apply: [],
-    scouted: []
+    scouted: [],
+    review: []
   });
 }
 

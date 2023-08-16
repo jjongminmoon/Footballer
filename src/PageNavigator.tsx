@@ -15,6 +15,7 @@ import MemberPage from "./components/pages/mypage/member/Page";
 import ApplicationListPage from "./components/pages/mypage/application-list/Page";
 import ApplicationStatusPage from "./components/pages/mypage/application-status/Page";
 import PlayerDetailPage from "./components/pages/detail/player/Page";
+import TeamDetailPage from "./components/pages/detail/team/Page";
 
 export default function PageNavigator() {
   return (
@@ -36,7 +37,8 @@ export default function PageNavigator() {
         <Route path="/mypage/member" element={<MemberPage />} />
         <Route path="/mypage/application-list" element={<ApplicationListPage />} />
       </Route>
-      <Route path="/detail/player" element={<PlayerDetailPage />} />
+      <Route path="/detail/player/:id" element={<PlayerDetailPage />} />
+      <Route path="/detail/team/:id" element={<TeamDetailPage />} />
     </Routes>
   );
 }

@@ -50,10 +50,6 @@ li {
 
 input:focus {
   outline: none;
-
-  &::placeholder {
-    color: white;
-  }
 }
 
 input::placeholder {

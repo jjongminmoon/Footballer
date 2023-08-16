@@ -26,7 +26,7 @@ export default function RegisterTeamPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userData.team !== "무소속") {
+    if (userData?.team !== "무소속") {
       alert("소속팀이 있어 새로운 팀을 등록할 수 없습니다.");
       navigate("/");
     }
@@ -54,11 +54,11 @@ export default function RegisterTeamPage() {
       <Register>
         <LogoImage logo={logo} setLogo={setLogo} />
         <Infomation>
-          <TextInput title="팀명" text={name} setText={setName} />
+          <TextInput title="팀명" value={name} setState={setName} />
           <RegionSelect region={region} setRegion={setRegion} />
           <StatusSelect title="팀원 모집 여부" status={status} setStatus={setStatus} />
           <FeeInput fee={fee} setFee={setFee} />
-          <TextInput title="팀 한줄 소개" text={introduce} setText={setIntroduce} />
+          <TextInput title="팀 한줄 소개" value={introduce} setState={setIntroduce} />
           <Button onClick={addTeamData}>제출</Button>
         </Infomation>
       </Register>
