@@ -1,9 +1,11 @@
-import Banner from "./Banner";
+import MainBanner from "./MainBanner";
+import MatchList from "./MatchList";
 
 export default function MainPage() {
   return (
     <section>
-      <Banner />
+      <MainBanner />
+      <MatchList />
     </section>
   );
 }

@@ -1,18 +1,18 @@
 import styled from "@emotion/styled";
 import main1 from "../../../assets/images/main1.jpg";
 import main2 from "../../../assets/images/main2.jpg";
-import main3 from "../../../assets/images/main3.jpg";
-import main4 from "../../../assets/images/main4.avif";
+import main3 from "../../../assets/images/main3.avif";
+import main4 from "../../../assets/images/main4.jpg";
 import { Link } from "react-router-dom";
 
 const imageList = [
-  { image: main1, name: "팀 매치", pathname: "/" },
-  { image: main2, name: "팀 등록", pathname: "/register/team" },
-  { image: main3, name: "팀/선수 찾기", pathname: "/search" },
+  { image: main1, name: "팀 등록", pathname: "/register/team" },
+  { image: main2, name: "팀/선수 찾기", pathname: "/search" },
+  { image: main3, name: "구장 정보", pathname: "/field" },
   { image: main4, name: "풋볼러컵", pathname: "/footballercup" }
 ];
 
-export default function Banner() {
+export default function MainBanner() {
   return (
     <Container>
       <BannerBox>
@@ -39,7 +39,7 @@ const Container = styled.div`
 const BannerBox = styled.div`
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
   width: 1024px;
   height: 100%;
   padding: 20px;
@@ -47,6 +47,7 @@ const BannerBox = styled.div`
 
   div {
     position: relative;
+    width: 100%;
   }
 
   img {

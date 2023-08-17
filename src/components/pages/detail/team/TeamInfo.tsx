@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function Profile({ team, children }: Props) {
+export default function TeamInfo({ team, children }: Props) {
   const levelScore =
     team?.goodTeam.length > 0
       ? (

@@ -18,9 +18,3 @@ const Section = styled.section`
   gap: 30px;
   padding: 120px 0;
 `;
-
-const Title = styled.h1`
-  font-size: 40px;
-  font-family: "KBO-Dia-Gothic_bold";
-  font-style: italic;
-`;

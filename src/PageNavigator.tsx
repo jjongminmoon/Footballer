@@ -16,6 +16,8 @@ import ApplicationListPage from "./components/pages/mypage/application-list/Page
 import ApplicationStatusPage from "./components/pages/mypage/application-status/Page";
 import PlayerDetailPage from "./components/pages/detail/player/Page";
 import TeamDetailPage from "./components/pages/detail/team/Page";
+import FieldInfoPage from "./components/pages/field/Page";
+import FieldDetailPage from "./components/pages/detail/field/Page";
 
 export default function PageNavigator() {
   return (
@@ -23,12 +25,16 @@ export default function PageNavigator() {
       <Route path="/" element={<MainPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/join" element={<JoinPage />} />
+      <Route path="/register/player" element={<RegisterPlayerPage />} />
+      <Route path="/register/team" element={<RegisterTeamPage />} />
+      <Route path="/field" element={<FieldInfoPage />} />
+      <Route path="/detail/field/:id" element={<FieldDetailPage />} />
+      <Route path="/detail/player/:id" element={<PlayerDetailPage />} />
+      <Route path="/detail/team/:id" element={<TeamDetailPage />} />
       <Route path="/search" element={<SearchPage />}>
         <Route path="/search/team" element={<TeamSearchPage />} />
         <Route path="/search/player" element={<PlayerSearchPage />} />
       </Route>
-      <Route path="/register/player" element={<RegisterPlayerPage />} />
-      <Route path="/register/team" element={<RegisterTeamPage />} />
       <Route path="/mypage/" element={<MyPage />}>
         <Route path="/mypage/user" element={<UserPage />} />
         <Route path="/mypage/player" element={<ProfilePage />} />
@@ -37,8 +43,6 @@ export default function PageNavigator() {
         <Route path="/mypage/member" element={<MemberPage />} />
         <Route path="/mypage/application-list" element={<ApplicationListPage />} />
       </Route>
-      <Route path="/detail/player/:id" element={<PlayerDetailPage />} />
-      <Route path="/detail/team/:id" element={<TeamDetailPage />} />
     </Routes>
   );
 }

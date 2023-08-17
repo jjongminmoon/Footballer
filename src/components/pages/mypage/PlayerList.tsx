@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { UserProps } from "../../../model/user";
-import { getMyTeam } from "../../../hooks/team";
 
 type Props = {
   data: UserProps[];
@@ -32,8 +31,6 @@ export default function PlayerList({
               <p>활동 지역 : {player.region}</p>
               <p>생년월일 : {player.birth}</p>
               <p>포지션 : {player.position}</p>
-              <p>실력 점수 : {player.goodPlayer}점</p>
-              <p>매너 점수 : {player.manner}점</p>
             </Info>
             <ButtonBox>
               <Button onClick={() => handleFunction1(player)}>{button1}</Button>
