@@ -29,7 +29,7 @@ export default function PlayerScoring({ title, collection, dataId }: Props) {
 
   return (
     <Wrapper>
-      <p>{title} 점수 매기기</p>
+      <p className="title">{title} 점수 매기기</p>
       <div className="select-box">
         <OpenSelectBox onClick={() => setOpenSelect(true)}>
           <MdArrowDropDown />
@@ -67,6 +67,10 @@ const Wrapper = styled.div`
   background-color: var(--main-gray);
   border-radius: 10px;
 
+  .title {
+    font-size: 14px;
+  }
+
   .select-box {
     position: relative;
   }
@@ -88,6 +92,7 @@ const OpenSelectBox = styled.div`
   border: 2px solid var(--main-gray);
   border-radius: 10px;
   background-color: white;
+  font-size: 14px;
   cursor: pointer;
 
   svg {

@@ -2,26 +2,18 @@ import styled from "@emotion/styled";
 import { getTwoWeeksDates, getTwoWeeksDay } from "../../../util/getDates";
 import CalendarCarousel from "./CalendarCarousel";
 import { useState } from "react";
-import { getAllField } from "../../../hooks/field";
-import registerMatch, { getMatches } from "../../../hooks/match";
+import { getMatches } from "../../../hooks/match";
 import { FieldProps } from "../../../model/field";
+import RegisterMatch from "./RegisterMatch";
 
 export default function MatchList() {
-  const { allField } = getAllField();
+  const [openRegister, setOpenRegister] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
   const twoWeeksLater = new Date().setDate(new Date().getDate() + 14);
   const dateArr = getTwoWeeksDates(new Date(), twoWeeksLater);
   const dayArr = getTwoWeeksDay(new Date(), twoWeeksLater);
-  const { matches } = getMatches(selectedDate);
-  const matchesOnSelectedDate = matches?.matches;
-
-  const handleRegisterMatch = () => {
-    selectedDate
-      ? registerMatch(selectedDate, allField).then(() =>
-          alert(`${selectedDate} 날짜의 매치를 등록했습니다.`)
-        )
-      : alert("날짜를 선택 후 매치를 등록해주세요.");
-  };
+  const { matchData } = getMatches(selectedDate);
+  const matchesOnSelectedDate = matchData?.matches;
 
   return (
     <>
@@ -31,7 +23,7 @@ export default function MatchList() {
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
       />
-      <AdminButton onClick={handleRegisterMatch}>매치 등록</AdminButton>
+      <RegisterMatchButton onClick={() => setOpenRegister(true)}>매치 등록</RegisterMatchButton>
       <Container>
         {matchesOnSelectedDate ? (
           matchesOnSelectedDate.map((data: FieldProps) => (
@@ -41,19 +33,21 @@ export default function MatchList() {
               <Parking>{data.parking ? "주차가능" : "주차불가"}</Parking>
               <div className="action">
                 <p>{data.match.length}/2 </p>
-                <Button>매치 참가</Button>
               </div>
+              <Button>매치 참가</Button>;
             </Row>
           ))
         ) : (
           <Row>아직 등록된 경기가 없습니다.</Row>
         )}
       </Container>
+
+      {openRegister && <RegisterMatch dateArr={dateArr} />}
     </>
   );
 }
 
-const AdminButton = styled.button`
+const RegisterMatchButton = styled.button`
   width: 100px;
   height: 40px;
   border: 1px solid var(--main-gray);

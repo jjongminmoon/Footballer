@@ -4,7 +4,7 @@ import { FieldProps } from "../model/field";
 import { useEffect, useState } from "react";
 
 export default async function registerMatch(date: string, fieldData: FieldProps[]) {
-  const coll = collection(dbService, "matches");
+  const coll = collection(dbService, "match");
 
   await addDoc(coll, {
     date: date,
@@ -13,10 +13,10 @@ export default async function registerMatch(date: string, fieldData: FieldProps[
 }
 
 export function getMatches(selectedDate: string) {
-  const [matches, setMatches] = useState<any>([]);
+  const [matchData, setMatchData] = useState<any>([]);
 
   useEffect(() => {
-    const q = query(collection(dbService, "matches"));
+    const q = query(collection(dbService, "match"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const arr = querySnapshot.docs.map((doc) => {
         return {
@@ -25,12 +25,12 @@ export function getMatches(selectedDate: string) {
         };
       });
 
-      setMatches(arr.find((data: any) => data.date === selectedDate));
+      setMatchData(arr.find((data: any) => data.date === selectedDate));
     });
     return () => {
       unsubscribe();
     };
   }, [selectedDate]);
 
-  return { matches };
+  return { matchData };
 }
