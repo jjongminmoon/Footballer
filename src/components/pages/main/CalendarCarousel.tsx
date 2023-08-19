@@ -34,7 +34,7 @@ export default function CalendarCarousel({
           <Item
             key={index}
             color={dayArr[index] === "Sat" ? "blue" : dayArr[index] === "Sun" ? "red" : "black"}
-            backgroundColor={selectedDate === date ? "var(--main-red)" : ""}
+            backgroundColor={selectedDate === date ? "var(--main-gray)" : ""}
             onClick={() => setSelectedDate(date)}
           >
             <p>{date.slice(-2)}</p>

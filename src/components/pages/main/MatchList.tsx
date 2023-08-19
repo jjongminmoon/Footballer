@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 import { getTwoWeeksDates, getTwoWeeksDay } from "../../../util/getDates";
 import CalendarCarousel from "./CalendarCarousel";
 import { useState } from "react";
-import { getMatches } from "../../../hooks/match";
-import { FieldProps } from "../../../model/field";
 import RegisterMatch from "./RegisterMatch";
+import getMatches from "../../../hooks/match";
+import { MatchesProps } from "../../../model/match";
 
 export default function MatchList() {
   const [openRegister, setOpenRegister] = useState(false);
@@ -13,7 +13,6 @@ export default function MatchList() {
   const dateArr = getTwoWeeksDates(new Date(), twoWeeksLater);
   const dayArr = getTwoWeeksDay(new Date(), twoWeeksLater);
   const { matchData } = getMatches(selectedDate);
-  const matchesOnSelectedDate = matchData?.matches;
 
   return (
     <>
@@ -25,16 +24,16 @@ export default function MatchList() {
       />
       <RegisterMatchButton onClick={() => setOpenRegister(true)}>매치 등록</RegisterMatchButton>
       <Container>
-        {matchesOnSelectedDate ? (
-          matchesOnSelectedDate.map((data: FieldProps) => (
-            <Row key={data.number}>
+        {matchData ? (
+          matchData.map((data: MatchesProps) => (
+            <Row key={data.id}>
               <Time>20:00</Time>
-              <Name>{data.id}</Name>
-              <Parking>{data.parking ? "주차가능" : "주차불가"}</Parking>
-              <div className="action">
-                <p>{data.match.length}/2 </p>
-              </div>
-              <Button>매치 참가</Button>;
+              <Name>{data.field.id}</Name>
+              <Rule>{data.rule}</Rule>
+              <Participation>
+                <p>{data.participation.length}/2</p>
+                <Button>매치 참가</Button>
+              </Participation>
             </Row>
           ))
         ) : (
@@ -42,7 +41,7 @@ export default function MatchList() {
         )}
       </Container>
 
-      {openRegister && <RegisterMatch dateArr={dateArr} />}
+      {openRegister && <RegisterMatch dateArr={dateArr} setOpenRegister={setOpenRegister} />}
     </>
   );
 }
@@ -91,13 +90,21 @@ const Name = styled.p`
   padding-bottom: 2px;
 `;
 
-const Parking = styled.p`
+const Rule = styled.p`
   padding: 5px 10px;
   margin-bottom: 1px;
   background-color: var(--main-button);
-  font-size: 12px;
+  font-size: 10px;
   color: white;
   border-radius: 999px;
+`;
+
+const Participation = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  font-size: 13px;
 `;
 
 const Button = styled.p`

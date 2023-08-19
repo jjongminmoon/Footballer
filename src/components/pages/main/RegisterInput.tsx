@@ -59,8 +59,9 @@ export default function RegisterInput({
               {openSelect && inputId === id && (
                 <SelectBox>
                   {inputId === 1
-                    ? dateArr.map((date: string) => (
+                    ? dateArr.map((date: string, index: number) => (
                         <p
+                          key={index}
                           onClick={() => {
                             setOpenSelect(false);
                             setDate(date);
@@ -70,8 +71,9 @@ export default function RegisterInput({
                         </p>
                       ))
                     : inputId === 2
-                    ? allField.map((field: FieldProps) => (
+                    ? allField.map((field: FieldProps, index: number) => (
                         <p
+                          key={index}
                           onClick={() => {
                             setOpenSelect(false);
                             setField(field.id);
@@ -80,8 +82,9 @@ export default function RegisterInput({
                           {field.id}
                         </p>
                       ))
-                    : ruleList.map((rule) => (
+                    : ruleList.map((rule, index) => (
                         <p
+                          key={index}
                           onClick={() => {
                             setOpenSelect(false);
                             setRule(rule.title);

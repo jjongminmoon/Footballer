@@ -1,18 +1,8 @@
-import { addDoc, collection, onSnapshot, query } from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { dbService } from "../service/firebase";
-import { FieldProps } from "../model/field";
 import { useEffect, useState } from "react";
 
-export default async function registerMatch(date: string, fieldData: FieldProps[]) {
-  const coll = collection(dbService, "match");
-
-  await addDoc(coll, {
-    date: date,
-    matches: fieldData
-  });
-}
-
-export function getMatches(selectedDate: string) {
+export default function getMatches(selectedDate: string) {
   const [matchData, setMatchData] = useState<any>([]);
 
   useEffect(() => {
@@ -25,7 +15,7 @@ export function getMatches(selectedDate: string) {
         };
       });
 
-      setMatchData(arr.find((data: any) => data.date === selectedDate));
+      setMatchData(arr.filter((data: any) => data.date === selectedDate));
     });
     return () => {
       unsubscribe();

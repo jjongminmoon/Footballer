@@ -1,19 +1,42 @@
 import styled from "@emotion/styled";
 import Modal from "../../ui/Modal";
 import CommonTitle from "../../ui/Title";
-import { useState } from "react";
 import RegisterInput from "./RegisterInput";
+import { SetStateAction, useState } from "react";
+import { dbService } from "../../../service/firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { getAllField } from "../../../hooks/field";
+import { FieldProps } from "../../../model/field";
+import { getMyTeam } from "../../../hooks/team";
 
 type Props = {
   dateArr: string[];
+  setOpenRegister: React.Dispatch<SetStateAction<boolean>>;
 };
 
-export default function RegisterMatch({ dateArr }: Props) {
+export default function RegisterMatch({ dateArr, setOpenRegister }: Props) {
+  const { teamData } = getMyTeam();
+  const { allField } = getAllField();
   const [date, setDate] = useState("");
   const [field, setField] = useState("");
   const [rule, setRule] = useState("");
 
-  const handleRegisterMatch = () => {};
+  const handleRegisterMatch = async () => {
+    if (confirm("매치를 등록하시겠습니까?")) {
+      const coll = collection(dbService, "match");
+
+      await addDoc(coll, {
+        date: date,
+        field: allField.find((data: FieldProps) => data.id === field),
+        rule: rule,
+        participation: [teamData]
+      });
+      setOpenRegister(false);
+      alert("매치가 등록되었습니다.");
+    } else {
+      return;
+    }
+  };
 
   return (
     <Modal>
@@ -30,8 +53,8 @@ export default function RegisterMatch({ dateArr }: Props) {
             dateArr={dateArr}
           />
           <ButtonBox>
-            <Button>매치 등록</Button>
-            <Button>취소</Button>
+            <Button onClick={handleRegisterMatch}>매치 등록</Button>
+            <Button onClick={() => setOpenRegister(false)}>취소</Button>
           </ButtonBox>
         </Wrapper>
       </Container>
