@@ -28,7 +28,7 @@ export default function MatchList() {
         <RegisterMatch dateArr={dateArr} />
       </ActionBar>
       <Container>
-        {selectedDateMatches ? (
+        {selectedDateMatches.length > 0 ? (
           selectedDateMatches
             .filter((data: MatchProps) => data.field.region.includes(selectedRegion))
             .map((data: MatchProps) => (
@@ -60,6 +60,7 @@ const ActionBar = styled.div`
 
 const Container = styled.div`
   height: 100%;
+  min-height: 400px;
   border-top: 1px solid var(--main-gray);
 `;
 

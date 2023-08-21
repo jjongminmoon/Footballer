@@ -12,8 +12,6 @@ export default function TeamSearchPage() {
   const [selectedRegion, setSelectedRegion] = useState("");
   const [selectedStatus, setSelectedStatus] = useState(true);
 
-  console.log(userData?.team);
-
   return (
     <>
       <TeamSearchCriteria

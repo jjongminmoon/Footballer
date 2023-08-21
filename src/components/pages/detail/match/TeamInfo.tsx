@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
 import { TeamProps } from "../../../../model/team";
 import { FaQuestion } from "react-icons/fa";
+import { getAllTeam } from "../../../../hooks/team";
 
 type Props = {
-  teams: TeamProps[];
+  teams: string[];
 };
 
 export default function TeamInfo({ teams }: Props) {
-  const homeTeam = teams && teams[0];
-  const awayTeam = teams && teams[1];
+  const { allTeam } = getAllTeam();
+  const homeTeam = allTeam.find((team: TeamProps) => team.id === teams[0]);
+  const awayTeam = allTeam.find((team: TeamProps) => team.id === teams[1]);
 
   return (
     <Wrapper>

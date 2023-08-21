@@ -29,7 +29,7 @@ export default function RegisterMatch({ dateArr }: Props) {
         date: date,
         field: allField.find((data: FieldProps) => data.id === field),
         rule: rule,
-        participation: [teamData]
+        participation: [teamData.id]
       });
       setOpenRegister(false);
       alert("매치가 등록되었습니다.");

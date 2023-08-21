@@ -1,16 +1,16 @@
 import styled from "@emotion/styled";
-import { UserProps } from "../../../model/user";
+import { TeamProps } from "../../../model/team";
 
 type Props = {
-  data: UserProps[];
-  handleFunction1: (player: UserProps) => void;
-  handleFunction2?: (player: UserProps) => void;
+  data: TeamProps[];
+  handleFunction1: (team: TeamProps, teamId: string, teamName: string) => void;
+  handleFunction2?: (team: TeamProps, teamId: string) => void;
   button1: string;
   button2?: string;
   noList: string;
 };
 
-export default function PlayerList({
+export default function TeamList({
   data,
   handleFunction1,
   handleFunction2,
@@ -21,25 +21,23 @@ export default function PlayerList({
   return (
     <List>
       {data?.length > 0 ? (
-        data.map((player: UserProps) => (
-          <Row key={player.id}>
+        data.map((team: TeamProps) => (
+          <Row key={team.id}>
             <Image>
-              <Player src={player.image} alt={`${player.name}님의 이미지`} />
+              <Logo src={team.logo} alt={`${team.name}님의 이미지`} />
             </Image>
-            <Name>{player.name}</Name>
+            <Name>{team.name}</Name>
             <Info>
-              <p>소속팀 : {player.team}</p>
-              <p>활동 지역 : {player.region}</p>
-              <p>생년월일 : {player.birth}</p>
-              <p>신장 : {player.height}cm</p>
-              <p>몸무게 : {player.weight}kg</p>
-              <p>포지션 : {player.position}</p>
-              <p>레벨 : {player.level}</p>
+              <p>구단주 : {team.owner.name}</p>
+              <p>활동 지역 : {team.region}</p>
+              <p>월 회비 : {team.fee}</p>
+              <p>팀원 모집 여부 : {team.status ? "O" : "X"}</p>
+              <p>팀 인원 : {team.member.length}명</p>
             </Info>
             <ButtonBox>
-              <Button onClick={() => handleFunction1(player)}>{button1}</Button>
+              <Button onClick={() => handleFunction1(team, team.id, team.name)}>{button1}</Button>
               {button2 && handleFunction2 && (
-                <Button onClick={() => handleFunction2(player)}>{button2}</Button>
+                <Button onClick={() => handleFunction2(team, team.id)}>{button2}</Button>
               )}
             </ButtonBox>
           </Row>
@@ -78,7 +76,7 @@ const Image = styled.div`
   margin: 0 10px;
 `;
 
-const Player = styled.img`
+const Logo = styled.img`
   width: 100%;
   height: 100%;
 `;
@@ -102,10 +100,6 @@ const Info = styled.div`
   background-color: var(--main-light-gray);
   border-radius: 10px;
   margin-left: auto;
-
-  p {
-    font-size: 11px;
-  }
 `;
 
 const ButtonBox = styled.div`
@@ -117,7 +111,7 @@ const ButtonBox = styled.div`
 `;
 
 const Button = styled.button`
-  width: 100px;
+  width: 150px;
   height: 30px;
   border: none;
   border-radius: 10px;

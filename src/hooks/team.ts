@@ -25,7 +25,7 @@ export default async function addTeam(
     name: name,
     introduce: introduce,
     fee: fee,
-    member: [userData],
+    member: [userData?.id],
     status: status,
     applicationList: [],
     scoutList: [],

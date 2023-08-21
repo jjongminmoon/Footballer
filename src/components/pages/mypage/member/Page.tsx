@@ -4,13 +4,15 @@ import { UserProps } from "../../../../model/user";
 import MypageContainer from "../MypageContainer";
 import PlayerList from "../PlayerList";
 import { dbService } from "../../../../service/firebase";
-import { getUser } from "../../../../hooks/user";
+import { getAllUser, getUser } from "../../../../hooks/user";
 import MypageTitle from "../MypageTitle";
 
 export default function MemberPage() {
+  const { allUser } = getAllUser();
   const { userData } = getUser();
   const { teamData } = getMyTeam();
-  const memberList = teamData?.member;
+  const memberId: string[] = teamData?.member;
+  const memberList = allUser.filter((user: UserProps) => memberId.includes(user.id));
 
   const handleRelease = (player: UserProps) => {
     const playerDocRef = doc(dbService, "user", player.id);

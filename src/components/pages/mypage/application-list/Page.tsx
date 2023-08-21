@@ -4,13 +4,15 @@ import MypageContainer from "../MypageContainer";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
 import PlayerList from "../PlayerList";
-import { getUser } from "../../../../hooks/user";
+import { getAllUser, getUser } from "../../../../hooks/user";
 import MypageTitle from "../MypageTitle";
 
 export default function ApplicationListPage() {
+  const { allUser } = getAllUser();
   const { userData } = getUser();
   const { teamData } = getMyTeam();
-  const applicationList = teamData?.applicationList;
+  const applicationArr: string[] = teamData?.applicationList;
+  const applicationList = allUser.filter((user: UserProps) => applicationArr.includes(user.id));
 
   const handleApproval = (player: UserProps) => {
     const playerDocRef = doc(dbService, "user", player.id);
@@ -24,8 +26,8 @@ export default function ApplicationListPage() {
         });
 
         updateDoc(teamDocRef, {
-          applicationList: arrayRemove(player),
-          member: arrayUnion(player)
+          applicationList: arrayRemove(player.id),
+          member: arrayUnion(player.id)
         })
           .then(() => alert("입단 승인되었습니다."))
           .catch((e) => alert(e));

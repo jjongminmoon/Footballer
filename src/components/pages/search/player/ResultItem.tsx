@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
 import { getMyTeam } from "../../../../hooks/team";
+import { getUser } from "../../../../hooks/user";
 
 export default function ResultItem({ player }: { player: UserProps }) {
+  const { userData } = getUser();
   const { teamData } = getMyTeam();
   const navigate = useNavigate();
 
@@ -13,25 +15,31 @@ export default function ResultItem({ player }: { player: UserProps }) {
     const playerDocRef = doc(dbService, "user", player.id);
     const teamDocRef = doc(dbService, "team", teamData.id);
 
-    if (confirm(`${player.name} 선수에게 스카우트 제의를 하시겠습니까?`)) {
-      if (player.team === "무소속") {
-        updateDoc(teamDocRef, {
-          scoutList: arrayUnion(player)
-        });
-        updateDoc(playerDocRef, {
-          scouted: arrayUnion(teamData)
-        })
-          .then(() =>
-            alert(`스카우트 제의가 완료되었습니다. ${player.name} 선수가 승인 시 팀에 등록됩니다.`)
-          )
-          .catch((e) => alert(e));
+    if (teamData.owner.name === userData.name) {
+      if (confirm(`${player.name} 선수에게 스카우트 제의를 하시겠습니까?`)) {
+        if (player.team === "무소속") {
+          updateDoc(teamDocRef, {
+            scoutList: arrayUnion(player.id)
+          });
+          updateDoc(playerDocRef, {
+            scouted: arrayUnion(teamData.id)
+          })
+            .then(() =>
+              alert(
+                `스카우트 제의가 완료되었습니다. ${player.name} 선수가 승인 시 팀에 등록됩니다.`
+              )
+            )
+            .catch((e) => alert(e));
 
-        navigate("/mypage/application-status");
+          navigate("/mypage/application-status");
+        } else {
+          alert(`${player.name} 선수는 소속팀이 있어 스카우트 제의를 할 수 없습니다.`);
+        }
       } else {
-        alert(`${player.name} 선수는 소속팀이 있어 스카우트 제의를 할 수 없습니다.`);
+        return;
       }
     } else {
-      return;
+      alert("스카우트 제의는 구단주만 가능합니다.");
     }
   };
 
@@ -63,7 +71,10 @@ export default function ResultItem({ player }: { player: UserProps }) {
         <p>소속팀 : {player.team}</p>
         <p>활동 지역 : {player.region}</p>
         <p>생년월일 : {player.birth}</p>
+        <p>신장 : {player.height}cm</p>
+        <p>몸무게 : {player.weight}kg</p>
         <p>포지션 : {player.position}</p>
+        <p>레벨 : {player.level}</p>
       </Info>
       <Score>실력 점수 : {levelScore}점</Score>
       <Score>매너 점수 : {mannerScore}점</Score>
@@ -121,6 +132,10 @@ const Info = styled.div`
   background-color: var(--main-light-gray);
   border-radius: 10px;
   margin-left: auto;
+
+  p {
+    font-size: 11px;
+  }
 `;
 
 const Score = styled.p`

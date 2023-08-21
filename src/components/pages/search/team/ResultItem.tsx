@@ -15,7 +15,7 @@ export default function ResultItem({ team }: { team: TeamProps }) {
 
     if (userData?.team === "무소속") {
       updateDoc(teamDocRef, {
-        applicationList: arrayUnion(userData)
+        applicationList: arrayUnion(userData?.id)
       });
       updateDoc(playerDocRef, {
         apply: { id: teamId, status: "대기중" }

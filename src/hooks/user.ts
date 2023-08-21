@@ -7,7 +7,7 @@ import { UserProps } from "../model/user";
 
 export default async function addUser(
   email: string | null | undefined,
-  image: string[],
+  image: string,
   name: string,
   height: string,
   weight: string,

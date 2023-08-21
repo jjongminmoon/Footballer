@@ -37,7 +37,7 @@ export default function ApplicationStatusPage() {
 
   return (
     <MypageContainer>
-      <MypageTitle>입단 신청한 팀</MypageTitle>
+      <MypageTitle>내가 입단 신청한 팀</MypageTitle>
       {applyTeam ? (
         <Row>
           <Image>
