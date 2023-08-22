@@ -4,7 +4,7 @@ import { SetStateAction, useState } from "react";
 import { getUser } from "../../../../hooks/user";
 import { dbService } from "../../../../service/firebase";
 import { doc, updateDoc } from "firebase/firestore";
-import { regionList } from "../../register/player/registerData";
+import { regionList } from "../../register/registerData";
 
 type Props = {
   setOpenModifyRegion: React.Dispatch<SetStateAction<boolean>>;

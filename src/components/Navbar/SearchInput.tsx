@@ -62,7 +62,9 @@ export default function SearchInput() {
               <SearchResult>
                 {searchResult?.map((result: any) => (
                   <Link
-                    to={category ? "/detail/player" : "/detail/team"}
+                    to={
+                      category ? `/detail/player/${result.number}` : `/detail/team/${result.number}`
+                    }
                     key={result.id}
                     onClick={() => setOpenModal(false)}
                   >
@@ -72,7 +74,7 @@ export default function SearchInput() {
 
                       <RegionAndTeam>
                         {result.region} (
-                        {category ? result.team : `인원: ${result.member.length}명`})
+                        {category ? result.team : `인원: ${result?.member.length}명`})
                       </RegionAndTeam>
                     </ResultItem>
                   </Link>
@@ -155,7 +157,7 @@ const Input = styled.input`
 const SearchResult = styled.div`
   width: 100%;
   height: 500px;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
   padding: 10px 0 10px 10px;
   margin-top: 10px;
   overflow: scroll;
@@ -168,9 +170,8 @@ const ResultItem = styled.div`
   width: 100%;
   height: 100px;
   padding: 10px;
-  margin-bottom: 2px;
-  border: 2px solid var(--main-gray);
-  border-radius: 10px;
+  margin-bottom: 5px;
+  border: 1px solid var(--main-gray);
 
   img {
     width: 80px;
@@ -180,8 +181,8 @@ const ResultItem = styled.div`
 
 const RegionAndTeam = styled.p`
   margin-left: auto;
-  padding: 10px;
-  font-size: 13px;
+  padding: 5px 10px;
+  font-size: 12px;
   background-color: black;
   color: white;
   border-radius: 999px;

@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import FieldCarousel from "./FieldCarousel";
-import { FieldProps } from "../../../../model/field";
 import Notice from "./Notice";
+import { FieldProps } from "../../../../model/field";
 
 type Props = {
   field: FieldProps;
@@ -9,26 +8,22 @@ type Props = {
 
 export default function FieldInfo({ field }: Props) {
   return (
-    <Wrapper>
-      <FieldCarousel images={field?.image} />
+    <>
       <Info>
         <p>{field?.region}</p>
         <Name>{field?.id}</Name>
         <p>{field?.address}</p>
-        <Notice field={field} />
       </Info>
-    </Wrapper>
+      <Notice field={field} />
+    </>
   );
 }
-
-const Wrapper = styled.div`
-  margin-top: 20px;
-`;
 
 const Info = styled.div`
   padding: 20px 10px;
   margin-top: 40px;
-  border-top: 2px solid black;
+  background-color: white;
+  border-radius: 10px;
 `;
 
 const Name = styled.h1`

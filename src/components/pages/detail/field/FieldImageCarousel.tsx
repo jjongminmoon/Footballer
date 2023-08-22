@@ -8,7 +8,7 @@ type Props = {
   images: string[];
 };
 
-export default function FieldCarousel({ images }: Props) {
+export default function FieldImageCarousel({ images }: Props) {
   const settings = {
     dots: true,
     arrows: false,
@@ -36,6 +36,7 @@ export default function FieldCarousel({ images }: Props) {
 
 const Container = styled.div`
   width: 100%;
+  margin-top: 20px;
 `;
 
 const Image = styled.div`

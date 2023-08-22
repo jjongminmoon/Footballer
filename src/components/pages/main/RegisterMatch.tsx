@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import Modal from "../../ui/Modal";
 import CommonTitle from "../../ui/Title";
 import RegisterInput from "./RegisterInput";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { dbService } from "../../../service/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { getAllField } from "../../../hooks/field";
@@ -11,12 +11,12 @@ import { getMyTeam } from "../../../hooks/team";
 
 type Props = {
   dateArr: string[];
-  setOpenRegister: React.Dispatch<SetStateAction<boolean>>;
 };
 
-export default function RegisterMatch({ dateArr, setOpenRegister }: Props) {
+export default function RegisterMatch({ dateArr }: Props) {
   const { teamData } = getMyTeam();
   const { allField } = getAllField();
+  const [openRegister, setOpenRegister] = useState(false);
   const [date, setDate] = useState("");
   const [field, setField] = useState("");
   const [rule, setRule] = useState("");
@@ -39,28 +39,48 @@ export default function RegisterMatch({ dateArr, setOpenRegister }: Props) {
   };
 
   return (
-    <Modal>
-      <Container>
-        <Wrapper>
-          <CommonTitle>매치 등록</CommonTitle>
-          <RegisterInput
-            date={date}
-            field={field}
-            rule={rule}
-            setDate={setDate}
-            setField={setField}
-            setRule={setRule}
-            dateArr={dateArr}
-          />
-          <ButtonBox>
-            <Button onClick={handleRegisterMatch}>매치 등록</Button>
-            <Button onClick={() => setOpenRegister(false)}>취소</Button>
-          </ButtonBox>
-        </Wrapper>
-      </Container>
-    </Modal>
+    <>
+      <OpenSelectButton onClick={() => setOpenRegister(true)}>매치 등록</OpenSelectButton>
+
+      {openRegister && (
+        <Modal>
+          <Container>
+            <Wrapper>
+              <CommonTitle>매치 등록</CommonTitle>
+              <RegisterInput
+                date={date}
+                field={field}
+                rule={rule}
+                setDate={setDate}
+                setField={setField}
+                setRule={setRule}
+                dateArr={dateArr}
+              />
+              <ButtonBox>
+                <Button onClick={handleRegisterMatch}>매치 등록</Button>
+                <Button onClick={() => setOpenRegister(false)}>취소</Button>
+              </ButtonBox>
+            </Wrapper>
+          </Container>
+        </Modal>
+      )}
+    </>
   );
 }
+
+const OpenSelectButton = styled.button`
+  position: relative;
+  width: 100px;
+  height: 40px;
+  border: 1px solid var(--main-gray);
+  border-radius: 8px;
+  background-color: white;
+  margin: 10px 0;
+
+  :hover {
+    background-color: var(--main-red);
+  }
+`;
 
 const Container = styled.div`
   position: relative;

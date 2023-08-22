@@ -4,20 +4,15 @@ import { SetStateAction } from "react";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { getDay } from "../../../util/dateAndDay";
 
 type Props = {
   dateArr: string[];
-  dayArr: string[];
   selectedDate: string;
   setSelectedDate: React.Dispatch<SetStateAction<string>>;
 };
 
-export default function CalendarCarousel({
-  dateArr,
-  dayArr,
-  selectedDate,
-  setSelectedDate
-}: Props) {
+export default function CalendarCarousel({ dateArr, selectedDate, setSelectedDate }: Props) {
   const settings = {
     dots: false,
     arrows: true,
@@ -33,12 +28,12 @@ export default function CalendarCarousel({
         {dateArr?.map((date, index) => (
           <Item
             key={index}
-            color={dayArr[index] === "Sat" ? "blue" : dayArr[index] === "Sun" ? "red" : "black"}
+            color={getDay(date) === "토요일" ? "blue" : getDay(date) === "일요일" ? "red" : "black"}
             backgroundColor={selectedDate === date ? "var(--main-gray)" : ""}
             onClick={() => setSelectedDate(date)}
           >
             <p>{date.slice(-2)}</p>
-            <Day>{dayArr[index]}</Day>
+            <Day>{getDay(date)}</Day>
           </Item>
         ))}
       </Slider>

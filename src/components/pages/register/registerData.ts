@@ -15,10 +15,10 @@ export const regionList = [
 ];
 
 export const positionList = [
-  { name: "중앙 공격수" },
-  { name: "윙 포워드" },
-  { name: "공격형 미드필더" },
-  { name: "수비형 미드필더" },
-  { name: "중앙 수비수" },
-  { name: "측면 수비수" }
+  { name: "중앙 공격수", value: "CF" },
+  { name: "윙 포워드", value: "WF" },
+  { name: "공격형 미드필더", value: "AM" },
+  { name: "수비형 미드필더", value: "DM" },
+  { name: "중앙 수비수", value: "CB" },
+  { name: "측면 수비수", value: "WB" }
 ];

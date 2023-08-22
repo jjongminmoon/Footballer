@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { SetStateAction } from "react";
-import { positionList } from "./registerData";
+import { positionList } from "../registerData";
 
 type Props = {
   position: string;

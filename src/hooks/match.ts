@@ -2,8 +2,8 @@ import { collection, onSnapshot, query } from "firebase/firestore";
 import { dbService } from "../service/firebase";
 import { useEffect, useState } from "react";
 
-export default function getMatches(selectedDate: string) {
-  const [matchData, setMatchData] = useState<any>([]);
+export default function getAllMatches() {
+  const [allMatch, setAllMatch] = useState<any>([]);
 
   useEffect(() => {
     const q = query(collection(dbService, "match"));
@@ -15,12 +15,12 @@ export default function getMatches(selectedDate: string) {
         };
       });
 
-      setMatchData(arr.filter((data: any) => data.date === selectedDate));
+      setAllMatch(arr);
     });
     return () => {
       unsubscribe();
     };
-  }, [selectedDate]);
+  }, []);
 
-  return { matchData };
+  return { allMatch };
 }

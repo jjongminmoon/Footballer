@@ -7,7 +7,7 @@ export type UserProps = {
   height: number;
   weight: number;
   birth: string;
-  position: [];
+  position: string;
   region: string;
   level: string;
   manner: [ScoreProps];

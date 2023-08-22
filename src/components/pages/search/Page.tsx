@@ -9,7 +9,7 @@ const categoryList = [
 ];
 
 export default function SearchPage() {
-  const [selected, setSelected] = useState("찾으실 카테고리를 선택해주세요.");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   return (
     <section>
@@ -18,25 +18,23 @@ export default function SearchPage() {
         {categoryList.map(({ name, pathname }) => (
           <Link to={pathname} key={pathname}>
             <Button
-              onClick={() => setSelected(name)}
-              backgroundColor={selected === name ? "var(--main-red)" : ""}
+              onClick={() => setSelectedCategory(name)}
+              backgroundColor={selectedCategory === name ? "var(--main-red)" : ""}
             >
               {name}
             </Button>
           </Link>
         ))}
       </Category>
-      <Title>{selected}</Title>
-      <Container>
+      <Result>
         <Outlet />
-      </Container>
+      </Result>
     </section>
   );
 }
 
 const Category = styled.div`
   display: flex;
-  gap: 20px;
 `;
 
 const Button = styled.div<{ backgroundColor: string }>`
@@ -45,17 +43,9 @@ const Button = styled.div<{ backgroundColor: string }>`
   padding: 10px;
   background-color: ${(props) => props.backgroundColor};
   border: 1px solid var(--main-gray);
-  border-radius: 10px;
   cursor: pointer;
 `;
 
-const Title = styled.h1`
-  margin-top: 20px;
-`;
-
-const Container = styled.div`
-  height: 450px;
-  margin-top: 20px;
-  overflow: scroll;
-  border: 2px solid var(--main-gray);
+const Result = styled.div`
+  margin-top: 10px;
 `;

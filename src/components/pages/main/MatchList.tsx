@@ -1,63 +1,66 @@
 import styled from "@emotion/styled";
-import { getTwoWeeksDates, getTwoWeeksDay } from "../../../util/getDates";
 import CalendarCarousel from "./CalendarCarousel";
-import { useState } from "react";
 import RegisterMatch from "./RegisterMatch";
-import getMatches from "../../../hooks/match";
-import { MatchesProps } from "../../../model/match";
+import getAllMatches from "../../../hooks/match";
+import RegionSelect from "./RegionSelect";
+import { getTwoWeeksDates } from "../../../util/dateAndDay";
+import { useState } from "react";
+import { MatchProps } from "../../../model/match";
+import { Link } from "react-router-dom";
 
 export default function MatchList() {
-  const [openRegister, setOpenRegister] = useState(false);
+  const { allMatch } = getAllMatches();
+  const [selectedRegion, setSelectedRegion] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
   const twoWeeksLater = new Date().setDate(new Date().getDate() + 14);
   const dateArr = getTwoWeeksDates(new Date(), twoWeeksLater);
-  const dayArr = getTwoWeeksDay(new Date(), twoWeeksLater);
-  const { matchData } = getMatches(selectedDate);
+  const selectedDateMatches = allMatch.filter((match: MatchProps) => match.date === selectedDate);
 
   return (
     <>
       <CalendarCarousel
         dateArr={dateArr}
-        dayArr={dayArr}
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
       />
-      <RegisterMatchButton onClick={() => setOpenRegister(true)}>매치 등록</RegisterMatchButton>
+      <ActionBar>
+        <RegionSelect selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} />
+        <RegisterMatch dateArr={dateArr} />
+      </ActionBar>
       <Container>
-        {matchData ? (
-          matchData.map((data: MatchesProps) => (
-            <Row key={data.id}>
-              <Time>20:00</Time>
-              <Name>{data.field.id}</Name>
-              <Rule>{data.rule}</Rule>
-              <Participation>
-                <p>{data.participation.length}/2</p>
-                <Button>매치 참가</Button>
-              </Participation>
-            </Row>
-          ))
+        {selectedDateMatches ? (
+          selectedDateMatches
+            .filter((data: MatchProps) => data.field.region.includes(selectedRegion))
+            .map((data: MatchProps) => (
+              <Link to={`/detail/match/${data.id}`} key={data.id}>
+                <Row>
+                  <Time>20:00</Time>
+                  <Name>{data.field.id}</Name>
+                  <Rule>{data.rule}</Rule>
+                  <Participation>
+                    <p>{data.participation.length}/2</p>
+                    <Button>매치 참가</Button>
+                  </Participation>
+                </Row>
+              </Link>
+            ))
         ) : (
           <Row>아직 등록된 경기가 없습니다.</Row>
         )}
       </Container>
-
-      {openRegister && <RegisterMatch dateArr={dateArr} setOpenRegister={setOpenRegister} />}
     </>
   );
 }
 
-const RegisterMatchButton = styled.button`
-  width: 100px;
-  height: 40px;
-  border: 1px solid var(--main-gray);
-  border-radius: 8px;
-  background-color: white;
-  margin: 10px 0;
+const ActionBar = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 const Container = styled.div`
-  border: 2px solid var(--main-gray);
   height: 100%;
+  border-top: 1px solid var(--main-gray);
 `;
 
 const Row = styled.div`
@@ -77,13 +80,14 @@ const Row = styled.div`
     font-size: 11px;
   }
 
-  :last-child {
-    border-bottom: none;
+  &:hover {
+    background-color: var(--main-light-gray);
   }
 `;
 
 const Time = styled.p`
   font-size: 12px;
+  font-weight: bold;
 `;
 
 const Name = styled.p`

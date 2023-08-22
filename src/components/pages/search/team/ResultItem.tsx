@@ -1,31 +1,32 @@
 import styled from "@emotion/styled";
-import { TeamProps } from "../../../../model/team";
 import { getUser } from "../../../../hooks/user";
 import { Link, useNavigate } from "react-router-dom";
+import { TeamProps } from "../../../../model/team";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
 
-type Props = {
-  team: TeamProps;
-};
-
-export default function SearchResult({ team }: Props) {
+export default function ResultItem({ team }: { team: TeamProps }) {
   const { userData } = getUser();
   const navigate = useNavigate();
 
   const applyToJoin = (teamId: string) => {
     const playerDocRef = doc(dbService, "user", userData?.id);
     const teamDocRef = doc(dbService, "team", teamId);
-    updateDoc(teamDocRef, {
-      applicationList: arrayUnion(userData)
-    });
-    updateDoc(playerDocRef, {
-      apply: { id: teamId, status: "대기중" }
-    })
-      .then(() => alert("입단 신청 완료되었습니다. 해당 팀에서 승인 시 소속팀이 변경됩니다."))
-      .catch((e) => alert(e));
 
-    navigate("/mypage/application-status");
+    if (userData?.team === "무소속") {
+      updateDoc(teamDocRef, {
+        applicationList: arrayUnion(userData)
+      });
+      updateDoc(playerDocRef, {
+        apply: { id: teamId, status: "대기중" }
+      })
+        .then(() => alert("입단 신청 완료되었습니다. 해당 팀에서 승인 시 소속팀이 변경됩니다."))
+        .catch((e) => alert(e));
+
+      navigate("/mypage/application-status");
+    } else {
+      alert("소속팀이 있어 입단 신청을 할 수 없습니다.");
+    }
   };
 
   const levelScore =
@@ -47,7 +48,7 @@ export default function SearchResult({ team }: Props) {
     <Row key={team.id}>
       <Link to={`/detail/team/${team.number}`}>
         <Image>
-          <Logo src={team.logo} alt={`${team.name}팀 로고 이미지`} />
+          <Logo src={team.logo} alt={`${team.name} 팀 로고 이미지`} />
         </Image>
         <Name>{team.name}</Name>
       </Link>
@@ -124,7 +125,7 @@ const Score = styled.p`
   border-radius: 10px;
   text-align: center;
   font-size: 13px;
-  background-color: var(--main-red);
+  background-color: var(--main-gray);
 `;
 
 const Button = styled.button<{ backgroundColor: string }>`

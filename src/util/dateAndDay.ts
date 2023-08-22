@@ -10,14 +10,9 @@ export function getTwoWeeksDates(startDate: Date, lastDate: number) {
   return dateArr;
 }
 
-export function getTwoWeeksDay(startDate: Date, lastDate: number) {
-  const dayArr = [];
-  const currentDate = new Date(startDate);
+export function getDay(date: string) {
+  const dayArr = ["일", "월", "화", "수", "목", "금", "토"];
+  const day = new Date(date).getDay();
 
-  while (currentDate <= new Date(lastDate)) {
-    dayArr.push(currentDate.toDateString().slice(0, 3));
-    currentDate.setDate(currentDate.getDate() + 1);
-  }
-
-  return dayArr;
+  return dayArr[day];
 }

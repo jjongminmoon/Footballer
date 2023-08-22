@@ -1,7 +1,7 @@
 import { FieldProps } from "./field";
 import { TeamProps } from "./team";
 
-export type MatchesProps = {
+export type MatchProps = {
   id: string;
   date: string;
   field: FieldProps;

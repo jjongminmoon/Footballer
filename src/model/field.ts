@@ -7,5 +7,4 @@ export type FieldProps = {
   size: string;
   type: string;
   parking: boolean;
-  match: [];
 };

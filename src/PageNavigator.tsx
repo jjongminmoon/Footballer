@@ -18,6 +18,9 @@ import PlayerDetailPage from "./components/pages/detail/player/Page";
 import TeamDetailPage from "./components/pages/detail/team/Page";
 import FieldInfoPage from "./components/pages/field/Page";
 import FieldDetailPage from "./components/pages/detail/field/Page";
+import MatchDetailPage from "./components/pages/detail/match/Page";
+import ReceiveScoutingPage from "./components/pages/mypage/receive-scouting/Page";
+import OfferScoutingPage from "./components/pages/mypage/offer-scouting/Page";
 
 export default function PageNavigator() {
   return (
@@ -31,6 +34,7 @@ export default function PageNavigator() {
       <Route path="/detail/field/:id" element={<FieldDetailPage />} />
       <Route path="/detail/player/:id" element={<PlayerDetailPage />} />
       <Route path="/detail/team/:id" element={<TeamDetailPage />} />
+      <Route path="/detail/match/:id" element={<MatchDetailPage />} />
       <Route path="/search" element={<SearchPage />}>
         <Route path="/search/team" element={<TeamSearchPage />} />
         <Route path="/search/player" element={<PlayerSearchPage />} />
@@ -38,10 +42,12 @@ export default function PageNavigator() {
       <Route path="/mypage/" element={<MyPage />}>
         <Route path="/mypage/user" element={<UserPage />} />
         <Route path="/mypage/player" element={<ProfilePage />} />
-        <Route path="/mypage/team" element={<TeamPage />} />
         <Route path="/mypage/application-status" element={<ApplicationStatusPage />} />
+        <Route path="/mypage/receive-scouting" element={<ReceiveScoutingPage />} />
+        <Route path="/mypage/team" element={<TeamPage />} />
         <Route path="/mypage/member" element={<MemberPage />} />
         <Route path="/mypage/application-list" element={<ApplicationListPage />} />
+        <Route path="/mypage/offer-scouting" element={<OfferScoutingPage />} />
       </Route>
     </Routes>
   );

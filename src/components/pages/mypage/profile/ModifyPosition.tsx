@@ -4,7 +4,7 @@ import { SetStateAction, useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
 import { getUser } from "../../../../hooks/user";
-import { positionList } from "../../register/player/registerData";
+import { positionList } from "../../register/registerData";
 
 type Props = {
   setOpenModifyPosition: React.Dispatch<SetStateAction<boolean>>;

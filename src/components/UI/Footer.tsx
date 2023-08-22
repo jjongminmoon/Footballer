@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Logo from "./Logo";
-import { regionList } from "../pages/register/player/registerData";
+import { regionList } from "../pages/register/registerData";
 
 const infoList = [
   { title: "풋볼러 소개" },
