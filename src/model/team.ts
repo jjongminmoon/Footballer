@@ -1,3 +1,5 @@
+import { ScoreProps } from "./user";
+
 export type TeamProps = {
   id: string;
   number: number;
@@ -9,12 +11,13 @@ export type TeamProps = {
   name: string;
   region: string;
   fee: number;
-  member: [];
-  status: boolean;
-  applicationList: [];
-  scoutList: [];
   introduce: string;
-  goodTeam: [];
-  manner: [];
+  member: string[];
+  status: boolean;
+  applicationList: string[];
+  scoutList: string[];
+  goodTeam: ScoreProps[];
+  manner: ScoreProps[];
   footballerCup: [];
+  history: string[];
 };

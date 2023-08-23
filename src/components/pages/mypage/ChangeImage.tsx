@@ -56,7 +56,10 @@ export default function ChangeImage({ setOpenChangeImage }: Props) {
             </NoImage>
           )}
         </ImageBox>
-        <Button onClick={changeImage}>변경</Button>
+        <ButtonBox>
+          <Button onClick={changeImage}>변경</Button>
+          <Button onClick={() => setOpenChangeImage(false)}>취소</Button>
+        </ButtonBox>
       </Container>
     </Modal>
   );
@@ -117,6 +120,11 @@ const ImagePreview = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 10px;
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 const Button = styled.button`

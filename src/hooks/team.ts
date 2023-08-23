@@ -23,16 +23,17 @@ export default async function addTeam(
     logo: logo,
     owner: owner,
     name: name,
-    introduce: introduce,
+    region: region,
     fee: fee,
+    introduce: introduce,
     member: [userData?.id],
     status: status,
     applicationList: [],
     scoutList: [],
-    region: region,
     goodTeam: [],
     manner: [],
-    footballerCup: []
+    footballerCup: [],
+    history: ["팀 등록을 완료 했습니다. 풋볼러들을 모집해보세요."]
   });
 }
 

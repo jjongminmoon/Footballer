@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TeamProps } from "../../../../model/team";
 import { getUser } from "../../../../hooks/user";
-import { doc, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
 
 export default function RegisterTeamPage() {
@@ -26,7 +26,7 @@ export default function RegisterTeamPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userData?.team !== "무소속") {
+    if (userData?.team[userData?.team.length - 1] !== "무소속") {
       alert("소속팀이 있어 새로운 팀을 등록할 수 없습니다.");
       navigate("/");
     }
@@ -39,7 +39,8 @@ export default function RegisterTeamPage() {
     } else {
       const docRef = doc(dbService, "user", userData.id);
       updateDoc(docRef, {
-        team: name
+        team: arrayUnion(name),
+        history: arrayUnion("팀 등록이 완료되었습니다. 새로운 풋볼러들을 모집해보세요.")
       });
       addTeam(logo, owner, name, region, status, fee, introduce, userData);
       alert("팀 등록이 완료되었습니다.");
@@ -108,4 +109,8 @@ const Button = styled.button`
   color: white;
   border: none;
   border-radius: 6px;
+
+  :hover {
+    background-color: var(--main-red);
+  }
 `;

@@ -2,11 +2,12 @@ import styled from "@emotion/styled";
 import MypageContainer from "../MypageContainer";
 import { getMyTeam } from "../../../../hooks/team";
 import MypageTitle from "../MypageTitle";
+import { getTeamLevelScore, getTeamMannerScore } from "../../../../hooks/scoring";
 
 export default function TeamPage() {
   const { teamData } = getMyTeam();
-  const skillScore = teamData?.goodTeam;
-  const mannerScore = teamData?.manner;
+  const levelScore = getTeamLevelScore(teamData);
+  const mannerScore = getTeamMannerScore(teamData);
 
   const infoList = [
     { title: "팀명", data: teamData?.name },
@@ -14,7 +15,7 @@ export default function TeamPage() {
     { title: "활동지역", data: teamData?.region },
     { title: "회비", data: `${teamData?.fee}만원` },
     { title: "팀 인원", data: `${teamData?.member.length}명` },
-    { title: "팀 실력", data: skillScore },
+    { title: "팀 실력", data: levelScore },
     { title: "팀 매너", data: mannerScore }
   ];
 

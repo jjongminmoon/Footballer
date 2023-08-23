@@ -30,13 +30,13 @@ export default async function addUser(
     position: position,
     region: region,
     level: level,
-    status: [],
-    team: "무소속",
+    team: ["무소속"],
     manner: [],
     goodPlayer: [],
     apply: [],
     scouted: [],
-    review: []
+    review: [],
+    history: ["선수 등록이 완료되었습니다."]
   });
 }
 

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { UserProps } from "../../../model/user";
+import { getMyTeam } from "../../../hooks/team";
 
 type Props = {
   data: UserProps[];
@@ -18,43 +19,53 @@ export default function PlayerList({
   button2,
   noList
 }: Props) {
+  const { teamData } = getMyTeam();
+
   return (
-    <List>
-      {data?.length > 0 ? (
-        data.map((player: UserProps) => (
-          <Row key={player.id}>
-            <Image>
-              <Player src={player.image} alt={`${player.name}님의 이미지`} />
-            </Image>
-            <Name>{player.name}</Name>
-            <Info>
-              <p>소속팀 : {player.team}</p>
-              <p>활동 지역 : {player.region}</p>
-              <p>생년월일 : {player.birth}</p>
-              <p>신장 : {player.height}cm</p>
-              <p>몸무게 : {player.weight}kg</p>
-              <p>포지션 : {player.position}</p>
-              <p>레벨 : {player.level}</p>
-            </Info>
-            <ButtonBox>
-              <Button onClick={() => handleFunction1(player)}>{button1}</Button>
-              {button2 && handleFunction2 && (
-                <Button onClick={() => handleFunction2(player)}>{button2}</Button>
-              )}
-            </ButtonBox>
+    <>
+      <Count>총 인원 : {data?.length}명</Count>
+      <List>
+        {data?.length > 0 ? (
+          data.map((player: UserProps) => (
+            <Row key={player.id}>
+              <Image>
+                <Player src={player.image} alt={`${player.name}님의 이미지`} />
+              </Image>
+              <Name>
+                {player.name} {teamData.owner.name === player.name && "👑"}
+              </Name>
+              <Info>
+                <p>소속팀 : {player.team[player.team.length - 1]}</p>
+                <p>활동 지역 : {player.region}</p>
+                <p>생년월일 : {player.birth}</p>
+                <p>신장 : {player.height}cm</p>
+                <p>몸무게 : {player.weight}kg</p>
+                <p>포지션 : {player.position}</p>
+                <p>레벨 : {player.level}</p>
+              </Info>
+              <ButtonBox>
+                <Button onClick={() => handleFunction1(player)}>{button1}</Button>
+                {button2 && handleFunction2 && (
+                  <Button onClick={() => handleFunction2(player)}>{button2}</Button>
+                )}
+              </ButtonBox>
+            </Row>
+          ))
+        ) : (
+          <Row>
+            <p className="no-list">{noList}</p>
           </Row>
-        ))
-      ) : (
-        <Row>
-          <p className="no-list">{noList}</p>
-        </Row>
-      )}
-    </List>
+        )}
+      </List>
+    </>
   );
 }
 
+const Count = styled.p`
+  margin: 20px 0;
+`;
+
 const List = styled.div`
-  margin-top: 20px;
   border: 1px solid var(--main-gray);
 `;
 

@@ -1,12 +1,43 @@
 import styled from "@emotion/styled";
 import { MatchProps } from "../../../../model/match";
 import { getDay } from "../../../../util/dateAndDay";
+import { getAllTeam, getMyTeam } from "../../../../hooks/team";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { dbService } from "../../../../service/firebase";
+import { TeamProps } from "../../../../model/team";
 
 type Props = {
   match: MatchProps;
 };
 
 export default function MatchInfo({ match }: Props) {
+  const { allTeam } = getAllTeam();
+  const { teamData } = getMyTeam();
+  const homeTeam = allTeam.find((team: TeamProps) => team.id === match.participation[0]);
+
+  const handleParticipationMatch = () => {
+    const matchDocRef = doc(dbService, "match", match.id);
+    const teamDocRef = doc(dbService, "team", teamData.id);
+
+    if (confirm(`${homeTeam.name} 팀과의 매치를 신청하시겠습니까?`)) {
+      if (homeTeam.id === teamData.id) {
+        alert("해당 매치를 등록한 팀으로 참가 불가능합니다.");
+      } else if (teamData.name[teamData.name.length - 1] === "무소속") {
+        alert("소속팀이 없어 매치를 신청할 수 없습니다.");
+      } else {
+        updateDoc(matchDocRef, {
+          participation: arrayUnion(teamData.id)
+        });
+
+        updateDoc(teamDocRef, {
+          history: arrayUnion(`${homeTeam.name} 팀과의 매치를 신청하였습니다.`)
+        });
+      }
+    } else {
+      return;
+    }
+  };
+
   return (
     <Wrapper>
       <Info>
@@ -17,7 +48,13 @@ export default function MatchInfo({ match }: Props) {
         <p>{match?.field.address}</p>
       </Info>
       <Price>80,000원 / 2시간</Price>
-      <Button>매치 참가 ({match?.participation.length}/2)</Button>
+      <Button
+        onClick={handleParticipationMatch}
+        backgroundColor={match?.participation.length > 1 ? "var(--main-gray)" : "var(--main-red)"}
+      >
+        {match?.participation.length > 1 ? "매치 마감" : "매치 참가"} ({match?.participation.length}
+        /2)
+      </Button>
     </Wrapper>
   );
 }
@@ -47,7 +84,7 @@ const Name = styled.h1`
   font-weight: bold;
 `;
 
-const Button = styled.p`
+const Button = styled.button<{ backgroundColor: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +92,7 @@ const Button = styled.p`
   height: 40px;
   border: none;
   border-radius: 8px;
-  background-color: var(--main-red);
+  background-color: ${(props) => props.backgroundColor};
   color: white;
   padding: 5px;
   font-size: 13px;

@@ -1,6 +1,6 @@
 export type UserProps = {
-  number: number;
   id: string;
+  number: number;
   email: string;
   image: string;
   name: string;
@@ -10,14 +10,13 @@ export type UserProps = {
   position: string;
   region: string;
   level: string;
-  manner: [ScoreProps];
-  goodPlayer: [ScoreProps];
-  team: string;
-  apply: {
-    id: string;
-    status: string;
-  };
-  scouted: [];
+  team: string[];
+  manner: ScoreProps[];
+  goodPlayer: ScoreProps[];
+  apply: string[];
+  scouted: string[];
+  review: [];
+  history: string[];
 };
 
 export type ScoreProps = {

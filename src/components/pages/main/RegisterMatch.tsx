@@ -14,27 +14,31 @@ type Props = {
 };
 
 export default function RegisterMatch({ dateArr }: Props) {
-  const { teamData } = getMyTeam();
   const { allField } = getAllField();
+  const { teamData } = getMyTeam();
   const [openRegister, setOpenRegister] = useState(false);
   const [date, setDate] = useState("");
   const [field, setField] = useState("");
   const [rule, setRule] = useState("");
 
   const handleRegisterMatch = async () => {
-    if (confirm("매치를 등록하시겠습니까?")) {
-      const coll = collection(dbService, "match");
+    if (teamData.name[teamData.name.length - 1] !== "무소속") {
+      if (confirm("매치를 등록하시겠습니까?")) {
+        const coll = collection(dbService, "match");
 
-      await addDoc(coll, {
-        date: date,
-        field: allField.find((data: FieldProps) => data.id === field),
-        rule: rule,
-        participation: [teamData.id]
-      });
-      setOpenRegister(false);
-      alert("매치가 등록되었습니다.");
+        await addDoc(coll, {
+          date: date,
+          field: allField.find((data: FieldProps) => data.id === field),
+          rule: rule,
+          participation: [teamData.id]
+        });
+        setOpenRegister(false);
+        alert("매치가 등록되었습니다.");
+      } else {
+        return;
+      }
     } else {
-      return;
+      alert("소속팀이 없어 매치를 등록할 수 없습니다.");
     }
   };
 

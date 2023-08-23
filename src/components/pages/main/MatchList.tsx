@@ -39,7 +39,13 @@ export default function MatchList() {
                   <Rule>{data.rule}</Rule>
                   <Participation>
                     <p>{data.participation.length}/2</p>
-                    <Button>매치 참가</Button>
+                    <Button
+                      backgroundColor={
+                        data.participation.length > 1 ? "var(--main-gray)" : "var(--main-red)"
+                      }
+                    >
+                      {data.participation.length > 1 ? "매치 마감" : "매치 참가"}
+                    </Button>
                   </Participation>
                 </Row>
               </Link>
@@ -112,11 +118,11 @@ const Participation = styled.div`
   font-size: 13px;
 `;
 
-const Button = styled.p`
+const Button = styled.p<{ backgroundColor: string }>`
   text-align: center;
   border: none;
   border-radius: 8px;
-  background-color: var(--main-red);
+  background-color: ${(props) => props.backgroundColor};
   color: white;
   padding: 5px;
   font-size: 13px;

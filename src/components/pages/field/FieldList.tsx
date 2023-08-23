@@ -9,7 +9,7 @@ export default function FieldList() {
   return (
     <Container>
       {allField.map((field: FieldProps) => (
-        <Link to={`/detail/field/${field.number}`}>
+        <Link to={`/detail/field/${field.number}`} key={field.number}>
           <Row>
             <Image>
               <img src={field.image[0]} alt={`${field.id} 이미지`} />

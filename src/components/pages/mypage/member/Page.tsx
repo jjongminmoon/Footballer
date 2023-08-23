@@ -1,4 +1,4 @@
-import { arrayRemove, doc, updateDoc } from "firebase/firestore";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { getMyTeam } from "../../../../hooks/team";
 import { UserProps } from "../../../../model/user";
 import MypageContainer from "../MypageContainer";
@@ -12,7 +12,7 @@ export default function MemberPage() {
   const { userData } = getUser();
   const { teamData } = getMyTeam();
   const memberId: string[] = teamData?.member;
-  const memberList = allUser.filter((user: UserProps) => memberId.includes(user.id));
+  const memberList = allUser.filter((user: UserProps) => memberId?.includes(user.id));
 
   const handleRelease = (player: UserProps) => {
     const playerDocRef = doc(dbService, "user", player.id);
@@ -21,12 +21,13 @@ export default function MemberPage() {
     if (teamData.owner.name === userData.name) {
       if (confirm("선수를 방출하시겠습니까?")) {
         updateDoc(playerDocRef, {
-          team: "무소속",
-          apply: arrayRemove()
+          team: arrayUnion("무소속"),
+          history: arrayUnion(`${teamData.name} 팀에서 방출되었습니다.`)
         });
 
         updateDoc(teamDocRef, {
-          member: arrayRemove(player)
+          member: arrayRemove(player.id),
+          history: arrayUnion(`${player.name} 선수가 팀에서 방출되었습니다.`)
         })
           .then(() => alert("선수가 방출되었습니다."))
           .catch((e) => alert(e));

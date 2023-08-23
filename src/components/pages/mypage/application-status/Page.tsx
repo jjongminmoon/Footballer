@@ -3,30 +3,28 @@ import { getAllTeam } from "../../../../hooks/team";
 import { getUser } from "../../../../hooks/user";
 import { TeamProps } from "../../../../model/team";
 import MypageContainer from "../MypageContainer";
-import { arrayRemove, doc, updateDoc } from "firebase/firestore";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
-import { UserProps } from "../../../../model/user";
 import MypageTitle from "../MypageTitle";
 
 export default function ApplicationStatusPage() {
   const { userData } = getUser();
   const { allTeam } = getAllTeam();
-  const applyTeam: TeamProps = allTeam.find((team: TeamProps) => team.id === userData.apply?.id);
-  const removePlayer = applyTeam?.applicationList.find(
-    (player: UserProps) => player.id === userData.id
-  );
+  const applyTeam = allTeam.find((team: TeamProps) => userData?.apply.includes(team.id));
 
-  const handleRemove = () => {
+  const handleCancel = () => {
     const playerDocRef = doc(dbService, "user", userData.id);
     const teamDocRef = doc(dbService, "team", applyTeam.id);
 
     if (confirm("입단 신청을 취소/삭제 하시겠습니까?")) {
       updateDoc(playerDocRef, {
-        apply: null
+        apply: arrayRemove(applyTeam.id),
+        history: arrayUnion(`${applyTeam.name} 팀의 입단 신청을 취소/삭제했습니다.`)
       });
 
       updateDoc(teamDocRef, {
-        applicationList: arrayRemove(removePlayer)
+        applicationList: arrayRemove(userData.id),
+        history: arrayUnion(`${userData.name} 선수가 입단 신청을 취소/삭제했습니다.`)
       })
         .then(() => alert("입단 신청이 취소/삭제 되었습니다."))
         .catch((e) => alert(e));
@@ -51,7 +49,7 @@ export default function ApplicationStatusPage() {
             <p>팀원 모집 여부 : {applyTeam.status ? "O" : "X"}</p>
             <p>팀 인원 : {applyTeam.member.length}명</p>
           </Info>
-          <Button onClick={handleRemove}>{userData.apply.status} (삭제)</Button>
+          <Button onClick={handleCancel}>대기중 (삭제)</Button>
         </Row>
       ) : (
         <Row>

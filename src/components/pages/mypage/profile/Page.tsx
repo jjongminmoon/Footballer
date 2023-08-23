@@ -1,22 +1,23 @@
 import styled from "@emotion/styled";
 import MypageContainer from "../MypageContainer";
-import { getUser } from "../../../../hooks/user";
-import { useState } from "react";
 import ModifyRegion from "./ModifyRegion";
 import ModifyPosition from "./ModifyPosition";
 import MypageTitle from "../MypageTitle";
+import { useState } from "react";
+import { getUser } from "../../../../hooks/user";
+import { getPlayerLevelScore, getPlayerMannerScore } from "../../../../hooks/scoring";
 
 export default function ProfilePage() {
   const { userData } = getUser();
   const [openModifyRegion, setOpenModifyRegion] = useState(false);
   const [openModifyPosition, setOpenModifyPosition] = useState(false);
-  const team = userData?.team;
-  const skillScore = userData?.goodPlayer;
-  const mannerScore = userData?.manner;
+  const team = userData?.team[userData?.team.length - 1];
+  const levelScore = getPlayerLevelScore(userData);
+  const mannerScore = getPlayerMannerScore(userData);
 
   const infoList = [
     { title: "생년월일", data: userData?.birth },
-    { title: "실력 점수", data: skillScore },
+    { title: "실력 점수", data: levelScore },
     { title: "매너 점수", data: mannerScore },
     { title: "소속 팀", data: team }
   ];
@@ -71,7 +72,9 @@ const Row = styled.div`
 
 const Button = styled.button`
   width: 50px;
-  padding: 2px 3px;
+  height: 20px;
+  padding-top: 3px;
+  margin-bottom: 2px;
   border: none;
   border-radius: 8px;
   background-color: var(--main-button);

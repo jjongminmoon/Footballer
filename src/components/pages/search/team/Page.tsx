@@ -22,7 +22,8 @@ export default function TeamSearchPage() {
       />
       <Container>
         {allTeam
-          .filter((team: TeamProps) => team.name !== userData?.team)
+          .filter((team: TeamProps) => team.name !== userData?.team[userData?.team.length - 1])
+          .filter((team: TeamProps) => userData?.apply.includes(team.id) === false)
           .filter((team: TeamProps) => team.region.includes(selectedRegion))
           .filter((team: TeamProps) => team.status === selectedStatus)
           .map((team: TeamProps, index: number) => (

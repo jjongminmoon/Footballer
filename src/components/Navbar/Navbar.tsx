@@ -9,8 +9,8 @@ import SideMenuBox from "./SideMenuBox";
 import { getUser } from "../../hooks/user";
 
 export default function Navbar() {
-  const [openModal, setOpenModal] = useState(false);
   const { userData } = getUser();
+  const [openModal, setOpenModal] = useState(false);
 
   const stopBubbling = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();

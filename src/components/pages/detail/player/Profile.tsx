@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { UserProps } from "../../../../model/user";
+import { getPlayerLevelScore, getPlayerMannerScore } from "../../../../hooks/scoring";
 
 type Props = {
   player: UserProps;
@@ -7,20 +8,8 @@ type Props = {
 };
 
 export default function Profile({ player, children }: Props) {
-  const levelScore =
-    player?.goodPlayer.length > 0
-      ? (
-          player?.goodPlayer.map(({ score }) => score).reduce((a, b) => a + b, 0) /
-          player?.goodPlayer.length
-        ).toFixed(1)
-      : 0;
-  const mannerScore =
-    player?.manner.length > 0
-      ? (
-          player?.manner.map(({ score }) => score).reduce((a, b) => a + b, 0) /
-          player?.manner.length
-        ).toFixed(1)
-      : 0;
+  const levelScore = getPlayerLevelScore(player);
+  const mannerScore = getPlayerMannerScore(player);
 
   return (
     <Wrapper>
@@ -36,8 +25,8 @@ export default function Profile({ player, children }: Props) {
         <p>● 소속팀 : {player?.team}</p>
         <p>● 포지션 : {player?.position}</p>
         <p>● 실력 : {player?.level}</p>
-        <p>● 실력 점수 : {levelScore}점</p>
-        <p>● 매너 점수 : {mannerScore}점</p>
+        <p>● 실력 점수 : {levelScore}</p>
+        <p>● 매너 점수 : {mannerScore}</p>
         {children}
       </Info>
     </Wrapper>

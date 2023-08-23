@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { TeamProps } from "../../../../model/team";
+import { getTeamLevelScore, getTeamMannerScore } from "../../../../hooks/scoring";
 
 type Props = {
   team: TeamProps;
@@ -7,20 +8,8 @@ type Props = {
 };
 
 export default function TeamInfo({ team, children }: Props) {
-  const levelScore =
-    team?.goodTeam.length > 0
-      ? (
-          team?.goodTeam.map(({ score }) => score).reduce((a, b) => a + b, 0) /
-          team?.goodTeam.length
-        ).toFixed(1)
-      : 0;
-
-  const mannerScore =
-    team?.manner.length > 0
-      ? (
-          team?.manner.map(({ score }) => score).reduce((a, b) => a + b, 0) / team?.manner.length
-        ).toFixed(1)
-      : 0;
+  const levelScore = getTeamLevelScore(team);
+  const mannerScore = getTeamMannerScore(team);
 
   return (
     <Wrapper>

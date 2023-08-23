@@ -19,8 +19,8 @@ export default function Notice({ field }: { field: FieldProps }) {
     <Wrapper>
       <SubTitle>시설 및 이용 규칙</SubTitle>
       <Info>
-        {noticeList.map(({ name, icon }) => (
-          <div>
+        {noticeList.map(({ name, icon }, index) => (
+          <div key={index}>
             {icon}
             <p>{name}</p>
           </div>

@@ -9,8 +9,8 @@ type Props = {
 
 export default function TeamInfo({ teams }: Props) {
   const { allTeam } = getAllTeam();
-  const homeTeam = allTeam.find((team: TeamProps) => team.id === teams[0]);
-  const awayTeam = allTeam.find((team: TeamProps) => team.id === teams[1]);
+  const homeTeam = allTeam.find((team: TeamProps) => team.id === (teams && teams[0]));
+  const awayTeam = allTeam.find((team: TeamProps) => team.id === (teams && teams[1]));
 
   return (
     <Wrapper>

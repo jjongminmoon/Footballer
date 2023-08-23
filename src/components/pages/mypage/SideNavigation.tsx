@@ -12,6 +12,7 @@ export default function SideNavigation() {
     { title: "받은 스카우트 제의", pathname: "/mypage/receive-scouting" },
     { title: "팀 정보", pathname: "/mypage/team" },
     { title: "팀원 정보", pathname: "/mypage/member" },
+    { title: "매치 정보", pathname: "/mypage/match" },
     { title: "입단 신청 리스트", pathname: "/mypage/application-list" },
     { title: "보낸 스카우트 제의", pathname: "/mypage/offer-scouting" }
   ];
@@ -36,7 +37,7 @@ export default function SideNavigation() {
       </ul>
       <ul>
         <SubTitle>팀</SubTitle>
-        {mypageList.slice(4, 8).map(({ title, pathname }) => (
+        {mypageList.slice(4, 9).map(({ title, pathname }) => (
           <Item
             key={title}
             onClick={() => setSelected(title)}

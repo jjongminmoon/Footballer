@@ -4,45 +4,43 @@ import { Link, useNavigate } from "react-router-dom";
 import { TeamProps } from "../../../../model/team";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
+import { getTeamLevelScore } from "../../../../hooks/scoring";
 
 export default function ResultItem({ team }: { team: TeamProps }) {
   const { userData } = getUser();
+  const levelScore = getTeamLevelScore(team);
+  const mannerScore = getTeamLevelScore(team);
   const navigate = useNavigate();
 
-  const applyToJoin = (teamId: string) => {
+  const applyToJoin = (teamId: string, teamName: string) => {
     const playerDocRef = doc(dbService, "user", userData?.id);
     const teamDocRef = doc(dbService, "team", teamId);
 
-    if (userData?.team === "무소속") {
-      updateDoc(teamDocRef, {
-        applicationList: arrayUnion(userData?.id)
-      });
-      updateDoc(playerDocRef, {
-        apply: { id: teamId, status: "대기중" }
-      })
-        .then(() => alert("입단 신청 완료되었습니다. 해당 팀에서 승인 시 소속팀이 변경됩니다."))
-        .catch((e) => alert(e));
+    if (confirm(`${team.name} 팀에 입단 신청을 하시겠습니까?`)) {
+      if (userData?.team[userData?.team.length - 1] === "무소속") {
+        if (userData.apply.length === 0) {
+          updateDoc(teamDocRef, {
+            applicationList: arrayUnion(userData?.id),
+            history: arrayUnion(`${userData.name} 선수가 팀에 입단 신청했습니다.`)
+          });
+          updateDoc(playerDocRef, {
+            apply: arrayUnion(teamId),
+            history: arrayUnion(`${teamName} 팀에 입단 신청을 보냈습니다.`)
+          })
+            .then(() => alert("입단 신청 완료되었습니다. 해당 팀에서 승인 시 소속팀이 변경됩니다."))
+            .catch((e) => alert(e));
 
-      navigate("/mypage/application-status");
+          navigate("/mypage/application-status");
+        } else {
+          alert("이미 입단 신청한 팀이 있습니다.");
+        }
+      } else {
+        alert("소속팀이 있어 입단 신청을 할 수 없습니다.");
+      }
     } else {
-      alert("소속팀이 있어 입단 신청을 할 수 없습니다.");
+      return;
     }
   };
-
-  const levelScore =
-    team?.goodTeam.length > 0
-      ? (
-          team?.goodTeam.map(({ score }) => score).reduce((a, b) => a + b, 0) /
-          team?.goodTeam.length
-        ).toFixed(1)
-      : 0;
-
-  const mannerScore =
-    team?.manner.length > 0
-      ? (
-          team?.manner.map(({ score }) => score).reduce((a, b) => a + b, 0) / team?.manner.length
-        ).toFixed(1)
-      : 0;
 
   return (
     <Row key={team.id}>
@@ -64,7 +62,7 @@ export default function ResultItem({ team }: { team: TeamProps }) {
       <Button
         backgroundColor={team.status ? "var(--main-button)" : "var(--main-red)"}
         disabled={team.status ? false : true}
-        onClick={() => applyToJoin(team.id)}
+        onClick={() => applyToJoin(team.id, team.name)}
       >
         {team.status ? "입단 신청" : "입단 불가"}
       </Button>
@@ -88,13 +86,15 @@ const Row = styled.div`
 `;
 
 const Image = styled.div`
+  width: 100px;
+  height: 100px;
   border: 1px solid var(--main-gray);
   margin-right: 10px;
 `;
 
 const Logo = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   padding: 10px;
 `;
 

@@ -21,6 +21,7 @@ import FieldDetailPage from "./components/pages/detail/field/Page";
 import MatchDetailPage from "./components/pages/detail/match/Page";
 import ReceiveScoutingPage from "./components/pages/mypage/receive-scouting/Page";
 import OfferScoutingPage from "./components/pages/mypage/offer-scouting/Page";
+import MyMatchPage from "./components/pages/mypage/match/Page";
 
 export default function PageNavigator() {
   return (
@@ -46,6 +47,7 @@ export default function PageNavigator() {
         <Route path="/mypage/receive-scouting" element={<ReceiveScoutingPage />} />
         <Route path="/mypage/team" element={<TeamPage />} />
         <Route path="/mypage/member" element={<MemberPage />} />
+        <Route path="/mypage/match" element={<MyMatchPage />} />
         <Route path="/mypage/application-list" element={<ApplicationListPage />} />
         <Route path="/mypage/offer-scouting" element={<OfferScoutingPage />} />
       </Route>
