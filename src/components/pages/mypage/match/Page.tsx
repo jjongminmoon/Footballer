@@ -14,6 +14,7 @@ export default function MyMatchPage() {
   return (
     <MypageContainer>
       <MypageTitle>매치 정보</MypageTitle>
+      <p>{myMatches.map((match: MatchProps) => match.date)}</p>
     </MypageContainer>
   );
 }
