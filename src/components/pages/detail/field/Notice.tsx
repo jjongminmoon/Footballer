@@ -38,15 +38,15 @@ const Wrapper = styled.div`
 `;
 
 const SubTitle = styled.h3`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-size: 20px;
 `;
 
 const Info = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  font-size: 18px;
+  gap: 30px;
+  font-size: 16px;
 
   div {
     display: flex;

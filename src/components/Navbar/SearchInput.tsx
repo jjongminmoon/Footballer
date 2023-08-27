@@ -74,7 +74,10 @@ export default function SearchInput() {
 
                       <RegionAndTeam>
                         {result.region} (
-                        {category ? result.team : `인원: ${result?.member.length}명`})
+                        {category
+                          ? result.team[result.team.length - 1]
+                          : `인원: ${result?.member.length}명`}
+                        )
                       </RegionAndTeam>
                     </ResultItem>
                   </Link>
@@ -97,7 +100,7 @@ const OpenSearchBox = styled.div`
   height: 40px;
   padding: 8px;
   border-radius: 8px;
-  font-size: 13px;
+  font-size: 12px;
   color: gray;
   cursor: pointer;
 `;
@@ -140,7 +143,7 @@ const Category = styled.div`
 const Item = styled.p<{ backgroundColor: string }>`
   text-align: center;
   width: 50px;
-  padding: 5px 4px 4px 4px;
+  padding: 5px;
   background-color: ${(props) => props.backgroundColor};
   border-radius: 10px;
 `;

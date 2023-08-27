@@ -107,6 +107,9 @@ const SelectBox = styled.div`
   position: absolute;
   top: 30px;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 295px;
   padding: 5px;
   font-size: 14px;

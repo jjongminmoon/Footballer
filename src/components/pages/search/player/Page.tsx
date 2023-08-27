@@ -24,7 +24,9 @@ export default function PlayerSearchPage() {
       <Container>
         {playerList
           .filter((player: UserProps) => player.name !== userData?.name)
-          .filter((player: UserProps) => teamData?.member.includes(player.id) === false)
+          .filter((player: UserProps) =>
+            teamData ? teamData?.member.includes(player.id) === false : player
+          )
           .filter((player: UserProps) => player.region.includes(selectedRegion))
           .filter((player: UserProps) => player.position.includes(selectedPosition))
           .map((player: UserProps) => (

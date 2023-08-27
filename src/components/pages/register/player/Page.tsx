@@ -62,6 +62,9 @@ const Register = styled.section`
 `;
 
 const Infomation = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   width: 100%;
   padding: 10px;
   font-size: 14px;
@@ -74,7 +77,8 @@ const Infomation = styled.div`
   }
 
   h3 {
-    margin-bottom: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 
   div {

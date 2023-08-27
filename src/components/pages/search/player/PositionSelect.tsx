@@ -54,6 +54,7 @@ const Button = styled.button`
   border-radius: 8px;
   background-color: white;
   margin: 10px 0;
+  font-weight: bold;
 
   :hover {
     background-color: var(--main-red);

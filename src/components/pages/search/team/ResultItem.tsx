@@ -57,8 +57,8 @@ export default function ResultItem({ team }: { team: TeamProps }) {
         <p>팀원 모집 여부 : {team.status ? "O" : "X"}</p>
         <p>팀 인원 : {team.member.length}명</p>
       </Info>
-      <Score>실력 점수 : {levelScore}점</Score>
-      <Score>매너 점수 : {mannerScore}점</Score>
+      <Score>실력 점수 : {levelScore}</Score>
+      <Score>매너 점수 : {mannerScore}</Score>
       <Button
         backgroundColor={team.status ? "var(--main-button)" : "var(--main-red)"}
         disabled={team.status ? false : true}
@@ -111,6 +111,7 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 5px;
   height: 100%;
   font-size: 13px;
   padding: 10px;

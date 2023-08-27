@@ -57,7 +57,7 @@ export default function ResultItem({ player }: { player: UserProps }) {
         <Name>{player.name}</Name>
       </Link>
       <Info>
-        <p>소속팀 : {player.team}</p>
+        <p>소속팀 : {player.team[player.team.length - 1]}</p>
         <p>활동 지역 : {player.region}</p>
         <p>생년월일 : {player.birth}</p>
         <p>신장 : {player.height}cm</p>
@@ -65,9 +65,9 @@ export default function ResultItem({ player }: { player: UserProps }) {
         <p>포지션 : {player.position}</p>
         <p>레벨 : {player.level}</p>
       </Info>
-      <Score>실력 점수 : {levelScore}점</Score>
-      <Score>매너 점수 : {mannerScore}점</Score>
-      {teamData.scoutList.includes(player.id) ? (
+      <Score>실력 점수 : {levelScore}</Score>
+      <Score>매너 점수 : {mannerScore}</Score>
+      {teamData?.scoutList.includes(player.id) ? (
         <Button backgroundColor="var(--main-red)" disabled>
           스카우트 중
         </Button>
@@ -123,6 +123,7 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 5px;
   height: 100%;
   font-size: 13px;
   padding: 10px;

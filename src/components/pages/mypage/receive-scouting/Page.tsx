@@ -1,9 +1,9 @@
-import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { getUser } from "../../../../hooks/user";
-import { dbService } from "../../../../service/firebase";
 import MypageContainer from "../MypageContainer";
 import MypageTitle from "../MypageTitle";
 import TeamList from "../TeamList";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { getUser } from "../../../../hooks/user";
+import { dbService } from "../../../../service/firebase";
 import { TeamProps } from "../../../../model/team";
 import { getAllTeam } from "../../../../hooks/team";
 

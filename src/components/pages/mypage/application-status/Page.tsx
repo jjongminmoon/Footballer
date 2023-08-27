@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
+import MypageContainer from "../MypageContainer";
+import MypageTitle from "../MypageTitle";
+import TeamList from "../TeamList";
 import { getAllTeam } from "../../../../hooks/team";
 import { getUser } from "../../../../hooks/user";
 import { TeamProps } from "../../../../model/team";
-import MypageContainer from "../MypageContainer";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
-import MypageTitle from "../MypageTitle";
 
 export default function ApplicationStatusPage() {
   const { userData } = getUser();
@@ -36,79 +36,12 @@ export default function ApplicationStatusPage() {
   return (
     <MypageContainer>
       <MypageTitle>내가 입단 신청한 팀</MypageTitle>
-      {applyTeam ? (
-        <Row>
-          <Image>
-            <Logo src={applyTeam.logo} alt={`${applyTeam.name} 팀 로고 이미지`} />
-          </Image>
-          <Name>{applyTeam.name}</Name>
-          <Info>
-            <p>구단주 : {applyTeam.owner.name}</p>
-            <p>활동 지역 : {applyTeam.region}</p>
-            <p>월 회비 : {applyTeam.fee}만원</p>
-            <p>팀원 모집 여부 : {applyTeam.status ? "O" : "X"}</p>
-            <p>팀 인원 : {applyTeam.member.length}명</p>
-          </Info>
-          <Button onClick={handleCancel}>대기중 (삭제)</Button>
-        </Row>
-      ) : (
-        <Row>
-          <p>아직 입단 신청한 팀이 없습니다. 팀을 찾아 입단 신청 해보세요.</p>
-        </Row>
-      )}
+      <TeamList
+        data={applyTeam}
+        handleFunction1={handleCancel}
+        button1="대기중 (삭제)"
+        noList="아직 입단 신청한 팀이 없습니다. 팀을 찾아 입단 신청해보세요."
+      />
     </MypageContainer>
   );
 }
-
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 150px;
-  border: 1px solid var(--main-gray);
-  margin-top: 20px;
-  padding: 10px;
-`;
-
-const Image = styled.div`
-  height: 100px;
-  margin: 0 10px;
-`;
-
-const Logo = styled.img`
-  width: 100px;
-  height: 100px;
-  border: 1px solid var(--main-gray);
-`;
-
-const Name = styled.p`
-  font-size: 20px;
-  font-weight: bold;
-  width: 250px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  font-size: 13px;
-  padding: 10px;
-  background-color: var(--main-light-gray);
-  border-radius: 10px;
-  margin-left: auto;
-`;
-
-const Button = styled.button`
-  width: 150px;
-  height: 30px;
-  border: none;
-  border-radius: 10px;
-  background-color: var(--main-button);
-  color: white;
-  margin-left: auto;
-  margin-right: 20px;
-`;

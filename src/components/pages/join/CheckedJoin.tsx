@@ -33,6 +33,7 @@ const Item = styled.div`
   display: flex;
   align-items: center;
   font-size: 14px;
+  margin-bottom: 10px;
 
   span {
     margin-right: 5px;

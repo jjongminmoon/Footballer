@@ -81,7 +81,8 @@ const Register = styled.section`
   }
 
   h3 {
-    margin-bottom: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 `;
 

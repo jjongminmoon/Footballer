@@ -43,4 +43,5 @@ const StatusSelect = styled.button<{ color: string; borderColor: string }>`
   background-color: white;
   margin: 10px 0;
   margin-left: 10px;
+  font-weight: bold;
 `;

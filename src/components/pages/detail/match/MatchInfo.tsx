@@ -13,7 +13,7 @@ type Props = {
 export default function MatchInfo({ match }: Props) {
   const { allTeam } = getAllTeam();
   const { teamData } = getMyTeam();
-  const homeTeam = allTeam.find((team: TeamProps) => team.id === match.participation[0]);
+  const homeTeam = allTeam.find((team: TeamProps) => team.id === match?.participation[0]);
 
   const handleParticipationMatch = () => {
     const matchDocRef = doc(dbService, "match", match.id);
@@ -51,6 +51,7 @@ export default function MatchInfo({ match }: Props) {
       <Button
         onClick={handleParticipationMatch}
         backgroundColor={match?.participation.length > 1 ? "var(--main-gray)" : "var(--main-red)"}
+        disabled={match?.participation.length > 1 ? true : false}
       >
         {match?.participation.length > 1 ? "매치 마감" : "매치 참가"} ({match?.participation.length}
         /2)
@@ -74,14 +75,14 @@ const Info = styled.div`
   margin-bottom: 5px;
 `;
 
-const Price = styled.p`
-  font-size: 13px;
-  margin-bottom: 5px;
+const Name = styled.h1`
+  margin: 10px 0;
+  font-weight: bold;
 `;
 
-const Name = styled.h1`
-  margin-top: 10px;
-  font-weight: bold;
+const Price = styled.p`
+  font-size: 13px;
+  margin: 10px 0;
 `;
 
 const Button = styled.button<{ backgroundColor: string }>`
@@ -95,5 +96,6 @@ const Button = styled.button<{ backgroundColor: string }>`
   background-color: ${(props) => props.backgroundColor};
   color: white;
   padding: 5px;
+  margin-top: 20px;
   font-size: 13px;
 `;

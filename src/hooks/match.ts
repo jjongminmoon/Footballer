@@ -24,3 +24,26 @@ export default function getAllMatches() {
 
   return { allMatch };
 }
+
+export function getMyMatches(teamId: string) {
+  const [myMatches, setMyMatches] = useState<any>([]);
+
+  useEffect(() => {
+    const q = query(collection(dbService, "match"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const arr = querySnapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data()
+        };
+      });
+
+      setMyMatches(arr.filter((match: any) => match.participation.includes(teamId)));
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return { myMatches };
+}

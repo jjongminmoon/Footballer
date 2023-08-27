@@ -60,16 +60,15 @@ const Container = styled.nav`
 `;
 
 const SubTitle = styled.p`
-  padding: 4px 8px 3px 8px;
-  margin-bottom: 10px;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
   font-size: 16px;
-  background-color: var(--main-red);
-  color: white;
-  border-radius: 10px;
+  font-weight: bold;
+  border-bottom: 2px solid black;
 `;
 
 const Item = styled.li<{ color: string; fontWeight: string }>`
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   color: ${(props) => props.color};
   font-weight: ${(props) => props.fontWeight};
 `;

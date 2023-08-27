@@ -13,7 +13,7 @@ export default function PlayerDetailPage() {
 
   return (
     <DetailContainer>
-      <CommonTitle>{player?.name} 님의 프로필</CommonTitle>
+      <CommonTitle>{player?.name} 선수의 프로필</CommonTitle>
       <Profile player={player}>
         <PlayerScoring title="실력" collection="user" dataId={player?.id} />
         <PlayerScoring title="매너" collection="user" dataId={player?.id} />

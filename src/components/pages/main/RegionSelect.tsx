@@ -49,10 +49,11 @@ const Wrapper = styled.div`
 const Button = styled.button`
   width: 100px;
   height: 40px;
+  margin: 10px 0;
   border: 1px solid var(--main-gray);
   border-radius: 8px;
   background-color: white;
-  margin: 10px 0;
+  font-weight: bold;
 
   :hover {
     background-color: var(--main-red);

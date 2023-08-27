@@ -49,4 +49,9 @@ const Image = styled.div`
   }
 `;
 
-const Info = styled.div``;
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+`;

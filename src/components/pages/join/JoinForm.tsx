@@ -43,7 +43,7 @@ export default function JoinForm() {
   return (
     <>
       <Form onSubmit={handleJoin}>
-        <p>아이디(이메일)</p>
+        <h3>아이디(이메일)</h3>
         <Input
           name="email"
           type="text"
@@ -52,7 +52,7 @@ export default function JoinForm() {
           onChange={handleInput}
           autoComplete="off"
         />
-        <p>비밀번호</p>
+        <h3>비밀번호</h3>
         <Input
           name="pwd"
           type="password"
@@ -74,7 +74,7 @@ export default function JoinForm() {
           setChecked2={setChecked2}
         />
         <Button
-          backgroundColor={checked && checked2 ? "var(--main-red)" : ""}
+          backgroundColor={checked && checked2 ? "var(--main-red)" : "var(--main-gray)"}
           disabled={checked && checked2 ? false : true}
         >
           회원가입
@@ -87,8 +87,9 @@ export default function JoinForm() {
 const Form = styled.form`
   width: 420px;
 
-  p {
-    margin-bottom: 5px;
+  h3 {
+    margin-bottom: 10px;
+    font-size: 14px;
   }
 `;
 

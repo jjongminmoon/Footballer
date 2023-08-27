@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import Slider from "react-slick";
 import { SetStateAction } from "react";
+import { getDay } from "../../../util/dateAndDay";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { getDay } from "../../../util/dateAndDay";
 
 type Props = {
   dateArr: string[];
@@ -32,7 +32,7 @@ export default function CalendarCarousel({ dateArr, selectedDate, setSelectedDat
             backgroundColor={selectedDate === date ? "var(--main-gray)" : ""}
             onClick={() => setSelectedDate(date)}
           >
-            <p>{date.slice(-2)}</p>
+            <p>{date.slice(-5)}</p>
             <Day>{getDay(date)}</Day>
           </Item>
         ))}
@@ -43,6 +43,7 @@ export default function CalendarCarousel({ dateArr, selectedDate, setSelectedDat
 
 const Container = styled.div`
   padding: 0 50px;
+  margin-top: 10px;
 
   .slick-track {
     display: flex;
@@ -64,6 +65,7 @@ const Container = styled.div`
 `;
 
 const Item = styled.div<{ color: string; backgroundColor: string }>`
+  font-size: 13px;
   text-align: center;
   padding: 10px 20px;
   border: 1px solid var(--main-gray);
@@ -71,6 +73,10 @@ const Item = styled.div<{ color: string; backgroundColor: string }>`
   cursor: pointer;
   color: ${(props) => props.color};
   background-color: ${(props) => props.backgroundColor};
+
+  :hover {
+    background-color: var(--main-gray);
+  }
 `;
 
 const Day = styled.p`

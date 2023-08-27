@@ -27,6 +27,6 @@ const Info = styled.div`
 `;
 
 const Name = styled.h1`
-  margin-top: 10px;
+  margin: 10px 0;
   font-weight: bold;
 `;

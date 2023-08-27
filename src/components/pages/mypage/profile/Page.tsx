@@ -26,7 +26,7 @@ export default function ProfilePage() {
     <>
       <MypageContainer>
         <MypageTitle>선수 프로필</MypageTitle>
-        <LoginInfo>
+        <div>
           {infoList.map(({ title, data }) => (
             <Row key={title}>
               <span>{title}</span>
@@ -43,7 +43,7 @@ export default function ProfilePage() {
             <div>{userData?.position}</div>
             <Button onClick={() => setOpenModifyPosition(true)}>수정</Button>
           </Row>
-        </LoginInfo>
+        </div>
       </MypageContainer>
 
       {openModifyRegion && <ModifyRegion setOpenModifyRegion={setOpenModifyRegion} />}
@@ -51,10 +51,6 @@ export default function ProfilePage() {
     </>
   );
 }
-
-const LoginInfo = styled.div`
-  margin-top: 30px;
-`;
 
 const Row = styled.div`
   display: flex;
@@ -73,8 +69,6 @@ const Row = styled.div`
 const Button = styled.button`
   width: 50px;
   height: 20px;
-  padding-top: 3px;
-  margin-bottom: 2px;
   border: none;
   border-radius: 8px;
   background-color: var(--main-button);

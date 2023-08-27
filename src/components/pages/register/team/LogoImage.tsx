@@ -47,6 +47,10 @@ const ImageBox = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 10px 0 20px;
+
+  h3 {
+    margin-top: 10px;
+  }
 `;
 
 const NoImage = styled.div`
