@@ -4,7 +4,7 @@ import CommonTitle from "../../ui/Title";
 import RegisterInput from "./RegisterInput";
 import { useState } from "react";
 import { dbService } from "../../../service/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, arrayUnion, collection } from "firebase/firestore";
 import { getAllField } from "../../../hooks/field";
 import { FieldProps } from "../../../model/field";
 import { getMyTeam } from "../../../hooks/team";
@@ -30,7 +30,11 @@ export default function RegisterMatch({ dateArr }: Props) {
           date: date,
           field: allField.find((data: FieldProps) => data.id === field),
           rule: rule,
-          participation: [teamData.id]
+          participation: arrayUnion({
+            id: teamData.id,
+            logo: teamData.logo,
+            name: teamData.name
+          })
         });
         setOpenRegister(false);
         alert("매치가 등록되었습니다.");

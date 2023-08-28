@@ -65,3 +65,26 @@ export function getAllTeam() {
 
   return { allTeam };
 }
+
+export function getMatchTeam(teamId: string) {
+  const [matchTeam, setMatchTeam] = useState<any>([]);
+
+  useEffect(() => {
+    const q = query(collection(dbService, "team", teamId));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const arr = querySnapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data()
+        };
+      });
+
+      setMatchTeam(arr);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return { matchTeam };
+}

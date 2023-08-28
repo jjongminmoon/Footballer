@@ -94,6 +94,7 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 5px;
   height: 100%;
   font-size: 13px;
   padding: 10px;

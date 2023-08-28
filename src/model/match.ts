@@ -5,5 +5,11 @@ export type MatchProps = {
   date: string;
   field: FieldProps;
   rule: string;
-  participation: string[];
+  participation: ParticipationProps[];
+};
+
+export type ParticipationProps = {
+  id: string;
+  logo: string;
+  name: string;
 };

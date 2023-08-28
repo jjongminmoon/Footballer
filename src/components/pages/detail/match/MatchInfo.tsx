@@ -1,19 +1,17 @@
 import styled from "@emotion/styled";
 import { MatchProps } from "../../../../model/match";
 import { getDay } from "../../../../util/dateAndDay";
-import { getAllTeam, getMyTeam } from "../../../../hooks/team";
+import { getMyTeam } from "../../../../hooks/team";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
-import { TeamProps } from "../../../../model/team";
 
 type Props = {
   match: MatchProps;
 };
 
 export default function MatchInfo({ match }: Props) {
-  const { allTeam } = getAllTeam();
   const { teamData } = getMyTeam();
-  const homeTeam = allTeam.find((team: TeamProps) => team.id === match?.participation[0]);
+  const homeTeam = match?.participation[0];
 
   const handleParticipationMatch = () => {
     const matchDocRef = doc(dbService, "match", match.id);
@@ -22,17 +20,23 @@ export default function MatchInfo({ match }: Props) {
     if (confirm(`${homeTeam.name} 팀과의 매치를 신청하시겠습니까?`)) {
       if (homeTeam.id === teamData.id) {
         alert("해당 매치를 등록한 팀으로 참가 불가능합니다.");
-      } else if (teamData.name[teamData.name.length - 1] === "무소속") {
+      } else if (teamData.name[teamData?.name.length - 1] === "무소속") {
         alert("소속팀이 없어 매치를 신청할 수 없습니다.");
       } else {
         updateDoc(matchDocRef, {
-          participation: arrayUnion(teamData.id)
+          participation: arrayUnion({
+            id: teamData?.id,
+            logo: teamData?.logo,
+            name: teamData?.name
+          })
         });
 
         updateDoc(teamDocRef, {
           history: arrayUnion(`${homeTeam.name} 팀과의 매치를 신청하였습니다.`)
         });
       }
+
+      alert(`${homeTeam.name} 팀과의 매치가 신청되었습니다.`);
     } else {
       return;
     }

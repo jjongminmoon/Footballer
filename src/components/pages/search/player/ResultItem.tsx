@@ -67,15 +67,18 @@ export default function ResultItem({ player }: { player: UserProps }) {
       </Info>
       <Score>실력 점수 : {levelScore}</Score>
       <Score>매너 점수 : {mannerScore}</Score>
-      {teamData?.scoutList.includes(player.id) ? (
-        <Button backgroundColor="var(--main-red)" disabled>
-          스카우트 중
-        </Button>
-      ) : (
-        <Button backgroundColor="var(--main-button)" onClick={() => scoutingOffer(player)}>
-          스카우트 제의
-        </Button>
-      )}
+
+      {teamData ? (
+        teamData?.scoutList.includes(player.id) ? (
+          <Button backgroundColor="var(--main-red)" disabled>
+            스카우트 중
+          </Button>
+        ) : (
+          <Button backgroundColor="var(--main-button)" onClick={() => scoutingOffer(player)}>
+            스카우트 제의
+          </Button>
+        )
+      ) : null}
     </Row>
   );
 }

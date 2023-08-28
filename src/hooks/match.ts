@@ -1,6 +1,7 @@
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { dbService } from "../service/firebase";
 import { useEffect, useState } from "react";
+import { ParticipationProps } from "../model/match";
 
 export default function getAllMatches() {
   const [allMatch, setAllMatch] = useState<any>([]);
@@ -38,7 +39,11 @@ export function getMyMatches(teamId: string) {
         };
       });
 
-      setMyMatches(arr.filter((match: any) => match.participation.includes(teamId)));
+      setMyMatches(
+        arr.filter((match: any) =>
+          match.participation.map((team: ParticipationProps) => team.id).includes(teamId)
+        )
+      );
     });
     return () => {
       unsubscribe();
