@@ -10,11 +10,13 @@ export default function SideNavigation() {
     { title: "선수 프로필", pathname: "/mypage/player" },
     { title: "내가 입단 신청한 팀", pathname: "/mypage/application-status" },
     { title: "받은 스카우트 제의", pathname: "/mypage/receive-scouting" },
+    { title: "개인 히스토리", pathname: "/mypage/individual-history" },
     { title: "팀 정보", pathname: "/mypage/team" },
     { title: "팀원 정보", pathname: "/mypage/member" },
     { title: "매치 정보", pathname: "/mypage/match" },
     { title: "입단 신청 리스트", pathname: "/mypage/application-list" },
-    { title: "보낸 스카우트 제의", pathname: "/mypage/offer-scouting" }
+    { title: "보낸 스카우트 제의", pathname: "/mypage/offer-scouting" },
+    { title: "팀 히스토리", pathname: "/mypage/team-history" }
   ];
 
   return (
@@ -24,7 +26,7 @@ export default function SideNavigation() {
       </h1>
       <ul>
         <SubTitle>개인</SubTitle>
-        {mypageList.slice(0, 4).map(({ title, pathname }) => (
+        {mypageList.slice(0, 5).map(({ title, pathname }) => (
           <Item
             key={title}
             onClick={() => setSelected(title)}
@@ -37,7 +39,7 @@ export default function SideNavigation() {
       </ul>
       <ul>
         <SubTitle>팀</SubTitle>
-        {mypageList.slice(4, 9).map(({ title, pathname }) => (
+        {mypageList.slice(5, 11).map(({ title, pathname }) => (
           <Item
             key={title}
             onClick={() => setSelected(title)}

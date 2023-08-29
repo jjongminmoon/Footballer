@@ -60,28 +60,34 @@ export default function SearchInput() {
                 onChange={(e) => setSearchValue(e.target.value)}
               />
               <SearchResult>
-                {searchResult?.map((result: any) => (
-                  <Link
-                    to={
-                      category ? `/detail/player/${result.number}` : `/detail/team/${result.number}`
-                    }
-                    key={result.id}
-                    onClick={() => setOpenModal(false)}
-                  >
-                    <ResultItem>
-                      <img src={category ? result.image : result.logo} />
-                      <p>{result.name}</p>
+                {searchResult.length > 0 ? (
+                  searchResult?.map((result: any) => (
+                    <Link
+                      to={
+                        category
+                          ? `/detail/player/${result.number}`
+                          : `/detail/team/${result.number}`
+                      }
+                      key={result.id}
+                      onClick={() => setOpenModal(false)}
+                    >
+                      <ResultItem>
+                        <img src={category ? result.image : result.logo} />
+                        <p>{result.name}</p>
 
-                      <RegionAndTeam>
-                        {result.region} (
-                        {category
-                          ? result.team[result.team.length - 1]
-                          : `인원: ${result?.member.length}명`}
-                        )
-                      </RegionAndTeam>
-                    </ResultItem>
-                  </Link>
-                ))}
+                        <RegionAndTeam>
+                          {result.region} (
+                          {category
+                            ? result?.team?.[result?.team.length - 1]
+                            : `인원: ${result?.member?.length}명`}
+                          )
+                        </RegionAndTeam>
+                      </ResultItem>
+                    </Link>
+                  ))
+                ) : (
+                  <NoList>검색 결과가 없습니다.</NoList>
+                )}
               </SearchResult>
             </SearchBox>
           </Container>
@@ -189,4 +195,8 @@ const RegionAndTeam = styled.p`
   background-color: black;
   color: white;
   border-radius: 999px;
+`;
+
+const NoList = styled.p`
+  padding: 10px;
 `;

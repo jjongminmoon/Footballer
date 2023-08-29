@@ -19,9 +19,9 @@ export default function ApplicationListPage() {
     const teamDocRef = doc(dbService, "team", teamData.id);
 
     if (teamData.owner.name === userData.name) {
-      if (confirm("입단을 승인하시겠습니까?")) {
+      if (confirm(`${player.name} 선수의 입단 신청을 승인하시겠습니까?`)) {
         updateDoc(playerDocRef, {
-          apply: arrayRemove(player.id),
+          apply: arrayRemove(teamData.id),
           team: arrayUnion(teamData.name),
           history: arrayUnion(`${teamData.name} 팀에서 입단을 승인했습니다.`)
         });
@@ -47,7 +47,7 @@ export default function ApplicationListPage() {
     const teamDocRef = doc(dbService, "team", teamData.id);
 
     if (teamData.owner.name === userData.name) {
-      if (confirm("입단 거절 하시겠습니까?")) {
+      if (confirm(`${player.name} 선수의 입단 신청을 거절 하시겠습니까?`)) {
         updateDoc(playerDocRef, {
           apply: arrayRemove(teamData.id)
         });

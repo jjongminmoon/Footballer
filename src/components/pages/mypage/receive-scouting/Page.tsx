@@ -21,12 +21,14 @@ export default function ReceiveScoutingPage() {
       if (userData?.team[userData?.team.length - 1] === "무소속") {
         updateDoc(playerDocRef, {
           team: arrayUnion(teamName),
-          scouted: arrayRemove(team.id)
+          scouted: arrayRemove(team.id),
+          history: arrayUnion(`${teamName} 팀의 스카우트 제의를 승인했습니다.`)
         });
 
         updateDoc(teamDocRef, {
           scoutList: arrayRemove(userData?.id),
-          member: arrayUnion(userData?.id)
+          member: arrayUnion(userData?.id),
+          history: arrayUnion(`${userData?.name} 선수가 스카우트 제의를 승인했습니다.`)
         })
           .then(() => alert("스카우트 제의가 승인되었습니다."))
           .catch((e) => alert(e));

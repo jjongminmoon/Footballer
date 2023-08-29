@@ -11,8 +11,8 @@ export type UserProps = {
   region: string;
   level: string;
   team: string[];
-  manner: ScoreProps[];
-  goodPlayer: ScoreProps[];
+  levelScore: ScoreProps[];
+  mannerScore: ScoreProps[];
   apply: string[];
   scouted: string[];
   review: [];

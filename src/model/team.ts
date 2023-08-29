@@ -16,8 +16,8 @@ export type TeamProps = {
   status: boolean;
   applicationList: string[];
   scoutList: string[];
-  goodTeam: ScoreProps[];
-  manner: ScoreProps[];
+  levelScore: ScoreProps[];
+  mannerScore: ScoreProps[];
   footballerCup: [];
   history: string[];
 };

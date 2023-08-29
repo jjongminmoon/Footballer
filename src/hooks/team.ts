@@ -30,8 +30,8 @@ export default async function addTeam(
     status: status,
     applicationList: [],
     scoutList: [],
-    goodTeam: [],
-    manner: [],
+    levelScore: [],
+    mannerScore: [],
     footballerCup: [],
     history: ["팀 등록을 완료 했습니다. 풋볼러들을 모집해보세요."]
   });

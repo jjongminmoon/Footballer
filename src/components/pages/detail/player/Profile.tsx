@@ -26,7 +26,7 @@ export default function Profile({ player, children }: Props) {
         <p>● 포지션 : {player?.position}</p>
         <p>● 실력 : {player?.level}</p>
         <p>● 실력 점수 : {levelScore}</p>
-        <p>● 매너 점수 : {mannerScore}</p>
+        <p className="mannerScore">● 매너 점수 : {mannerScore}</p>
         {children}
       </Info>
     </Wrapper>
@@ -54,4 +54,8 @@ const Info = styled.div`
   flex-direction: column;
   gap: 10px;
   font-size: 14px;
+
+  .mannerScore {
+    margin-bottom: 50px;
+  }
 `;

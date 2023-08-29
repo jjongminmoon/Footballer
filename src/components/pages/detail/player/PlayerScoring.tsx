@@ -63,7 +63,6 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 10px;
   padding: 10px;
-  margin-top: 15px;
   background-color: var(--main-gray);
   border-radius: 10px;
 

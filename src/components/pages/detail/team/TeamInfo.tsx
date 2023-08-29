@@ -20,11 +20,11 @@ export default function TeamInfo({ team, children }: Props) {
         <p>● 팀명 : {team?.name}</p>
         <p>● 구단주 : {team?.owner.name}</p>
         <p>● 활동 지역 : {team?.region}</p>
-        <p>● 팀 인원 : {team?.member.length}</p>
+        <p>● 팀 인원 : {team?.member.length}명</p>
         <p>● 월 회비 : {team?.fee}</p>
         <p>● 팀원 모집 : {team?.status ? "O" : "X"}</p>
-        <p>● 실력 점수 : {levelScore}점</p>
-        <p className="last-info">● 매너 점수 : {mannerScore}점</p>
+        <p>● 실력 점수 : {levelScore}</p>
+        <p className="last-info">● 매너 점수 : {mannerScore}</p>
         {children}
       </Info>
     </Wrapper>
@@ -33,12 +33,13 @@ export default function TeamInfo({ team, children }: Props) {
 
 const Wrapper = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 50px;
   margin-top: 20px;
 `;
 
 const Image = styled.div`
   width: 300px;
+  height: 300px;
 
   img {
     width: 100%;
@@ -48,7 +49,12 @@ const Image = styled.div`
 `;
 
 const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+
   .last-info {
-    margin-bottom: 65px;
+    margin-bottom: 50px;
   }
 `;

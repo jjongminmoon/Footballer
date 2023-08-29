@@ -13,14 +13,14 @@ export const handleScoring = (
   const docRef = doc(dbService, collection, dataId);
   (title === "실력"
     ? updateDoc(docRef, {
-        goodPlayer: arrayUnion({
+        levelScore: arrayUnion({
           id: userData?.id,
           name: userData?.name,
           score: score
         })
       })
     : updateDoc(docRef, {
-        manner: arrayUnion({
+        mannerScore: arrayUnion({
           id: userData?.id,
           name: userData?.name,
           score: score
@@ -33,10 +33,10 @@ export const handleScoring = (
 
 export const getPlayerLevelScore = (data: UserProps) => {
   const levelScore =
-    data?.goodPlayer.length > 0
+    data?.levelScore.length > 0
       ? (
-          data?.goodPlayer.map(({ score }) => score).reduce((a, b) => a + b, 0) /
-          data?.goodPlayer.length
+          data?.levelScore.map(({ score }) => score).reduce((a, b) => a + b, 0) /
+          data?.levelScore.length
         ).toFixed(1)
       : "평가 없음";
 
@@ -45,9 +45,10 @@ export const getPlayerLevelScore = (data: UserProps) => {
 
 export const getPlayerMannerScore = (data: UserProps) => {
   const mannerScore =
-    data?.manner.length > 0
+    data?.mannerScore.length > 0
       ? (
-          data?.manner.map(({ score }) => score).reduce((a, b) => a + b, 0) / data?.manner.length
+          data?.mannerScore.map(({ score }) => score).reduce((a, b) => a + b, 0) /
+          data?.mannerScore.length
         ).toFixed(1)
       : "평가 없음";
   return mannerScore;
@@ -55,10 +56,10 @@ export const getPlayerMannerScore = (data: UserProps) => {
 
 export const getTeamLevelScore = (data: TeamProps) => {
   const levelScore =
-    data?.goodTeam.length > 0
+    data?.levelScore.length > 0
       ? (
-          data?.goodTeam.map(({ score }) => score).reduce((a, b) => a + b, 0) /
-          data?.goodTeam.length
+          data?.levelScore.map(({ score }) => score).reduce((a, b) => a + b, 0) /
+          data?.levelScore.length
         ).toFixed(1)
       : "평가 없음";
 
@@ -67,9 +68,10 @@ export const getTeamLevelScore = (data: TeamProps) => {
 
 export const getTeamMannerScore = (data: TeamProps) => {
   const mannerScore =
-    data?.manner.length > 0
+    data?.mannerScore.length > 0
       ? (
-          data?.manner.map(({ score }) => score).reduce((a, b) => a + b, 0) / data?.manner.length
+          data?.mannerScore.map(({ score }) => score).reduce((a, b) => a + b, 0) /
+          data?.mannerScore.length
         ).toFixed(1)
       : "평가 없음";
 

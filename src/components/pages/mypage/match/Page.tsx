@@ -48,12 +48,12 @@ export default function MyMatchPage() {
             </Info>
             <Status
               backgroundColor={
-                match.date > new Date().toISOString().split("T")[0]
+                match.date < new Date().toISOString().split("T")[0]
                   ? "var(--main-red)"
                   : "var(--main-button)"
               }
             >
-              {match.date > new Date().toISOString().split("T")[0] ? "매치 종료" : "매치 예정"}
+              {match.date < new Date().toISOString().split("T")[0] ? "매치 종료" : "매치 예정"}
             </Status>
           </Row>
         ))}

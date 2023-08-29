@@ -22,6 +22,8 @@ import MatchDetailPage from "./components/pages/detail/match/Page";
 import ReceiveScoutingPage from "./components/pages/mypage/receive-scouting/Page";
 import OfferScoutingPage from "./components/pages/mypage/offer-scouting/Page";
 import MyMatchPage from "./components/pages/mypage/match/Page";
+import IndividualHistoryPage from "./components/pages/mypage/individual-history/Page";
+import TeamHistoryPage from "./components/pages/mypage/team-history/Page";
 
 export default function PageNavigator() {
   return (
@@ -45,11 +47,13 @@ export default function PageNavigator() {
         <Route path="/mypage/player" element={<ProfilePage />} />
         <Route path="/mypage/application-status" element={<ApplicationStatusPage />} />
         <Route path="/mypage/receive-scouting" element={<ReceiveScoutingPage />} />
+        <Route path="/mypage/individual-history" element={<IndividualHistoryPage />} />
         <Route path="/mypage/team" element={<TeamPage />} />
         <Route path="/mypage/member" element={<MemberPage />} />
         <Route path="/mypage/match" element={<MyMatchPage />} />
         <Route path="/mypage/application-list" element={<ApplicationListPage />} />
         <Route path="/mypage/offer-scouting" element={<OfferScoutingPage />} />
+        <Route path="/mypage/team-history" element={<TeamHistoryPage />} />
       </Route>
     </Routes>
   );
