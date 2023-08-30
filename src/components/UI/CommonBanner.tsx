@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import banner from "../../assets/images/banner.jpg";
+import banner from "../../assets/images/banner.webp";
 
 export default function CommonBanner() {
   return (

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { GiSoccerKick, GiBlackFlag, GiLaurelsTrophy, GiArchiveRegister } from "react-icons/gi";
+import { GiSoccerKick, GiLaurelsTrophy, GiArchiveRegister } from "react-icons/gi";
 import { TbSoccerField } from "react-icons/tb";
 import { RiCustomerServiceFill } from "react-icons/ri";
 import { BiSolidExit, BiSearch } from "react-icons/bi";
@@ -17,7 +17,6 @@ type Props = {
 
 const MenuList = [
   { icon: <GiSoccerKick className="logo" />, name: "풋볼러 소개", pathname: "/introduce" },
-  { icon: <GiBlackFlag />, name: "팀 매치", pathname: "/match" },
   { icon: <GiArchiveRegister />, name: "팀 등록", pathname: "/register/team" },
   { icon: <BiSearch />, name: "팀/선수 찾기", pathname: "/search" },
   { icon: <GiLaurelsTrophy />, name: "풋볼러컵 대회", pathname: "/footballercup" },

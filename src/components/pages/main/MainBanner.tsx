@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import main1 from "../../../assets/images/main1.jpg";
-import main2 from "../../../assets/images/main2.jpg";
-import main3 from "../../../assets/images/main3.avif";
-import main4 from "../../../assets/images/main4.jpg";
+import main1 from "../../../assets/images/main1.webp";
+import main2 from "../../../assets/images/main2.webp";
+import main3 from "../../../assets/images/main3.webp";
+import main4 from "../../../assets/images/main4.webp";
 import { Link } from "react-router-dom";
 
 const imageList = [

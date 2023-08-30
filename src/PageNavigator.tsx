@@ -24,6 +24,7 @@ import OfferScoutingPage from "./components/pages/mypage/offer-scouting/Page";
 import MyMatchPage from "./components/pages/mypage/match/Page";
 import IndividualHistoryPage from "./components/pages/mypage/individual-history/Page";
 import TeamHistoryPage from "./components/pages/mypage/team-history/Page";
+import FootballercupPage from "./components/pages/footballercup/Page";
 
 export default function PageNavigator() {
   return (
@@ -55,6 +56,7 @@ export default function PageNavigator() {
         <Route path="/mypage/offer-scouting" element={<OfferScoutingPage />} />
         <Route path="/mypage/team-history" element={<TeamHistoryPage />} />
       </Route>
+      <Route path="/footballercup" element={<FootballercupPage />} />
     </Routes>
   );
 }
