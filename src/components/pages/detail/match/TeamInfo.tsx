@@ -7,8 +7,8 @@ type Props = {
 };
 
 export default function TeamInfo({ teams }: Props) {
-  const homeTeam = teams[0];
-  const awayTeam = teams[1];
+  const homeTeam = teams && teams[0];
+  const awayTeam = teams && teams[1];
 
   return (
     <Wrapper>

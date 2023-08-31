@@ -8,7 +8,7 @@ export default function IndividualHistoryPage() {
 
   return (
     <MypageContainer>
-      <MypageTitle>팀 히스토리</MypageTitle>
+      <MypageTitle>개인 히스토리</MypageTitle>
       <HistoryList data={userData?.history.reverse()} />
     </MypageContainer>
   );

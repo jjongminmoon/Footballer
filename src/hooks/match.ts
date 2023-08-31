@@ -40,9 +40,11 @@ export function getMyMatches(teamId: string) {
       });
 
       setMyMatches(
-        arr.filter((match: any) =>
-          match.participation.map((team: ParticipationProps) => team.id).includes(teamId)
-        )
+        arr
+          .filter((match: any) =>
+            match.participation.map((team: ParticipationProps) => team.id).includes(teamId)
+          )
+          .reverse()
       );
     });
     return () => {

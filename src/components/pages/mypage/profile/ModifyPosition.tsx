@@ -70,14 +70,14 @@ const Input = styled.input`
 
 const Select = styled.div`
   position: absolute;
-  top: 70px;
+  top: 37px;
   left: 0;
   width: 300px;
-  height: 150px;
+  height: 135px;
+  padding: 8px;
+  font-size: 14px;
   background-color: white;
   border: 1px solid var(--main-gray);
-  border-radius: 10px;
-  overflow-y: scroll;
 `;
 
 const Position = styled.p`
