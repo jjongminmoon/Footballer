@@ -54,3 +54,26 @@ export function getMyMatches(teamId: string) {
 
   return { myMatches };
 }
+
+export function getFooballercup() {
+  const [footballercup, setFootballercup] = useState<any>([]);
+
+  useEffect(() => {
+    const q = query(collection(dbService, "footballercup"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const arr = querySnapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data()
+        };
+      });
+
+      setFootballercup(arr[arr.length - 1]);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return { footballercup };
+}

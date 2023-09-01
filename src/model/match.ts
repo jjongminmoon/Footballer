@@ -13,3 +13,9 @@ export type ParticipationProps = {
   logo: string;
   name: string;
 };
+
+export type FootballercupProps = {
+  id: string;
+  date: string;
+  participant: ParticipationProps[];
+};

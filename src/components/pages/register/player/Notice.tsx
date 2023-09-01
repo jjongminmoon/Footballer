@@ -27,7 +27,7 @@ const Container = styled.div`
   margin: 20px 0;
   padding: 20px;
   border-radius: 10px;
-  background-color: var(--main-gray);
+  background-color: var(--main-light-gray);
 
   h1 {
     margin-bottom: 30px;
