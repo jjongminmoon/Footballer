@@ -43,7 +43,7 @@ export default function ParticipationButton() {
 const Button = styled.button`
   height: 40px;
   padding: 10px;
-  margin-top: 20px;
+  margin: 20px 0;
   background-color: var(--main-button);
   border: none;
   border-radius: 6px;

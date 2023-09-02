@@ -25,11 +25,15 @@ import MyMatchPage from "./components/pages/mypage/match/Page";
 import IndividualHistoryPage from "./components/pages/mypage/individual-history/Page";
 import TeamHistoryPage from "./components/pages/mypage/team-history/Page";
 import FootballercupPage from "./components/pages/footballercup/Page";
+import IntroducePage from "./components/pages/introduce/Page";
+import CustomerServicePage from "./components/pages/cs/Page";
 
 export default function PageNavigator() {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
+      <Route path="/introduce" element={<IntroducePage />} />
+      <Route path="/cs" element={<CustomerServicePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/join" element={<JoinPage />} />
       <Route path="/register/player" element={<RegisterPlayerPage />} />

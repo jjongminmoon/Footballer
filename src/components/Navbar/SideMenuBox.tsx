@@ -21,7 +21,7 @@ const MenuList = [
   { icon: <BiSearch />, name: "팀/선수 찾기", pathname: "/search" },
   { icon: <GiLaurelsTrophy />, name: "풋볼러컵 대회", pathname: "/footballercup" },
   { icon: <TbSoccerField />, name: "구장", pathname: "/field" },
-  { icon: <RiCustomerServiceFill />, name: "고객센터", pathname: "/" }
+  { icon: <RiCustomerServiceFill />, name: "고객센터", pathname: "/cs" }
 ];
 
 export default function SideMenuBox({ stopBubbling, className, setOpenModal }: Props) {
