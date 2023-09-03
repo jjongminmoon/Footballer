@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
 import Logo from "./Logo";
 import { regionList } from "../pages/register/registerData";
+import { Link } from "react-router-dom";
 
 const infoList = [
-  { title: "풋볼러 소개" },
-  { title: "풋볼러컵 대회" },
-  { title: "고객센터" },
-  { title: "인스타그램" },
-  { title: "유튜브" }
+  { title: "풋볼러 소개", pathname: "/introduce" },
+  { title: "풋볼러컵 대회", pathname: "/footballercup" },
+  { title: "고객센터", pathname: "/cs" },
+  { title: "인스타그램", pathname: "" },
+  { title: "유튜브", pathname: "" }
 ];
 
 export default function Footer() {
@@ -23,8 +24,10 @@ export default function Footer() {
           </RegionList>
           <InfoList>
             <h2>풋볼러</h2>
-            {infoList.map(({ title }) => (
-              <p key={title}>{title}</p>
+            {infoList.map(({ title, pathname }) => (
+              <Link key={title} to={pathname}>
+                <p>{title}</p>
+              </Link>
             ))}
           </InfoList>
         </div>
@@ -73,6 +76,7 @@ const RegionList = styled.div`
   align-items: center;
   gap: 20px;
   font-size: 14px;
+  margin-bottom: 10px;
 
   h2 {
     font-size: 18px;

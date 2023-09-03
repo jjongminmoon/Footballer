@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Notice from "./Notice";
 import { FieldProps } from "../../../../model/field";
+import { MapContainer } from "./MapContainer";
 
 type Props = {
   field: FieldProps;
@@ -15,6 +16,7 @@ export default function FieldInfo({ field }: Props) {
         <p>{field?.address}</p>
       </Info>
       <Notice field={field} />
+      <MapContainer address={field?.address} name={field?.id} />
     </>
   );
 }
