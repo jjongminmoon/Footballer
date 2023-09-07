@@ -9,8 +9,8 @@ export default function HistoryList({ data }: Props) {
     <>
       <Count>총 개수 : {data?.length}개</Count>
       <List>
-        {data.map((history) => (
-          <Row>📢 {history}</Row>
+        {data?.map((history, index) => (
+          <Row key={index}>📢 {history}</Row>
         ))}
       </List>
     </>

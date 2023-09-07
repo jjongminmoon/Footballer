@@ -52,7 +52,7 @@ export const MapContainer = ({ address, name }: Props) => {
 
   return (
     <Container>
-      <SubTitle>지도</SubTitle>
+      <SubTitle>위치</SubTitle>
       <p>
         {name} ({address})
       </p>

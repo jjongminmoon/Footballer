@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import Navbar from "./components/navbar/Navbar";
 import PageNavigator from "./PageNavigator";
-import { QueryClient, QueryClientProvider } from "react-query";
 import Footer from "./components/ui/Footer";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { AuthProvider } from "./context/AuthProvider";
 import { UserProvider } from "./context/UserProvider";
 import { TeamProvider } from "./context/TeamProvider";
