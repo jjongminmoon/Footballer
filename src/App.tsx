@@ -27,10 +27,10 @@ function App() {
             <Main>
               <PageNavigator />
             </Main>
-            <Footer />
           </TeamProvider>
         </UserProvider>
       </AuthProvider>
+      <Footer />
     </QueryClientProvider>
   );
 }

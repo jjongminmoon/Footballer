@@ -34,7 +34,7 @@ export default function Footer() {
         <Logo fontSize="30px" color="var(--main-gray)">
           풋볼러
         </Logo>
-        <p>나의 축구 커리어, 풋볼러</p>
+        <Text>나의 축구 커리어, 풋볼러</Text>
         <div className="company-info">
           <p>인천시 서구 검암동 유현로 212, 2층 풋볼러</p>
           <p>contact@footballer.com</p>
@@ -104,4 +104,8 @@ const InfoList = styled.div`
   p {
     cursor: pointer;
   }
+`;
+
+const Text = styled.p`
+  margin-top: 10px;
 `;
