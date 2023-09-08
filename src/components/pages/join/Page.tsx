@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import JoinForm from "./JoinForm";
-import Logo from "../../ui/Logo";
+import Logo from "../../commonUI/Logo";
 
 export default function JoinPage() {
   return (

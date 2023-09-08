@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import DetailContainer from "../DetailContainer";
-import CommonTitle from "../../../ui/Title";
+import CommonTitle from "../../../commonUI/Title";
 import FieldImageCarousel from "../field/FieldImageCarousel";
 import getAllMatches from "../../../../hooks/match";
 import MatchInfo from "./MatchInfo";

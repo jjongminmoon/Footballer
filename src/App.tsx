@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/header/Navbar";
 import PageNavigator from "./PageNavigator";
-import Footer from "./components/ui/Footer";
+import Footer from "./components/footer/Footer";
 import ScrollToUp from "./util/ScrollToUp";
 import { AuthProvider } from "./context/AuthProvider";
 import { UserProvider } from "./context/UserProvider";

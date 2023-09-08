@@ -1,5 +1,5 @@
 import DetailContainer from "../DetailContainer";
-import CommonTitle from "../../../ui/Title";
+import CommonTitle from "../../../commonUI/Title";
 import FieldImageCarousel from "./FieldImageCarousel";
 import FieldInfo from "./FieldInfo";
 import { useParams } from "react-router-dom";

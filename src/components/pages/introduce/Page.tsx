@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Logo from "../../ui/Logo";
+import Logo from "../../commonUI/Logo";
 
 export default function IntroducePage() {
   return (

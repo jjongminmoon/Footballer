@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import Modal from "../../ui/Modal";
-import CommonTitle from "../../ui/Title";
+import Modal from "../../commonUI/Modal";
+import CommonTitle from "../../commonUI/Title";
 import RegisterInput from "./RegisterInput";
 import { useState } from "react";
 import { dbService } from "../../../service/firebase";

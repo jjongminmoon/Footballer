@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import CommonBanner from "../../ui/CommonBanner";
+import CommonBanner from "../../commonUI/CommonBanner";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUser } from "../../../hooks/user";

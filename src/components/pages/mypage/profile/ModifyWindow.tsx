@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Modal from "../../../ui/Modal";
+import Modal from "../../../commonUI/Modal";
 
 type Props = {
   children: React.ReactNode;

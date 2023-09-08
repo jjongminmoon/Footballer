@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Modal from "../../ui/Modal";
+import Modal from "../../commonUI/Modal";
 import { SetStateAction, useState } from "react";
 import { BsPersonBoundingBox } from "react-icons/bs";
 import { getUser } from "../../../hooks/user";

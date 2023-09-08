@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import Modal from "../ui/Modal";
+import Modal from "../commonUI/Modal";
 import SearchInput from "./SearchInput";
-import Logo from "../ui/Logo";
+import Logo from "../commonUI/Logo";
 import SideMenuBox from "./SideMenuBox";
 import { Link } from "react-router-dom";
 import { useState } from "react";

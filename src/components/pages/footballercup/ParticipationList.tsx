@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Logo from "../../ui/Logo";
+import Logo from "../../commonUI/Logo";
 import { getFooballercup } from "../../../hooks/match";
 import { ParticipationProps } from "../../../model/match";
 

@@ -1,4 +1,4 @@
-import CommonTitle from "../../../ui/Title";
+import CommonTitle from "../../../commonUI/Title";
 import TeamInfo from "./TeamInfo";
 import TeamScoring from "./TeamScoring";
 import DetailContainer from "../DetailContainer";

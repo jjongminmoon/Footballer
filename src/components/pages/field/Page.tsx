@@ -1,5 +1,5 @@
-import CommonBanner from "../../ui/CommonBanner";
-import CommonTitle from "../../ui/Title";
+import CommonBanner from "../../commonUI/CommonBanner";
+import CommonTitle from "../../commonUI/Title";
 import FieldList from "./FieldList";
 
 export default function FieldListPage() {
