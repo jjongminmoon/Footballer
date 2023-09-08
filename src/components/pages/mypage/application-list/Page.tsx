@@ -1,11 +1,11 @@
+import MypageContainer from "../MypageContainer";
+import MypageTitle from "../MypageTitle";
+import PlayerList from "../PlayerList";
 import { getMyTeam } from "../../../../hooks/team";
 import { UserProps } from "../../../../model/user";
-import MypageContainer from "../MypageContainer";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { dbService } from "../../../../service/firebase";
-import PlayerList from "../PlayerList";
 import { getAllUser, getUser } from "../../../../hooks/user";
-import MypageTitle from "../MypageTitle";
 
 export default function ApplicationListPage() {
   const { allUser } = getAllUser();

@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import MypageContainer from "../MypageContainer";
+import MypageTitle from "../MypageTitle";
 import ModifyRegion from "./ModifyRegion";
 import ModifyPosition from "./ModifyPosition";
-import MypageTitle from "../MypageTitle";
 import { useState } from "react";
 import { getUser } from "../../../../hooks/user";
 import { getPlayerLevelScore, getPlayerMannerScore } from "../../../../hooks/scoring";
