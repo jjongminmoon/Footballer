@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import CommonBanner from "../../../ui/CommonBanner";
+import CommonBanner from "../../../commonUI/CommonBanner";
 import LogoImage from "./LogoImage";
 import TextInput from "../TextInput";
 import FeeInput from "./FeeInput";

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Modal from "../ui/Modal";
+import Modal from "../commonUI/Modal";
 import useDebounce from "../../hooks/debounce";
 import { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";

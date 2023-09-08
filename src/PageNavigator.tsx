@@ -1,4 +1,4 @@
-import Loading from "./components/ui/Loading";
+import Loading from "./components/commonUI/Loading";
 import IntroducePage from "./components/pages/introduce/Page";
 import CustomerServicePage from "./components/pages/cs/Page";
 import TeamSearchPage from "./components/pages/search/team/Page";

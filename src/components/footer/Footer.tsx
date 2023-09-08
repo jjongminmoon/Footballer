@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Logo from "./Logo";
+import Logo from "../commonUI/Logo";
 import { regionList } from "../pages/register/registerData";
 import { Link } from "react-router-dom";
 
