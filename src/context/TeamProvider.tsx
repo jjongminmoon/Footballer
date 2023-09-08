@@ -1,8 +1,8 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { getUser } from "../hooks/user";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { dbService } from "../service/firebase";
-import React from "react";
 
 type Props = {
   children: React.ReactNode;

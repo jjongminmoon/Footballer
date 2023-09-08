@@ -4,11 +4,11 @@ import RegionSelect from "../RegionSelect";
 import PositionSelect from "./PositionSelect";
 import LevelSelect from "./LevelSelect";
 import BirthInput from "./BirthInput";
+import TextInput from "../TextInput";
+import Notice from "./Notice";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import addUser, { getAuthData } from "../../../../hooks/user";
-import TextInput from "../TextInput";
-import Notice from "./Notice";
 
 export default function RegisterPlayerPage() {
   const { authData } = getAuthData();
@@ -23,14 +23,18 @@ export default function RegisterPlayerPage() {
   const navigate = useNavigate();
 
   const addUserData = () => {
-    if (image && name && height && weight && birth && position && region && level !== "") {
-      addUser(authData?.email, image, name, height, weight, birth, position, region, level);
-      alert("풋볼러 정보 등록이 완료되었습니다.");
-      navigate("/");
-    } else if (isNaN(Number(height || weight))) {
-      alert("신장과 몸무게는 숫자만 입력 가능합니다.");
+    if (confirm("작성된 내용으로 선수 등록을 완료하시겠습니까?")) {
+      if (image && name && height && weight && birth && position && region && level !== "") {
+        addUser(authData?.email, image, name, height, weight, birth, position, region, level);
+        alert("풋볼러 정보 등록이 완료되었습니다.");
+        navigate("/");
+      } else if (isNaN(Number(height || weight))) {
+        alert("신장과 몸무게는 숫자만 입력 가능합니다.");
+      } else {
+        alert("모든 항목을 입력해주세요.");
+      }
     } else {
-      alert("모든 항목을 입력해주세요.");
+      return;
     }
   };
 

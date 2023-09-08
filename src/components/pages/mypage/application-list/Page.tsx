@@ -12,7 +12,7 @@ export default function ApplicationListPage() {
   const { userData } = getUser();
   const { teamData } = getMyTeam();
   const applicationArr = teamData?.applicationList;
-  const applicationList = allUser.filter((user: UserProps) => applicationArr.includes(user.id));
+  const applicationList = allUser.filter((user: UserProps) => applicationArr?.includes(user.id));
 
   const handleApproval = (player: UserProps) => {
     const playerDocRef = doc(dbService, "user", player.id);
@@ -46,8 +46,8 @@ export default function ApplicationListPage() {
     const playerDocRef = doc(dbService, "user", player.id);
     const teamDocRef = doc(dbService, "team", teamData.id);
 
-    if (teamData.owner.name === userData.name) {
-      if (confirm(`${player.name} 선수의 입단 신청을 거절 하시겠습니까?`)) {
+    if (confirm(`${player.name} 선수의 입단 신청을 거절 하시겠습니까?`)) {
+      if (teamData.owner.name === userData.name) {
         updateDoc(playerDocRef, {
           apply: arrayRemove(teamData.id)
         });
@@ -58,10 +58,9 @@ export default function ApplicationListPage() {
           .then(() => alert("입단 거절되었습니다."))
           .catch((e) => alert(e));
       } else {
-        return;
+        alert("입단 승인/거절 권한은 구단주에게만 있습니다.");
       }
     } else {
-      alert("입단 승인/거절 권한은 구단주에게만 있습니다.");
       return;
     }
   };

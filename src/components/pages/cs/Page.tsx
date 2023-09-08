@@ -9,5 +9,5 @@ export default function CustomerServicePage() {
     navigate("/");
   });
 
-  return <section></section>;
+  return <section>서비스 준비중</section>;
 }

@@ -5,7 +5,6 @@ import { TbSoccerField } from "react-icons/tb";
 import { FieldProps } from "../../../../model/field";
 
 export default function Notice({ field }: { field: FieldProps }) {
-  //
   const noticeList = [
     { name: `${field?.size}(m)`, icon: <TbSoccerField /> },
     { name: "샤워실", icon: <FaShower /> },

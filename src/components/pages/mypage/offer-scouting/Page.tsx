@@ -1,8 +1,8 @@
-import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { getMyTeam } from "../../../../hooks/team";
 import MypageContainer from "../MypageContainer";
 import MypageTitle from "../MypageTitle";
 import PlayerList from "../PlayerList";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { getMyTeam } from "../../../../hooks/team";
 import { dbService } from "../../../../service/firebase";
 import { UserProps } from "../../../../model/user";
 import { getAllUser, getUser } from "../../../../hooks/user";
@@ -20,8 +20,8 @@ export default function OfferScoutingPage() {
     const playerDocRef = doc(dbService, "user", player.id);
     const teamDocRef = doc(dbService, "team", teamData.id);
 
-    if (teamData.owner.name === userData.id) {
-      if (confirm("보낸 스카우트 제의를 취소하시겠습니까?")) {
+    if (confirm("보낸 스카우트 제의를 취소하시겠습니까?")) {
+      if (teamData.owner.name === userData.id) {
         updateDoc(playerDocRef, {
           scouted: arrayRemove(teamData.id),
           history: arrayUnion(`${teamData.name} 팀에서 스카우트 제의를 취소했습니다.`)
@@ -31,9 +31,11 @@ export default function OfferScoutingPage() {
           scoutList: arrayRemove(player.id),
           history: arrayUnion(`${userData.name} 선수에게 보낸 스카우트 제의를 취소했습니다.`)
         });
+      } else {
+        alert("스카우트 제의 취소 권한은 구단주에게만 있습니다.");
       }
     } else {
-      alert("스카우트 제의 취소 권한은 구단주에게만 있습니다.");
+      return;
     }
   };
 

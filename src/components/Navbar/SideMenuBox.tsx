@@ -6,7 +6,7 @@ import { BiSolidExit, BiSearch } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../service/firebase";
-import { getUser } from "../../hooks/user";
+import { getAuthData } from "../../hooks/user";
 import { SetStateAction } from "react";
 
 type Props = {
@@ -25,7 +25,7 @@ const MenuList = [
 ];
 
 export default function SideMenuBox({ stopBubbling, className, setOpenModal }: Props) {
-  const { userData } = getUser();
+  const { authData } = getAuthData();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -43,7 +43,7 @@ export default function SideMenuBox({ stopBubbling, className, setOpenModal }: P
             <Link to={pathname}>{name}</Link>
           </li>
         ))}
-        {userData && (
+        {authData && (
           <Logout onClick={handleLogout}>
             <BiSolidExit />
             <p>로그아웃</p>

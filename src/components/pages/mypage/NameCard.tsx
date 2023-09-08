@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
+import ChangeImage from "./ChangeImage";
 import { getUser } from "../../../hooks/user";
 import { useState } from "react";
-import ChangeImage from "./ChangeImage";
 
 export default function NameCard() {
   const { userData } = getUser();

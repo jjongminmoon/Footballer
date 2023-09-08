@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
+import Logo from "../../ui/Logo";
 import { getFooballercup } from "../../../hooks/match";
 import { ParticipationProps } from "../../../model/match";
-import Logo from "../../ui/Logo";
 
 const emptyList = [
   { id: 1, text: "미정" },

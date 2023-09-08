@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import SideNavigation from "./SideNavigation";
 import CommonBanner from "../../ui/CommonBanner";
+import SideNavigation from "./SideNavigation";
 import NameCard from "./NameCard";
 import { Outlet } from "react-router-dom";
 

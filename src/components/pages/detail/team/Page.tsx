@@ -1,10 +1,10 @@
 import CommonTitle from "../../../ui/Title";
 import TeamInfo from "./TeamInfo";
 import TeamScoring from "./TeamScoring";
+import DetailContainer from "../DetailContainer";
 import { useParams } from "react-router-dom";
 import { getAllTeam } from "../../../../hooks/team";
 import { TeamProps } from "../../../../model/team";
-import DetailContainer from "../DetailContainer";
 
 export default function TeamDetailPage() {
   const { allTeam } = getAllTeam();

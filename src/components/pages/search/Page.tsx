@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import CommonBanner from "../../ui/CommonBanner";
-import { Link, Outlet } from "react-router-dom";
-import { useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getUser } from "../../../hooks/user";
 
 const categoryList = [
   { name: "팀 찾기", pathname: "/search/team" },
@@ -9,7 +10,16 @@ const categoryList = [
 ];
 
 export default function SearchPage() {
+  const { userData } = getUser();
   const [selectedCategory, setSelectedCategory] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userData === undefined) {
+      alert("선수 정보가 등록되어 있지 않아 팀/선수 찾기 권한이 없습니다.");
+      navigate("/register/player");
+    }
+  });
 
   return (
     <section>

@@ -8,6 +8,7 @@ type Props = {
 };
 
 export default function LogoImage({ logo, setLogo }: Props) {
+  //
   const uploadImage = (e: any) => {
     const file = e.target.files[0];
     const reader = new FileReader();

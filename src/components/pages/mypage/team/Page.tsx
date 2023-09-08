@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import MypageContainer from "../MypageContainer";
-import { getMyTeam } from "../../../../hooks/team";
 import MypageTitle from "../MypageTitle";
+import { getMyTeam } from "../../../../hooks/team";
 import { getTeamLevelScore, getTeamMannerScore } from "../../../../hooks/scoring";
 
 export default function TeamPage() {

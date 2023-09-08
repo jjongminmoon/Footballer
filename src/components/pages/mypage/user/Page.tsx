@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import MypageContainer from "../MypageContainer";
-import { getAuthData } from "../../../../hooks/user";
 import MypageTitle from "../MypageTitle";
+import { getAuthData } from "../../../../hooks/user";
 
 export default function UserPage() {
   const { authData } = getAuthData();

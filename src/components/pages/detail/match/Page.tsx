@@ -1,14 +1,14 @@
+import styled from "@emotion/styled";
 import DetailContainer from "../DetailContainer";
 import CommonTitle from "../../../ui/Title";
 import FieldImageCarousel from "../field/FieldImageCarousel";
 import getAllMatches from "../../../../hooks/match";
 import MatchInfo from "./MatchInfo";
 import Notice from "../field/Notice";
-import styled from "@emotion/styled";
-import { useParams } from "react-router-dom";
-import { MatchProps } from "../../../../model/match";
 import TeamInfo from "./TeamInfo";
 import RuleInfo from "./RuleInfo";
+import { useParams } from "react-router-dom";
+import { MatchProps } from "../../../../model/match";
 
 export default function MatchDetailPage() {
   const { id } = useParams();

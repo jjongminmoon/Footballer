@@ -1,10 +1,10 @@
 import CommonTitle from "../../../ui/Title";
 import PlayerScoring from "./PlayerScoring";
 import Profile from "./Profile";
+import DetailContainer from "../DetailContainer";
 import { getAllUser } from "../../../../hooks/user";
 import { useParams } from "react-router-dom";
 import { UserProps } from "../../../../model/user";
-import DetailContainer from "../DetailContainer";
 
 export default function PlayerDetailPage() {
   const { allUser } = getAllUser();

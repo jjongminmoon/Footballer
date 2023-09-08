@@ -1,8 +1,8 @@
+import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthProvider";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { dbService } from "../service/firebase";
-import React from "react";
 
 type Props = {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
 import CheckedJoin from "./CheckedJoin";
+import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../service/firebase";
 import { useNavigate } from "react-router-dom";

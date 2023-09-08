@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import RegionSelect from "../../main/RegionSelect";
-import { SetStateAction } from "react";
 import PositionSelect from "./PositionSelect";
+import { SetStateAction } from "react";
 
 type Props = {
   selectedRegion: string;

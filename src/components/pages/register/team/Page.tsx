@@ -26,25 +26,32 @@ export default function RegisterTeamPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userData?.team[userData?.team.length - 1] !== "무소속") {
+    if (userData && userData?.team[userData?.team.length - 1] !== "무소속") {
       alert("소속팀이 있어 새로운 팀을 등록할 수 없습니다.");
       navigate("/");
+    } else if (userData === undefined) {
+      alert("선수 정보가 등록되어 있지 않아 팀 등록 권한이 없습니다.");
+      navigate("/register/player");
     }
   });
 
   const addTeamData = () => {
-    if (allTeam.map((team: TeamProps) => team.name).includes(name)) {
-      alert("팀명을 다른 팀이 사용중입니다.");
-      return;
+    if (confirm("작성된 내용으로 팀 등록을 완료하시겠습니까?")) {
+      if (allTeam.map((team: TeamProps) => team.name).includes(name)) {
+        alert("팀명을 다른 팀이 사용중입니다.");
+        return;
+      } else {
+        const docRef = doc(dbService, "user", userData.id);
+        updateDoc(docRef, {
+          team: arrayUnion(name),
+          history: arrayUnion("팀 등록이 완료되었습니다. 새로운 풋볼러들을 모집해보세요.")
+        });
+        addTeam(logo, owner, name, region, status, fee, introduce, userData);
+        alert("팀 등록이 완료되었습니다.");
+        navigate("/");
+      }
     } else {
-      const docRef = doc(dbService, "user", userData.id);
-      updateDoc(docRef, {
-        team: arrayUnion(name),
-        history: arrayUnion("팀 등록이 완료되었습니다. 새로운 풋볼러들을 모집해보세요.")
-      });
-      addTeam(logo, owner, name, region, status, fee, introduce, userData);
-      alert("팀 등록이 완료되었습니다.");
-      navigate("/");
+      return;
     }
   };
 

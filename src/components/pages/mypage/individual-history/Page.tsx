@@ -1,7 +1,7 @@
-import { getUser } from "../../../../hooks/user";
-import HistoryList from "../HistoryList";
 import MypageContainer from "../MypageContainer";
 import MypageTitle from "../MypageTitle";
+import HistoryList from "../HistoryList";
+import { getUser } from "../../../../hooks/user";
 
 export default function IndividualHistoryPage() {
   const { userData } = getUser();

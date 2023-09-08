@@ -1,11 +1,11 @@
+import MypageContainer from "../MypageContainer";
+import MypageTitle from "../MypageTitle";
+import PlayerList from "../PlayerList";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { getMyTeam } from "../../../../hooks/team";
 import { UserProps } from "../../../../model/user";
-import MypageContainer from "../MypageContainer";
-import PlayerList from "../PlayerList";
 import { dbService } from "../../../../service/firebase";
 import { getAllUser, getUser } from "../../../../hooks/user";
-import MypageTitle from "../MypageTitle";
 
 export default function MemberPage() {
   const { allUser } = getAllUser();
@@ -18,8 +18,8 @@ export default function MemberPage() {
     const playerDocRef = doc(dbService, "user", player.id);
     const teamDocRef = doc(dbService, "team", teamData.id);
 
-    if (teamData.owner.name === userData.name) {
-      if (confirm("선수를 방출하시겠습니까?")) {
+    if (confirm("선수를 방출하시겠습니까?")) {
+      if (teamData.owner.name === userData.name) {
         updateDoc(playerDocRef, {
           team: arrayUnion("무소속"),
           history: arrayUnion(`${teamData.name} 팀에서 방출되었습니다.`)
@@ -32,10 +32,9 @@ export default function MemberPage() {
           .then(() => alert("선수가 방출되었습니다."))
           .catch((e) => alert(e));
       } else {
-        return;
+        alert("방출 권한은 구단주에게만 있습니다.");
       }
     } else {
-      alert("방출 권한은 구단주에게만 있습니다.");
       return;
     }
   };
