@@ -21,7 +21,7 @@ export default function MemberPage() {
     if (confirm("선수를 방출하시겠습니까?")) {
       if (teamData.owner.name === userData.name) {
         updateDoc(playerDocRef, {
-          team: arrayUnion("무소속"),
+          team: arrayRemove(teamData.name),
           history: arrayUnion(`${teamData.name} 팀에서 방출되었습니다.`)
         });
 
